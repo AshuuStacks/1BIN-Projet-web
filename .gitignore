@@ -1,7 +1,7 @@
 # Ajouts pour le projet web 2024
 
 .DS_Store
-data/
+data/project.db
 .vscode/
 .idea/
 
