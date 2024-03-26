@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Site</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                {{#if session.user}}
+                    <li><a href="/users/logout">Logout</a></li>
+                {{else}}
+                    <li><a href="/users/login">Log in</a></li>
+                    <li><a href="/users/register">Register</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+    </header>
+        {{{body}}}
+    <footer>
+    </footer>
+</body>
+
+</html>
