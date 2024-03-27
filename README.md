@@ -8,7 +8,7 @@ Suivez le document proposé sur moodle pour apprendre à utiliser Git et GitHub 
 
 ## Installation du projet
 
-Quand vous clonez ce repository sur votre machine, vous devez installer les dépendances et la base de données. Exécutez la commande suivante dans un terminal ouvert à la racine du projet :
+Quand vous clonez ce repository sur votre machine, vous devez installer les dépendances et la base de données. Exécutez la commande suivante dans un terminal (Git Bash et pas cmd ou PowerShell sur Windows) ouvert à la racine du projet :
 
 ```bash
 bash install.sh
@@ -16,7 +16,7 @@ bash install.sh
 
 ## Lancer le projet
 
-Une fois que le projet est préparé tel qu'expliqué dans la section précédente, vous pouvez le lancer avec les commandes suivantes dans un terminal ouvert à la racine du projet :
+Une fois que le projet est préparé tel qu'expliqué dans la section précédente, vous pouvez le lancer avec les commandes suivantes dans un terminal (Git Bash et pas cmd ou PowerShell sur Windows) ouvert à la racine du projet :
 
 ```sh
 npm start
