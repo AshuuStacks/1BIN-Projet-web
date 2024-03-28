@@ -1,0 +1,32 @@
+# Exécute le script 'install.sh' et vérifie si son exécution est réussie
+try {
+    ./install.sh
+} catch {
+    Write-Error "Le script d'installation a échoué"
+    exit 1
+}
+
+# Démarre l'application en arrière-plan et enregistre son PID
+$process = Start-Process npm -ArgumentList "start" -PassThru -RedirectStandardOutput "null"
+$PID = $process.Id
+
+# Attend 5 secondes pour que l'application démarre
+Start-Sleep -Seconds 5
+
+# Vérifie si l'application est accessible sur le port local 3000
+try {
+    Invoke-WebRequest -Uri "http://localhost:3000" -UseBasicParsing
+} catch {
+    Write-Error "Le lancement de l'application a échoué"
+    Stop-Process -Id $PID
+    exit 1
+}
+
+# Termine le processus de l'application en utilisant son PID
+Stop-Process -Id $PID
+
+# Confirme que l'application est fonctionnelle
+Write-Host "L'application est fonctionnelle"
+
+# Crée une archive zip du projet en excluant certains dossiers et fichiers
+Compress-Archive -Path * -DestinationPath "project_group_XX_FRISTNAME_LASTNAME.zip" -Exclude "*.git*", "*.zip", "node_modules", "data", "sqlite"
