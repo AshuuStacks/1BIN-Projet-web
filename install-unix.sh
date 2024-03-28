@@ -12,6 +12,11 @@ unzip -o sqlite/sqlite.zip -d sqlite > /dev/null
 # Compile SQLite
 gcc sqlite/sqlite-amalgamation-3450200/shell.c sqlite/sqlite-amalgamation-3450200/sqlite3.c -lpthread -ldl -lm -o sqlite/sqlite3 > /dev/null
 
+# Crée le dossier 'data' si nécessaire
+if [ ! -d data ]; then
+    mkdir data
+fi
+
 # Crée la base de données avec SQLite
 ./sqlite/sqlite3 data/project.db < install.sql > /dev/null
 if [ $? != 0 ]; then
