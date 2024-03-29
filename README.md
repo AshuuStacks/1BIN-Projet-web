@@ -8,15 +8,25 @@ Suivez le document proposé sur moodle pour apprendre à utiliser Git et GitHub 
 
 ## Installation du projet
 
-Quand vous clonez ce repository sur votre machine, vous devez installer les dépendances et la base de données. Exécutez la commande suivante dans un terminal (Git Bash et pas cmd ou PowerShell sur Windows) ouvert à la racine du projet :
+Si ce n'est pas encore fait, renommez l'un de fichiers `bd_install-french.sql` ou `db_install-english.sql` en `db_install.sql`, selon la langue que vous avez choisie pour l'interface de votre site web.
 
-```bash
-bash install.sh
+Lancez ensuite le script qui va créer le fichier de base de données et installer les dépendances de l'application. Commencez par ouvrir un terminal. Attention, il faut utiliser le terminal Git Bash sur Windows, au lieu de cmd ou de PowerShell.
+
+Si vous êtes sur windows, lancez la commande :
+
+```sh
+bash install-windows.sh
+```
+
+Si vous êtes sur macOS ou linux, lancez la commande :
+
+```sh
+bash install-unix.sh
 ```
 
 ## Lancer le projet
 
-Une fois que le projet est préparé tel qu'expliqué dans la section précédente, vous pouvez le lancer avec les commandes suivantes dans un terminal (Git Bash et pas cmd ou PowerShell sur Windows) ouvert à la racine du projet :
+Une fois que le projet est préparé tel qu'expliqué dans la section précédente, vous pouvez le lancer avec la commande suivante :
 
 ```sh
 npm start
@@ -24,10 +34,10 @@ npm start
 
 ## Préparation de la soumission
 
-Lorsque vous voudrez soumettre votre projet, utilisez la commande suivante pour créer votre archive :
+Lorsque vous voudrez soumettre votre projet, utilisez la commande suivante dans un terminal (Git Bash et pas cmd ou PowerShell sur Windows) ouvert à la racine du projet :
 
 ```bash
 bash prepare_submission.sh
 ```
 
-Si votre projet est fonctionnel, cette commande va créer un fichier `project_group_XX_FRISTNAME_LASTNAME.zip`. Autrement, la commande affiche une erreur dans le terminal.
+Si votre projet est fonctionnel, cette commande crée un fichier `project_group_XX_FRISTNAME_LASTNAME.zip`. Autrement, la commande affiche une erreur dans le terminal.
