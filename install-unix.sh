@@ -18,7 +18,7 @@ if [ ! -d data ]; then
 fi
 
 # Crée la base de données avec SQLite
-./sqlite/sqlite3 data/project.db < install.sql > /dev/null
+./sqlite/sqlite3 data/project.db < db_install.sql > /dev/null
 if [ $? != 0 ]; then
     echo "La création de la base de données a échoué" >&2
     exit 1
