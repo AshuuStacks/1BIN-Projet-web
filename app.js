@@ -33,7 +33,7 @@ const usersRouter = require("./routes/users.js");
 const tournamentsRouter = require("./routes/tournaments.js");
 const courtsRouter = require("./routes/courts.js");
 const coachesRouter = require("./routes/coaches.js");
-//const messagesRouter = require("./routes/messages.js");
+const messagesRouter = require("./routes/messages.js");
 
 
 const app = express();
@@ -60,7 +60,7 @@ app.use("/users", usersRouter);
 app.use("/tournaments", tournamentsRouter);
 app.use("/courts", courtsRouter);
 app.use("/coaches", coachesRouter);
-//app.use("/messages", messagesRouter);
+app.use("/messages", messagesRouter);
 
 // Create error on page not found
 app.use((req, res, next) => next(createError(404)));
