@@ -1,4 +1,8 @@
-# Projet web 2024 - Groupe XX
+# DEMANDER PROF POUR SYNC DATABASE ???
+# ASK FOR User.js AND users.js
+# FOLDERS IN IMAGES
+
+# Projet web 2024 - Groupe 14
 
 Ce repository GitHub reprend le boilerplate du code de votre projet web, ou la base à partir de laquelle vous allez déveloper.
 
