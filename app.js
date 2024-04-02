@@ -31,7 +31,7 @@ hbs.registerHelper('eq', function (a, b) {
 const indexRouter = require("./routes/index.js");
 const usersRouter = require("./routes/users.js");
 const tournamentsRouter = require("./routes/tournaments.js");
-//const courtsRouter = require("./routes/courts.js");
+const courtsRouter = require("./routes/courts.js");
 const coachesRouter = require("./routes/coaches.js");
 //const messagesRouter = require("./routes/messages.js");
 
@@ -58,7 +58,7 @@ app.use(function (req, res, next) {
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/tournaments", tournamentsRouter);
-//app.use("/courts", courtsRouter);
+app.use("/courts", courtsRouter);
 app.use("/coaches", coachesRouter);
 //app.use("/messages", messagesRouter);
 
