@@ -1,0 +1,37 @@
+<section>
+    <h1 id="titleTournamentZak">Liste des Tournois</h1>
+
+    <p id="introTournament">Chaque tournoi est unique en son genre,
+    et c'est là toute sa beauté ; il est un univers à part où règnent l'excitation,
+    la compétition et l'imprévisibilité. À chaque rencontre, à chaque échange, à chaque point,
+    se cache une surprise, un moment de suspense qui fait battre les cœurs des spectateurs et des 
+    compétiteurs. Les tournois sont des théâtres où se jouent des histoires inattendues, des retournements
+    de situation époustouflants, les rendant unique en leur genre </p>
+
+
+
+    <p id="listTournament">Voici la liste des tournois que nous proposons : </p>
+
+
+    <table id="tableTournament">
+        <tr id="trTournament">
+            <th>Id du tournoi</th>
+            <th>Nom </th>
+            <th>Date</th>
+            <th>Nombre max</th>
+        </tr>
+        {{#each tournamentsTable}}
+        <tr>
+            <td>{{this.tournament_id}}</td>
+            <td><a href="http://localhost:3000/tournaments/details?id={{this.tournament_id}}"> {{this.name}} </a></td>
+            <td>{{this.tournament_date}} </td>
+            <td>{{this.nb_max_participants}} </td>
+        </tr>
+        {{/each}}
+    </table>
+</section>
+
+
+
+
+<section>Création d'un tournoi</section>
