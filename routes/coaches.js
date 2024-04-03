@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 
 router.get('/details', (req, res) => {
     const userId = req.query.user_id;
-    
+      
     // Check if courtId is a number
     if (isNaN(userId)) {
       req.session.errors = 'Invalid user id';
