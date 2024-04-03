@@ -14,12 +14,12 @@ if [ ! -d data ]; then
     mkdir data
 fi
 
-# Crée la base de données avec SQLite
-# ./sqlite/sqlite3.exe data/project.db < db_install.sql > /dev/null
-# if [ $? != 0 ]; then
-#     echo "La création de la base de données a échoué" >&2
-#     exit 1
-# fi
+#Crée la base de données avec SQLite
+./sqlite/sqlite3.exe data/project.db < db_install.sql > /dev/null
+if [ $? != 0 ]; then
+    echo "La création de la base de données a échoué" >&2
+    exit 1
+fi
 
 # Installe les dépendances npm
 npm install > /dev/null

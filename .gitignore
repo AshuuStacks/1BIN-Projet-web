@@ -5,6 +5,7 @@
 .idea/
 
 sqlite/
+data/
 
 # Logs
 logs
