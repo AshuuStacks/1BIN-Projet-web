@@ -4,6 +4,7 @@ const Coach = require('../models/Coach.js');
 
 /* GET coaches page. */
 router.get('/', (req, res) => {
+  console.log('testt')
   const errors = req.session.errors;
   req.session.errors = null;
     res.render('coaches/index.hbs', {  coaches: Coach.info(), errors: errors });
