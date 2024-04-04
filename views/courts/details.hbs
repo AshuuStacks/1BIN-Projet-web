@@ -4,7 +4,7 @@
             <table class="court-details">
                 <tr>
                     {{#if (eq session.user.status "coach")}}
-                    <td><a href="/courts/update?tennis_court_id={{tennis_court_id}}" class="button-details">Mettre à jour</a></td>
+                    <td><a href="/courts/update?tennis_court_id={{court.tennis_court_id}}" class="button-details">Mettre à jour</a></td>
                     {{else}}
                     <td></td> <!-- Empty cell for spacing -->
                     {{/if}}
@@ -18,7 +18,7 @@
             </table>
             <div class="container-floor-img">
                 <h2 class="court-details-titles">Surface : {{court.flooring_type}}</h2>
-                <img src="/{{court.picture_path}}" alt="Floor Image" class="floor-img">
+                <img src="{{court.picture_path}}" alt="Floor Image" class="floor-img">
             </div>
             <div class="container-loc-size">
                 <!-- Left Container -->
