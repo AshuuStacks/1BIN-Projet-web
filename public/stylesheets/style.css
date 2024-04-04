@@ -555,15 +555,35 @@ h1 {
 }
 
 /* Tournament */
+.tournament-body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Karma', serif;
+    background-color: #FBFEF8; 
+}
+
+.tournament-court {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
 #titleTournamentZak{
     font-style: italic;
     text-align: center;
-    padding-top: 20px;  
+    padding-top: 35px;  
 }
 
 #introTournament{
     text-align: center;
-    font-size: 20px; 
+    font-size: 20px;
+    margin-left: 200px;
+    margin-right: 200px;
 }
 
 #listTournament{
@@ -578,6 +598,36 @@ h1 {
 
 #trTournament{
     font-size: 20px;
+}
+
+.tournament-list {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+x   
+.tournament-list th,
+.tournament td {
+    padding: 15px;
+    text-align: left;
+}
+
+.tournament th {
+    background-color: #f2f2f2;
+    font-size: 18px;
+}
+
+.tournament-item {
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+}
+
+.tournament-item:last-child {
+    border-bottom: none;
+}
+
+.tournament-item:hover {
+    background-color: #E4EDD8;
 }
 
 

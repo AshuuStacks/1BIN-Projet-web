@@ -1,37 +1,36 @@
-<section>
-    <h1 id="titleTournamentZak">Liste des Tournois</h1>
 
-    <p id="introTournament">Chaque tournoi est unique en son genre,
-    et c'est là toute sa beauté ; il est un univers à part où règnent l'excitation,
-    la compétition et l'imprévisibilité. À chaque rencontre, à chaque échange, à chaque point,
-    se cache une surprise, un moment de suspense qui fait battre les cœurs des spectateurs et des 
-    compétiteurs. Les tournois sont des théâtres où se jouent des histoires inattendues, des retournements
-    de situation époustouflants, les rendant unique en leur genre </p>
+<main>
+    <body>
+        <div class="tournament-body">
+            <div class="tournament-court">
+                <h1 id="court-page-title">Nos tournois de tennis</h1>
+                <h5 id="court-page-h5">Informations sur les tournament</h5>
+                <p id="court-page-txt">Bienvenue sur notre page de liste des tournoi de tennis. <br>
+                Vous trouverez ci-dessous tous les tournoi disponibles. <br>
+                N'hésitez pas à explorer et à choisir un tournoi pour votre partie.
+            </p>
+                <table class="tournament-list">
+                    <thead>
+                        <tr>
+                        <th>Id du tournoi</th>
+                        <th>Nom</th>
+                        <th>Date</th>
+                        <th>Nombre max</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each tournamentsTable}}
+                        <tr class="tournament-item">
+                            <td>{{this.tournament_id}}</td>
+                            <td><a style ="color : orange;  font-weight: bold" href="/tournaments/details?tournament_id={{this.tournament_id}}">{{this.name}}</a></td>
+                            <td>{{this.tournament_date}} </td>
+                            <td>{{this.nb_max_participants}} </td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</main>
 
-
-
-    <p id="listTournament">Voici la liste des tournois que nous proposons : </p>
-
-
-    <table id="tableTournament">
-        <tr id="trTournament">
-            <th>Id du tournoi</th>
-            <th>Nom </th>
-            <th>Date</th>
-            <th>Nombre max</th>
-        </tr>
-        {{#each tournamentsTable}}
-        <tr>
-            <td>{{this.tournament_id}}</td>
-            <td><a href="http://localhost:3000/tournaments/details?id={{this.tournament_id}}"> {{this.name}} </a></td>
-            <td>{{this.tournament_date}} </td>
-            <td>{{this.nb_max_participants}} </td>
-        </tr>
-        {{/each}}
-    </table>
-</section>
-
-
-
-
-<section>Création d'un tournoi</section>

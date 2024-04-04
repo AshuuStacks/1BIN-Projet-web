@@ -35,8 +35,7 @@ router.get('/details', function (req, res, next) {
     // another solution is to use == instead of === in if instruction
     const tournamentsIdParam = parseInt(req.query.id);
     const tournamentsFound = Tournament.findById(tournamentsIdParam);
-    res.render('tournaments/details.hbs', { tournament: tournamentsFound  });
-
+    res.render('tournaments/details.hbs', { tournament: tournamentsFound});
 });
 
 

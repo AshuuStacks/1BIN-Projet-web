@@ -1,25 +1,25 @@
 <h1 id="titleDetailsZak">Details d'un tournoi</h1>
 
 
-<h4>{{this.name}}</h4>
+<h4>{{tournament.name}}</h4>
 
-
-<img src="/images/tournaments/LeSmash.png" alt="Image of the Smash">
+    <img src="/{{tournament.banner_image_path}}" alt="Image of the tournament">
 
 
 <table id="tableTournament">
         <tr>
             <th>Date</th>
             <th>Coach qui l'a crée </th>
-            <th>Nombre maximum de participants</th>
+            <th>Nombre max</th>
         </tr>
         {{#each tournamentsTable}}
         <tr>
-            <td>{{this.date_tournament}}</td>
-            <td>{{this.creator}} </td>
-            <td>{{this.nb_max_participants}} </td>
+            <td>{{tournament.date_tournament}}</td>
+            <td>{{tournament.creator}} </td>
+            <td>{{tournament.nb_max_participants}} </td>
         </tr>
         {{/each}}
+        </table>
         
 
         <p>Il y'a déjà 18 inscrits..<br>
