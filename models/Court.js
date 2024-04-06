@@ -1,7 +1,7 @@
 const db = require("./db_conf.js");
 
 module.exports.info = () => {
-    const stmt = db.prepare("SELECT * FROM tennis_courts");
+    const stmt = db.prepare("SELECT * FROM tennis_courts ORDER BY name");
     return stmt.all();
 };
 
