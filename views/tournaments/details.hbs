@@ -1,29 +1,33 @@
+
 <h1 id="titleDetailsZak">Details d'un tournoi</h1>
 
+<h4>{{tournament.name}}</h4>
 
-<h4>{{this.name}}</h4>
+<img src="/{{tournament.banner_image_path}}" alt="Tournament image" class="img-tournament">
 
-
-<img src="/images/tournaments/LeSmash.png" alt="Image of the Smash">
-
-
-<table id="tableTournament">
-        <tr>
-            <th>Date</th>
-            <th>Coach qui l'a crée </th>
-            <th>Nombre maximum de participants</th>
-        </tr>
-        {{#each tournamentsTable}}
-        <tr>
-            <td>{{this.date_tournament}}</td>
-            <td>{{this.creator}} </td>
-            <td>{{this.nb_max_participants}} </td>
-        </tr>
-        {{/each}}
+<table class="detail-tournament">
+                    <thead>
+                        <tr>
+                        <th>Date</th>
+                        <th>Coach qui l'a crée</th>
+                        <th>Nombre max</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each tournamentsTable}}
+                        <tr class="tournament-item">
+                            <td>{{this.date_tournament}}</td>
+                            <td>{{this.creator}} </td>
+                            <td>{{this.nb_max_participants}} </td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
         
+        <h4 id="nbinscrits"> Il y'a déjà 18 inscrits..<br>
+        Ne tardez pas à vous inscrire</h4>
+       
+      <button class="inscription-btn">S'inscrire</button>
+      <button class="desinscription-btn">Se désincrire</button>
 
-        <p>Il y'a déjà 18 inscrits..<br>
-        Ne tardez pas à vous inscrire</p>
 
-        <button value="S'incrire"></button>
-        <button value="Se désinscrire"></button>

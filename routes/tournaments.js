@@ -31,13 +31,13 @@ router.get('/', function (req, res, next) {
 /* GET details tournaments */
 router.get('/details', function (req, res, next) {
     console.log("GET DETAILS TOURNAMENTS");
-    // convert string req.query.id to int
-    // another solution is to use == instead of === in if instruction
     const tournamentsIdParam = parseInt(req.query.id);
     const tournamentsFound = Tournament.findById(tournamentsIdParam);
-    res.render('tournaments/details.hbs', { tournament: tournamentsFound  });
-
+    const tournamentsTable = Tournament.list();
+    res.render('tournaments/details.hbs', { tournament: tournamentsFound, tournamentsTable});
 });
+
+
 
 
 
