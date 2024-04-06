@@ -1,26 +1,27 @@
 <main>
     <section>
         <div class="bioImage">
-            <img src="{{coach.picture_path}}" height="800" width="auto" alt="">
+            <img src="{{coach.picture_path}}" height="650" width="auto" alt="">
         </div>
         <div id="containe-center">
             <div class="titre-bio-page">
                 <h1>La biographie de : {{coach.firstname}}</h1>
                 <h4>{{coach.biography }}</h4>
                  
-                <div id="update-button"></div>
-                                {{#if (eq session.user.status "coach")}}
-                            <td><a href="" class="modify-button">Mettre à jour</a></td> 
-                            {{/if}}
+             <div id="update-button">
+    {{#if (eq coach.email session.user.email)}}
+        <td><a href="/coaches/update?user_id={{user_id}}" class="modify-button">Mettre à jour</a></td> 
+    {{/if}}
+</div>
 
-            </div>
           
         </div>
         <br>
 
         <!-- Formulaire de contact modifié -->
         <div class="containerrr" style="background: rgba(191, 213, 183, 0.63);">
-
+           {{#if (eq session.connected true)}}
+                    {{#unless (eq coach.status "coach")}}
         <h2>Contactez Notre Coach</h2>
             <form action="formulaire" method="POST">
                 <div class="form-group">
@@ -47,6 +48,8 @@
                 </div>
                 <button class="bio-button" type="submit">Envoyer</button>
             </form>
+            {{/unless}}
+            {{/if}}
                                      
         </div>
 

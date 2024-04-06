@@ -5,7 +5,7 @@ const Court = require('../models/Court.js');
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-      cb(null, 'public/images/courts/');
+      cb(null, 'public/images');
   },
   filename: function (req, file, cb) {
       const date = new Date();
@@ -49,105 +49,58 @@ router.get('/details', (req, res) => {
   res.render('courts/details.hbs', { court });
 });
 
-/*router.get('/update', (req, res) => {
-  if (req.session.connected && req.session.user.status === 'coach') {
-    Court.findById(req.query.court_id, function(err, courtInfo) {
-      if (err) {
-        console.error(err);
-        res.redirect('/courts');
-      } else {
-        console.log(courtInfo);
-        res.render('courts/update.hbs', { court : courtInfo });
-      }
-    });
-  } else {
-    req.session.errors = 'Access denied: only coaches can update courts';
-    res.redirect('/courts');
-  }
-});
-
-router.post("/update", upload.single('court_image'), async (req, res) => {
-  let picture = null;
-  console.log('court_id:', req.body.court_id);
-
-  if (!req.file) {
-    if (req.body.court_id) {
-      const court = await Court.findById(req.body.court_id);
-      picture = court ? court.court_image : null;
-    }
-  } else {
-    picture = "/images/courts/" + req.file.filename;
-  }
-
-  if (picture) {
-    Court.update(req.body.court_id, req.body.name, req.body.flooring_type, req.body.location, picture, (err) => {
-      if (err) {
-        console.error(err);
-        res.redirect('/courts');
-      } else {
-        res.redirect('/courts/details?court_id=' + req.body.court_id);
-      }
-    });
-  } else {
-    console.error('No court_id provided or no court found with the provided court_id');
-    res.redirect('/courts');
-  }
-});*/
-/*
-// GET route for the update page
+/* GET courts update page */
 router.get('/update', (req, res) => {
+  
   if (req.session.connected && req.session.user.status === 'coach') {
-    Court.findById(req.query.court_id, function(err, courtInfo) {
-      if (err) {
-        console.error(err);
-        res.redirect('/courts');
-      } else if (!courtInfo) {
-        req.session.errors = 'The requested court does not exist';
-        res.redirect('/courts');
-      } else {
-        res.render('courts/update.hbs', { court : courtInfo });
+      
+      const courtId = req.query.tennis_court_id;
+      
+      // If court ID is not provided, redirect with an error
+      if (!courtId) {
+          req.session.errors = 'Veuillez fournir un ID de court';
+          res.redirect('/courts');
+          return;
       }
-    });
+
+      const court = Court.findById(courtId);
+
+      // If court is not found, redirect with an error
+      if (!court) {
+          req.session.errors = 'Court non trouvé, veuillez réessayer';
+          res.redirect('/courts');
+          return;
+      }
+
+      // Render the update form with the court data
+      res.render('courts/update.hbs', { court });
   } else {
-    req.session.errors = 'Access denied: only coaches can update courts';
-    res.redirect('/courts');
+      // If the user is not a coach, redirect with an access denied message
+      req.session.errors = 'Accès refusé: seuls les coachs peuvent mettre à jour les courts';
+      res.redirect('/courts');
   }
 });
 
-// POST route for the update form submission
-router.post('/update', upload.single(req.query.court_image), (req, res, next) => {
-  if (req.session.connected && req.session.user.status === 'coach') {
-    Court.findById(req.body.court_id, function(err, courtInfo) {
-      if (err) {
-        console.error(err);
-        res.redirect('/courts');
-      } else if (!courtInfo) {
-        req.session.errors = 'The requested court does not exist';
-        res.redirect('/courts');
-      } else {
-        // Update the court information
-        courtInfo.name = req.body.name;
-        courtInfo.flooring = req.body.flooring;
-        courtInfo.location = req.body.location;
-        courtInfo.court_image = req.file ? "/images/courts/" + req.file.filename : courtInfo.court_image;
+/* POST courts update page */
+router.post('/update', upload.single('picture_path'), (req, res, next) => {
+  
+  // Retrieve court ID and other details from the request body
+  const courtId = req.body.tennis_court_id;
+  const { name, flooring_type, location } = req.body;
 
-        // Save the updated court information
-        courtInfo.save(function(err) {
-          if (err) {
-            console.error(err);
-            res.redirect('/courts');
-          } else {
-            res.redirect('/courts/' + courtInfo._id);
-          }
-        });
-      }
-    });
-  } else {
-    req.session.errors = 'Access denied: only coaches can update courts';
-    res.redirect('/courts');
+  const court = Court.findById(courtId);
+
+  // If a new picture is uploaded, use it. Otherwise, use the existing picture path
+  let picture = court.picture_path;
+  if (req.file) {
+    picture = "/images/" + req.file.filename;
   }
+
+  // Update the court with the new details
+  Court.update(courtId, name, flooring_type, location, picture);
+  res.redirect('/courts/details?tennis_court_id=' + courtId);
 });
-*/
+
 /* GET courts booking page */
 router.get('/booking', (req, res) => {
     if (req.session.user !== undefined) {

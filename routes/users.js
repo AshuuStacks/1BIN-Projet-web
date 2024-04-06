@@ -38,6 +38,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User.js');
 const bcrypt = require('bcrypt');
+const validator = require('validator');
 
 
 /* GET user page. */
@@ -76,14 +77,40 @@ router.get('/register', (req, res) => {
 
 /* POST user register page. */
 router.post('/register', (req, res) => {
-    const firstname = req.body.firstname;
-    const surname = req.body.surname;
-    const email = req.body.email;
-    const password = bcrypt.hashSync(req.body.password, 10);
-    const status = 'normal';
-    User.save(firstname, surname, email, password, status);
-    req.session.connected = true;
-    res.redirect('/'); // Redirect to the login page
+    const { firstname, surname, email, password, passwordConfirmation } = req.body;
+
+    // Validation
+    let errors = [];
+    if (!validator.isLength(firstname, { min: 1 })) {
+        errors.push('Le prénom est requis');
+    }
+    if (!validator.isLength(surname, { min: 1 })) {
+        errors.push('Le nom de famille est requis');
+    }
+    if (!validator.isEmail(email)) {
+        errors.push('Format d\'email invalide');
+    }
+    if (!validator.isStrongPassword(password, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1 })) {
+        errors.push('Le mot de passe doit avoir au moins 8 caractères et contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial');
+    }
+    if (password !== passwordConfirmation) {
+        errors.push('La confirmation du mot de passe ne correspond pas au mot de passe');
+    }
+    if (!validator.isIn(email.split('@').pop(), ['vinci.be', 'student.vinci.be', 'coach.vinci.be'])) {
+        errors.push('L\'email doit se terminer par @vinci.be, @student.vinci.be ou @coach.vinci.be');
+    }
+    if (User.data(email)) {
+        errors.push('Un compte existe déjà avec cet email');
+    }
+
+    if (errors.length === 0) {
+        const hashedPassword = bcrypt.hashSync(password, 10);
+        User.save(firstname, surname, email, hashedPassword, 'normal'); // Assuming 'normal' is the status for regular users
+        req.session.connected = true;
+        res.redirect('/'); // Redirige vers la page de connexion
+    } else {
+        res.render('users/register', { errors });
+    }
 });
 
 /* GET user logout page. */

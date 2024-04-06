@@ -12,9 +12,9 @@
         <div class="form-group">
           <label for="flooring-type" class="title-in-update">Revêtement :</label>
           <select class="form-control input-flooring-type" id="flooring_type" name="flooring_type">
-            <option value="grass" {{#if (eq court.flooring_type "herbe")}}selected{{/if}}>Herbe</option>
-            <option value="clay" {{#if (eq court.flooring_type "terre battue")}}selected{{/if}}>Terre Battue</option>
-            <option value="artificial" {{#if (eq court.flooring_type "synthétique")}}selected{{/if}}>Artificiel</option>
+            <option value="herbe" {{#if (eq court.flooring_type "herbe")}}selected{{/if}}>Herbe</option>
+            <option value="terre battue" {{#if (eq court.flooring_type "terre battue")}}selected{{/if}}>Terre Battue</option>
+            <option value="synthétique" {{#if (eq court.flooring_type "synthétique")}}selected{{/if}}>Synthétique</option>
           </select>
         </div>
   
@@ -27,7 +27,6 @@
           <label for="picture" class="title-in-update">Image :</label>
           <input class="form-control input-picture" type="file" id="court_image" name="picture_path">
         </div>
-  
         <input class="btn btn-primary submit-button" type="submit" value="Mettre à jour">
       </fieldset>
     </form>
