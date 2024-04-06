@@ -23,11 +23,9 @@ module.exports.getBookings = (user_id) => {
 };
 
 module.exports.book = (date_booking, tennis_court_id, user_id) => {
-    console.log(`Booking court ${tennis_court_id} on ${date_booking} for user ${user_id}`);
     const stmt = db.prepare("INSERT INTO bookings (date_booking, tennis_court_id, user_id) VALUES (?, ?, ?)");
     const result = stmt.run(date_booking, tennis_court_id, user_id);
-    console.log(result);
-    return result.changes > 0; // Return true if any rows were inserted
+    return result
 }
 module.exports.findByDateAndCourt = (date_booking, tennis_court_id) => {
     const stmt = db.prepare("SELECT * FROM bookings WHERE date_booking = ? AND tennis_court_id = ?");
@@ -37,10 +35,8 @@ module.exports.findByDateAndCourt = (date_booking, tennis_court_id) => {
 
 
 module.exports.unbook = (tennis_court_id, date_booking) => {
-    console.log(`Unbooking court ${tennis_court_id} on ${date_booking}`);
     const stmt = db.prepare("DELETE FROM bookings WHERE tennis_court_id = ? AND date_booking = ?");
     const result = stmt.run(tennis_court_id, date_booking);
-    console.log(result);
-    return result.changes > 0; // Return true if any rows were deleted
+    return result;
 };
 
