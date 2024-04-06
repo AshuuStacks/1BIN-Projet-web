@@ -10,7 +10,7 @@
                  
              <div id="update-button">
     {{#if (eq coach.email session.user.email)}}
-        <td><a href="/updates.hbs" class="modify-button">Mettre à jour</a></td> 
+        <td><a href="/coaches/update?user_id={{user_id}}" class="modify-button">Mettre à jour</a></td> 
     {{/if}}
 </div>
 

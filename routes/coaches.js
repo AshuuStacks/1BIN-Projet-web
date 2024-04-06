@@ -2,6 +2,23 @@ const express = require('express');
 const router = express.Router();
 const Coach = require('../models/Coach.js');
 
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      cb(null, 'public/images');
+  },
+  filename: function (req, file, cb) {
+      const date = new Date();
+    const uniquePrefix = date.getFullYear() + '-' +
+      (date.getMonth() + 1) + '-' + date.getDate() + '-' +
+      date.getHours() + '-' + date.getMinutes() + '-' + date.getSeconds();
+      cb(null, uniquePrefix + '-' + file.originalname);
+  }
+})
+
+const upload = multer({ storage: storage });
+
+
 /* GET coaches page. */
 router.get('/', (req, res) => {
   const errors = req.session.errors;
@@ -33,6 +50,31 @@ router.get('/details', (req, res) => {
     res.render('coaches/details.hbs', { coach });
   });
 
+  router.get('/update', (req, res) => {
+    const userId = req.query.user_id;
+      
+    // Check if courtId is a number
+    if (isNaN(userId)) {
+      console.log("AHAHAHAHAHA" + userId);
+      req.session.errors = 'Invalid user id';
+      res.redirect('/coaches');
+      return;
+    }
+    console.log("AHAHAHAHAHA" + userId);
+
+  
+    const coach = Coach.findById(userId);
+  
+    // Check if coach exists
+    if (!coach) {
+      req.session.errors = 'Coach not found';
+      res.redirect('/coaches');
+      return;
+    }
+
+
+    res.render('coaches/update.hbs', { coach });
+  });
 
 
 module.exports = router;
