@@ -102,12 +102,46 @@ router.post('/update', upload.single('picture_path'), (req, res, next) => {
 });
 
 /* GET courts booking page */
-router.get('/booking', (req, res) => {
-    if (req.session.user !== undefined) {
-      res.render('courts/index.hbs');
-    } else {
-      res.redirect('/');
+// Will display the date of the booking and the court
+router.get('/bookings', (req, res) => {
+
+  // Check if the user is connected
+  if (req.session.user !== undefined) {
+    // Retrieve the user ID from the session, get the bookings and the court
+    const userId = req.session.user.user_id;
+    const bookings = Court.getBookings(userId);
+    const bookingInfos = [];
+    
+    for (const booking of bookings) {
+      const court = Court.findById(booking.tennis_court_id);
+      // const courtName = court ? court.name : 'Court not found' do we need to check?
+      bookingInfos.push({ court, booking });
+  }
+
+  res.render('courts/bookings.hbs', { bookings: bookingInfos });
+  } else {
+      // If the user is not connected, redirect with an error message
+      req.session.errors = 'Veuillez vous connecter pour accéder à la page des réservations';
+      res.redirect('/courts');
     }
 });
+
+router.post('/unbook', (req, res) => {
+  // Extract court ID and booking date from the request body
+  const { tennis_court_id, date_booking } = req.body;
+
+  // Call the method to remove the booking
+  const success = Court.unbook(tennis_court_id, date_booking);
+
+  // Check if unbooking was successful
+  if (success) {
+      res.redirect('/courts/bookings');
+  } else {
+      req.session.errors = 'Failed to unbook the court.';
+      res.redirect('/courts/bookings');
+  }
+});
+
+
 
 module.exports = router;

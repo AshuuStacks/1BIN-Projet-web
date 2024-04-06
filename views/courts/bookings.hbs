@@ -1,0 +1,39 @@
+<main>
+    <body>
+        <div class="court-body">
+            <div class="container-court">
+                {{#if errors}}
+                <div class="alert alert-danger" role="alert">
+                    {{errors}}
+                </div>
+                {{/if}}
+                <h1 id="court-page-title">Voici vos réservations</h1>
+                <h1 id="court-page-title">FIX BODY BACK COLOR "METTRE CLASS POUR COACH stylescss l129"</h1>
+                <table class="court-list">
+                    <thead>
+                        <tr>
+                            <th>Nom du terrain</th>
+                            <th>Date de réservation</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each bookings}}
+                        <tr>
+                            <td>{{court.name}}</td>
+                            <td>{{booking.date_booking}}</td>
+                            <td>
+                                <form action="/courts/unbook" method="post">
+                                    <input type="hidden" name="tennis_court_id" value="{{court.tennis_court_id}}">
+                                    <input type="hidden" name="date_booking" value="{{booking.date_booking}}">
+                                    <button type="submit" class="btn btn-danger">Annuler la réservation</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</main>
