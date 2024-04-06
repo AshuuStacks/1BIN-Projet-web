@@ -30,6 +30,28 @@ router.get('/', (req, res) => {
 router.get('/details', (req, res) => {
   const courtId = req.query.tennis_court_id;
   
+  // Function to generate dates for the next week
+    function generateNextWeekDates() {
+        const today = new Date();
+        const nextWeekDates = [];
+
+        for (let i = 0; i < 7; i++) {
+            const date = new Date(today.getTime() + i * 24 * 60 * 60 * 1000);
+            const formattedDate = formatDate(date);
+            nextWeekDates.push(formattedDate);
+        }
+
+        return nextWeekDates;
+    }
+
+    // Function to format date as 'YYYY-MM-DD'
+    function formatDate(date) {
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+  
   // Check if courtId is a number
   if (isNaN(courtId)) {
     req.session.errors = 'Invalid court id';
@@ -46,8 +68,31 @@ router.get('/details', (req, res) => {
     return;
   }
 
-  res.render('courts/details.hbs', { court });
+  const nextWeekDates = generateNextWeekDates();
+
+
+  res.render('courts/details.hbs', { court, nextWeekDates, errors : req.session.errors });
 });
+
+/* POST book a court on details page */
+router.post('/book', (req, res) => {
+
+  const courtId = req.body.tennis_court_id;
+  const dateBooking = req.body.date_booking;
+  const userId = req.session.user.user_id;
+
+   // Check if the court is already booked for the specified date
+   const existingBooking = Court.findByDateAndCourt(dateBooking, courtId);
+   if (existingBooking) {
+        req.session.errors = 'Ce terrain est déjà réservé pour cette date';
+        res.redirect('/courts/details?tennis_court_id=' + courtId);
+        return;
+   }
+
+  // Call the method to book the court
+  Court.book(dateBooking, courtId, userId);
+  res.redirect('/courts/bookings');
+});  
 
 /* GET courts update page */
 router.get('/update', (req, res) => {
@@ -101,6 +146,8 @@ router.post('/update', upload.single('picture_path'), (req, res, next) => {
   res.redirect('/courts/details?tennis_court_id=' + courtId);
 });
 
+
+
 /* GET courts booking page */
 // Will display the date of the booking and the court
 router.get('/bookings', (req, res) => {
@@ -131,15 +178,9 @@ router.post('/unbook', (req, res) => {
   const { tennis_court_id, date_booking } = req.body;
 
   // Call the method to remove the booking
-  const success = Court.unbook(tennis_court_id, date_booking);
+  Court.unbook(tennis_court_id, date_booking);
+  res.redirect('/courts/bookings');
 
-  // Check if unbooking was successful
-  if (success) {
-      res.redirect('/courts/bookings');
-  } else {
-      req.session.errors = 'Failed to unbook the court.';
-      res.redirect('/courts/bookings');
-  }
 });
 
 
