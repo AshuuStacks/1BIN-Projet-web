@@ -1,17 +1,17 @@
 <main>
     <section class="form-holder">
-    <form action="/courts/update" method="post" enctype="multipart/form-data" class="form-update border p-4">
+    <form action="/coaches/update" method="post" enctype="multipart/form-data" class="form-update border p-4">
       <h2 class="title-update">Mettre à jour le terrain</h2>
       <fieldset>
-        <input type="hidden" name="tennis_court_id" value="{{coach.user_id}}">
+        <input type="hidden" name="user_id" value="{{coach.user_id}}">
         <div class="form-group">
           <label for="location" class="title-in-update">Biographie :</label>
-          <input class="form-control input-location" type="text" id="location" name="location" placeholder="Emplacement" value="{{coach.biography}}">
+          <input class="form-control input-location" type="text" id="biography" name="biography" placeholder="Emplacement" value="{{coach.biography}}">
         </div>
         
         <div class="form-group">
           <label for="picture" class="title-in-update">Image :</label>
-          <input class="form-control input-picture" type="file" id="court_image" name="picture_path">
+          <input class="form-control input-picture" type="file" id="user_image" name="picture_path">
         </div>
         <input class="btn btn-primary submit-button" type="submit" value="Mettre à jour">
       </fieldset>

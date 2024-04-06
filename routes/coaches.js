@@ -75,6 +75,24 @@ router.get('/details', (req, res) => {
 
     res.render('coaches/update.hbs', { coach });
   });
+  router.post('/update', upload.single('picture_path'), (req, res, next) => {
+  
+    // Retrieve court ID and other details from the request body
+    const coachId = req.body.user_id;
+    const { biography } = req.body;
+  
+    const coach = Coach.findById(coachId);
+  
+    // If a new picture is uploaded, use it. Otherwise, use the existing picture path
+    let picture = coach.picture_path;
+    if (req.file) {
+      picture = "/images/" + req.file.filename;
+    }
+  
+    // Update the court with the new details
+    Coach.update(coachId, biography, picture);
+    res.redirect('/coaches/details?user_id=' + coachId);
+  });
 
 
 module.exports = router;
