@@ -1,6 +1,4 @@
-# DEMANDER PROF POUR SYNC DATABASE ??? OK C EST FAIT
-# ASK FOR User.js AND users.js
-# FOLDERS IN IMAGES
+# DMD REDIRECTION EN CAS ERREUR /UPDATE car si /courts/update ou /courts/update?details=tennis_court_id=... et qu'on veut redirect sur courts details, on le fait avec quel id ??????? plus simple de juste redirect sur /courts avec erreur seul coach peut update et si coach avec erreur id de court non valide
 
 # Projet web 2024 - Groupe 14
 
