@@ -572,6 +572,30 @@ h1 {
 }
 
 
+.tournament-details {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    table-layout: fixed; /* Add this line to ensure fixed layout */
+    height: 100px; /* Adjust the height as needed */
+    vertical-align: middle; /* Vertically align the table content */
+}
+
+.tournament-details-titles {
+    color: #000000;
+    font-family: Karma;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration-line: underline;
+    text-align: center;
+}
+
+#titleDetailsZak {
+    padding-top: 50px;
+    text-align: center; /* Aligner le texte au centre */
+    margin: 0 auto; /* Centrer horizontalement */
+}
 
 #titleTournamentZak{
     font-style: italic;
@@ -605,11 +629,16 @@ h1 {
     border-collapse: collapse;
     margin-top: 20px;
 }
-x   
+
 .tournament-list th,
-.tournament td {
+.tournament-list td {
     padding: 15px;
     text-align: left;
+}
+
+.tournament-list th {
+    background-color: #f2f2f2;
+    font-size: 18px;
 }
 
 .tournament th {
@@ -628,6 +657,73 @@ x
 
 .tournament-item:hover {
     background-color: #E4EDD8;
+}
+
+
+.img-tournament{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 20vh; 
+}
+
+.detail-tournament {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: 560px; 
+    display: inline-block;
+}
+
+.detail-tournament th,
+.detail-tournament td {
+    padding: 15px;
+    text-align: left;
+}
+
+.detail-tournament th {
+    background-color: #f2f2f2;
+    font-size: 18px;
+}
+
+#nbinscrits {
+    text-align: center; /* Centre le texte horizontalement */
+    margin-top: 70px;
+}
+
+.inscription-btn {
+    background-color: #4CAF50; 
+    color: white; 
+    padding: 10px 20px; 
+    font-size: 16px; /* Taille de la police */
+    border: none; /* Supprimer le bord du bouton */
+    cursor: pointer; /* Indique que le bouton est cliquable */
+    border-radius: 5px; /* Arrondi les coins du bouton */
+    margin-left: 715px;
+    margin-top: 20px;
+}
+
+/* Styles au survol */
+.inscription-btn:hover {
+    background-color: #45a049; /* Changement de couleur de fond au survol */
+}
+
+
+.desinscription-btn{
+    background-color: #4CAF50; 
+    color: white; 
+    padding: 10px 20px; 
+    font-size: 16px; /* Taille de la police */
+    border: none; /* Supprimer le bord du bouton */
+    cursor: pointer; /* Indique que le bouton est cliquable */
+    border-radius: 5px; /* Arrondi les coins du bouton */
+    margin-left: 700px;
+    margin-top: 20px;
+}
+
+/* Styles au survol */
+.desinscription-btn:hover {
+    background-color: #45a049; /* Changement de couleur de fond au survol */
 }
 
 
