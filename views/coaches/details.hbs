@@ -29,11 +29,7 @@
                     <label for="message">Message :</label>
                     <textarea id="message" name="message" rows="4" required></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="jointure">Inclure une pièce jointe :</label>
-                    <input type="file" id="jointure" name="jointure">
-                </div>
-        <td><a href="/messages/update?user_id={{coach.user_id}}" class="modify-button">Envoyez</a></td> 
+        <td><a href="/messages" class="modify-button">Envoyez</a></td> 
             </form>
             {{/unless}}
             {{/if}}

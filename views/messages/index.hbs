@@ -1,12 +1,17 @@
 <main>
-    <div class="title-message">
-        <h1>Bonjour monsieur l'entraineur ;)</h1>
+    {{#if errors}}
+                <div class="alert alert-danger" role="alert">
+                    {{errors}}
+                </div>
+                {{/if}}    <div class="title-message">
+        <h1>Bonjour monsieur {{messages.sender_id}}</h1>
     </div>
     <div class="message">
-        <div class="contenu">
-            {{#each messages}}
+    <!--  Vérifié que le receiver_id est le même que l'utilisateur connecté !-->
+         <div class="contenu">
+            {{#each messages}}                
             <div class="message-instantanée">
-                <h2>Message de : {{sender_id}}</h2>  
+                <h2>Message de : {{firstname}}</h2>  
                 <h3>Voici son message : {{message_text}}</h3>
                 <br></br>
                 {{#if response_text}}
@@ -16,15 +21,18 @@
                 <form action="/repondre" method="post">
                     <label for="reponse">Votre réponse :</label><br>
                     <textarea id="reponse" name="reponse" rows="4" cols="50"></textarea><br>
-                    <input type="submit" value="Envoyer">
+        <td><a href="/messages" class="modify-button">Envoyez</a></td> 
                 </form>
                 {{else}}
                 <h3>Réponse : Aucune réponse disponible pour le moment.</h3>
                 {{/if}}
                 {{/if}}
             </div>
+
             {{/each}}
         </div>
     </div>
+       
+
     <!-- Ajoutez plus de messages au besoin -->
 </main>
