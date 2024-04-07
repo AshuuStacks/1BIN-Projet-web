@@ -55,12 +55,10 @@ router.get('/details', (req, res) => {
       
     // Check if courtId is a number
     if (isNaN(userId)) {
-      console.log("AHAHAHAHAHA" + userId);
       req.session.errors = 'Invalid user id';
       res.redirect('/coaches');
       return;
     }
-    console.log("AHAHAHAHAHA" + userId);
 
   
     const coach = Coach.findById(userId);
@@ -94,5 +92,11 @@ router.get('/details', (req, res) => {
     res.redirect('/coaches/details?user_id=' + coachId);
   });
 
+
+  router.post('/sendTo', (req, res, next) => {
+  
+
+      res.redirect('/messages/index.hbs');
+  });
 
 module.exports = router;

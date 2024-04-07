@@ -64,13 +64,10 @@
                 </ul>
                 <ul class="navbar-nav d-flex flex-row">
                     {{#if (eq session.connected true)}}
-                    {{#if (eq session.user.status "coach")}}
                     <li class="nav-item me-3 me-lg-0">
                         <a class="nav-link" href="/messages">Messages</a>
                     </li>
-                   
-                    {{/if}}
-                    <li class="nav-item me-3 me-lg-0">
+                                       <li class="nav-item me-3 me-lg-0">
                         <a class="nav-link" href="/courts/bookings">Réservations</a>
                     </li>    
                     <li class="nav-item me-3 me-lg-0">

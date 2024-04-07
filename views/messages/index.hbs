@@ -1,31 +1,30 @@
 <main>
-        <div class="message">
-            <div class="expediteur">Expéditeur: Jean</div>
-            <div class="objet">Objet: Prochain entraînement</div>
-            <div class="contenu">
-                Bonjour Pierre, est-ce que l'entraînement de demain est maintenu malgré les prévisions météorologiques défavorables ?
-            </div>
-            <div class="repondre">
-                <h2>Répondre:</h2>
-                <form action="/coaches/repondre" method="POST">
-                    <textarea id="reponse" name="reponse" rows="4" required></textarea>
-                    <button type="submit">Envoyer</button>
+    <div class="title-message">
+        <h1>Bonjour monsieur l'entraineur ;)</h1>
+    </div>
+    <div class="message">
+        <div class="contenu">
+            {{#each messages}}
+            <div class="message-instantanée">
+                <h2>Message de : {{sender_id}}</h2>  
+                <h3>Voici son message : {{message_text}}</h3>
+                <br></br>
+                {{#if response_text}}
+                <h3>Réponse : {{response_text}}</h3>
+                {{else}}
+                {{#if receiver_id}}
+                <form action="/repondre" method="post">
+                    <label for="reponse">Votre réponse :</label><br>
+                    <textarea id="reponse" name="reponse" rows="4" cols="50"></textarea><br>
+                    <input type="submit" value="Envoyer">
                 </form>
+                {{else}}
+                <h3>Réponse : Aucune réponse disponible pour le moment.</h3>
+                {{/if}}
+                {{/if}}
             </div>
+            {{/each}}
         </div>
-        <div class="message">
-            <div class="expediteur">Expéditeur: Marie</div>
-            <div class="objet">Objet: Résultats du dernier tournoi</div>
-            <div class="contenu">
-                Salut Pierre, je voulais discuter avec toi des résultats du dernier tournoi. Est-ce que tu as un moment pour en parler ?
-            </div>
-            <div class="repondre">
-                <h2>Répondre:</h2>
-                <form action="/coaches/repondre" method="POST">
-                    <textarea id="reponse" name="reponse" rows="4" required></textarea>
-                    <button type="submit">Envoyer</button>
-                </form>
-            </div>
-        </div>
-        <!-- Ajoutez plus de messages au besoin -->
-    </main>
+    </div>
+    <!-- Ajoutez plus de messages au besoin -->
+</main>

@@ -880,3 +880,26 @@ h1 {
     height: auto;
     border-radius: 23px;
 }
+
+/* messages */
+.message-instantanée {
+    border: 2px solid green;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.title-message {
+    text-align: center;
+    background-color: rgb(143, 176, 143);
+    padding: 10px;
+    border-bottom: 2px solid rgb(37, 131, 136);
+}
+
+.message {
+    padding: 10px;
+}
+
+.contenu {
+    margin-top: 20px;
+}
