@@ -21,8 +21,8 @@
         <!-- Formulaire de contact modifié -->
         <div class="containerrr" style="background: rgba(191, 213, 183, 0.63);">
         {{#if (eq ./session.connected true)}}
-        {{#unless (eq ../coach.status "coach")}}
-        <h2>Contactez Notre Coach</h2>
+             {{#unless (eq session.user.status "coach")}}
+            <h2>Contactez Notre Coach</h2>
             <form action="formulaire" method="POST">
                  <label for="message">Envoyez un message à  : {{coach.firstname}}</label>
                 <div class="form-group">
@@ -31,8 +31,8 @@
                 </div>
         <td><a href="/messages" class="modify-button">Envoyez</a></td> 
             </form>
-            {{/unless}}
-            {{/if}}
+             {{/unless}}
+       {{/if}}
                                      
         </div>
 

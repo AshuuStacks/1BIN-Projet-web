@@ -390,19 +390,18 @@ footer #credits {
     max-width: 800px;
     margin: 20px auto; /* J'ai réduit la marge */
     border-radius: 8px;
-    background-color: rgba(191, 213, 183, 0.63);
-    padding: 20px;
 }
 
 .containerrr h2 {
     text-align: center;
     padding-top: 20px;
-    color: #333; /* ajouté pour la couleur du texte */
 }
 
+
+
 label {
-font-family: Verdana, Geneva, Tahoma, sans-serif;  
-  color: #030607; /* ajouté pour la couleur du texte */
+    display: block;
+    font-weight: bold;
 }
 
 input[type="text"],
@@ -412,26 +411,10 @@ textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin-bottom: 10px; /* ajouté pour l'espacement entre les champs */
 }
 
 textarea {
     resize: vertical;
-}
-
-.modify-button {
-    display: inline-block;
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s; /* ajouté pour l'effet de transition au survol */
-}
-
-.modify-button:hover {
-    background-color: #45a049;
 }
 
 .bio-button {

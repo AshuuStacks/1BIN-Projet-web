@@ -29,6 +29,7 @@ router.get('/', (req, res) => {
 
 router.get('/details', (req, res) => {
     const userId = req.query.user_id;
+    console.log("Voici le user id " + userId);
       
     // Check if courtId is a number
     if (isNaN(userId)) {
@@ -38,7 +39,6 @@ router.get('/details', (req, res) => {
     }
   
     const coach = Coach.findById(userId);
-  
     // Check if coach exists
     if (!coach) {
       req.session.errors = 'Coach not found';
