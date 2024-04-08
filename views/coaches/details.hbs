@@ -20,7 +20,7 @@
 
         <!-- Formulaire de contact modifié -->
         <div class="containerrr" style="background: rgba(191, 213, 183, 0.63);">
-        {{#if (eq ./session.connected true)}}
+        {{#if ./session.connected}}
              {{#unless (eq session.user.status "coach")}}
             <h2>Contactez Notre Coach</h2>
             <form action="formulaire" method="POST">
