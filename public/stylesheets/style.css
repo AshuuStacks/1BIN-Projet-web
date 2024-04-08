@@ -746,7 +746,9 @@ h1 {
 }
 
 #court-page-title {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
     color: #333;
 }
 
@@ -797,8 +799,8 @@ h1 {
     background-color: #006a4e8e;
     color: white;
     border: none;
-    border-radius: 4px;
-    padding: 8px 20px;
+    border-radius: 30px;
+    padding: 5px 20px;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
