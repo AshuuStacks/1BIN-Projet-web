@@ -28,6 +28,10 @@ hbs.registerHelper('eq', function (a, b) {
   }
 });
 
+hbs.registerHelper('arrayLength', function(array) {
+  return array.length;
+});
+
 const indexRouter = require("./routes/index.js");
 const usersRouter = require("./routes/users.js");
 const tournamentsRouter = require("./routes/tournaments.js");

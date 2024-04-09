@@ -38,6 +38,28 @@ router.get('/details', function (req, res, next) {
 });
 
 
+/* Create a tournament */
+router.post('/create', upload.single('imageTournament'), function (req, res, next) {
+  console.log("Create a tournament");
+  // validate name of explanet -> betweeen 3 and 100 character
+  if (validator.isLength(req.body.uniqueNameTournament, { min: 3, max: 100 })) {
+      console.log("req.file : " + JSON.stringify(req.file));
+      let filename = null;
+      // req.file must be undefined if no file given
+      if (req.file === undefined) filename = null;
+      else filename = 'images/' + req.file.filename;
+      Tournament.save({
+          uniqueName: req.body.uniqueNameTournament,
+          date: req.body.dateTournament,
+          maxpoeple: req.body.maxPeople,
+          image: filename
+      });
+      res.redirect('/tournament');
+  }
+  else {
+      res.redirect('/tournament?errors= Le nom d\'un tournoi doit faire entre 3 et 100 caractères');
+  }
+});
 
 
 
