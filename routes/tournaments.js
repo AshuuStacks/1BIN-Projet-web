@@ -31,10 +31,16 @@ router.get('/', function (req, res, next) {
 /* GET details tournaments */
 router.get('/details', function (req, res, next) {
     console.log("GET DETAILS TOURNAMENTS");
-    const tournamentsIdParam = parseInt(req.query.id);
-    const tournamentsFound = Tournament.findById(tournamentsIdParam);
-    const tournamentsTable = Tournament.list();
-    res.render('tournaments/details.hbs', { tournament: tournamentsFound, tournamentsTable});
+    const tournamentID = req.query.tournament_id;
+    const tournament = Tournament.findById(tournamentID)
+    res.render('tournaments/details.hbs', { tournament });
+});
+
+
+/* GET creation tournaments */
+router.get('/create', function (req, res, next) {
+    console.log("GET THE CREATION PAGE");
+    res.render('tournaments/create.hbs');
 });
 
 
@@ -60,6 +66,8 @@ router.post('/create', upload.single('imageTournament'), function (req, res, nex
       res.redirect('/tournament?errors= Le nom d\'un tournoi doit faire entre 3 et 100 caractères');
   }
 });
+
+
 
 
 

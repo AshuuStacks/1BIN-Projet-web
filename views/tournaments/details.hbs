@@ -1,7 +1,7 @@
 
-<h1 id="titleDetailsZak">Details d'un tournoi</h1>
+<h2 id="titleDetailsZak">Details d'un tournoi</h2>
 
-<h4>{{tournament.name}}</h4>
+<h3 id='tournamentName'>{{tournament.name}}</h3>
 
 <img src="/{{tournament.banner_image_path}}" alt="Tournament image" class="img-tournament">
 
@@ -10,17 +10,15 @@
                         <tr>
                         <th>Date</th>
                         <th>Coach qui l'a crée</th>
-                        <th>Nombre max</th>
+                        <th>Participants maximum</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{#each tournamentsTable}}
                         <tr class="tournament-item">
-                            <td>{{this.date_tournament}}</td>
-                            <td>{{this.creator}} </td>
-                            <td>{{this.nb_max_participants}} </td>
+                            <td>{{tournament.date_tournament}}</td>
+                            <td>{{tournament.creator}} </td>
+                            <td>{{tournament.nb_max_participants}} </td>
                             </tr>
-                        {{/each}}
                     </tbody>
                 </table>
         
@@ -29,5 +27,4 @@
        
       <button class="inscription-btn">S'inscrire</button>
       <button class="desinscription-btn">Se désincrire</button>
-
 
