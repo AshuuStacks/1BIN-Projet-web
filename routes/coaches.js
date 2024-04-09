@@ -94,13 +94,20 @@ router.get('/details', (req, res) => {
 
 
   router.post('/sendTo', (req, res, next) => {
-    const { message_id , sender_id , message_text , date_hour_message } = req.body;
+    const { receiver_id, message_text } = req.body;
 
-    Coach.save(message_id.length++,sender_id,message_id,message_text,date_hour_message);
+    // Vous pouvez générer un ID unique ici, par exemple en utilisant une bibliothèque comme `uuid`
+    const message_id = message_id.length;
 
-  
 
-      res.redirect('/messages/index.hbs');
-  });
+    // Supposons que Coach.save() prend un objet comme argument
+    Coach.save({ 
+        receiver_id: receiver_id,
+        message_id: message_id++,
+        message_text: message_text,
+        date_hour_message: new Date() // ou vous pouvez utiliser une date fournie par l'utilisateur
+    });
 
+    res.redirect('/message');
+});
 module.exports = router;
