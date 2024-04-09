@@ -35,6 +35,7 @@
 
 
             {{/each}}
+            text : {{receivers.firstname}}
 
   {{#each messages}}  
         {{#if (eq @root.session.user.user_id sender_id)}}    <!-- On est dans un each donc !-->
@@ -42,9 +43,9 @@
                 <h3>Votre message : {{message_text}}</h3>
                 <br></br>
                      {{#if response_text}}
-                <h3>Réponse de votre coach {{../receivers.firstname}} : {{response_text}}</h3>
+                <h3>Réponse de votre coach {{@root.receivers.firstname}} : {{response_text}}</h3>
                     {{else}}
-                <h3>Réponse de votre coach  {{../receivers.firstname}}  : Aucune réponse disponible pour le moment.</h3>
+                <h3>Réponse de votre coach  {{@root.receivers.firstname}}  : Aucune réponse disponible pour le moment.</h3>
                      {{/if}}
       {{/if}}
             </div>

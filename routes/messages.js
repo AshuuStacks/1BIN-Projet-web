@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     res.render('messages/index.hbs', {  messages: Message.info(), errors: errors , receivers : Message.getReceiver() });
 });
 
-router.get('/details', (req, res) => {
+router.get('/ReplyTo', (req, res) => {
     const messageId = req.query.message_id;
     const userId = req.query.user_id;
     const receiverid = req.query.receiver_id

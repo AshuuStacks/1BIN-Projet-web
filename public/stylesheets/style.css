@@ -684,22 +684,22 @@ h1 {
 }
 
 .detail-tournament {
-    width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    margin-left: 560px; 
+    margin-left: 315px; 
     display: inline-block;
 }
 
 .detail-tournament th,
 .detail-tournament td {
-    padding: 15px;
+    padding: 60px;
     text-align: left;
+    font-size: 25px;
 }
 
 .detail-tournament th {
     background-color: #f2f2f2;
-    font-size: 18px;
+    font-size: 25px;
 }
 
 #nbinscrits {
@@ -719,7 +719,19 @@ h1 {
     margin-top: 20px;
 }
 
-/* Styles au survol */
+#tournamentName{
+    text-align: center;
+}
+
+.img-tournament{
+    display: block;
+    margin: 0 auto;
+    width: 23%; /* Let the width adjust proportionally */
+    height: 50%; /* Decrease the height to 50% */
+}
+
+
+
 .inscription-btn:hover {
     background-color: #45a049; /* Changement de couleur de fond au survol */
 }
@@ -737,11 +749,58 @@ h1 {
     margin-top: 20px;
 }
 
-/* Styles au survol */
 .desinscription-btn:hover {
     background-color: #45a049; /* Changement de couleur de fond au survol */
 }
 
+#titleCreation{
+    text-align: center;
+    margin-top: 20px;
+}
+
+#formCreation {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Style for form labels */
+#formCreation label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Style for form inputs */
+#formCreation input[type="text"],
+#formCreation input[type="number"],
+#formCreation input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+/* Style for form submit button */
+#formCreation input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Style for form submit button on hover */
+#formCreation input[type="submit"]:hover {
+    background-color: #45a049;
+}
 
 /* Courts */
 .court-body {
