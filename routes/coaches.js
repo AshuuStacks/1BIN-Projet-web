@@ -94,6 +94,10 @@ router.get('/details', (req, res) => {
 
 
   router.post('/sendTo', (req, res, next) => {
+    const { message_id , sender_id , message_text , date_hour_message } = req.body;
+
+    Coach.save(message_id.length++,sender_id,message_id,message_text,date_hour_message);
+
   
 
       res.redirect('/messages/index.hbs');

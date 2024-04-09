@@ -387,17 +387,30 @@ footer #credits {
 }
 .containerrr {
     clear: both;
-    max-width: 800px;
+    max-width: 600px;
     margin: 20px auto; /* J'ai réduit la marge */
+    padding: 20px;
+    background: rgba(191, 213, 183, 0.63);
     border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .containerrr h2 {
     text-align: center;
     padding-top: 20px;
 }
+.titre-ancienne-photo-profile h4{
+    color: rgb(27, 16, 27);
+    text-align: center;
+    font-family: fantasy;
+}
+.photo-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-
+}
 
 label {
     display: block;
@@ -448,7 +461,7 @@ textarea {
     margin-left: 150px; /* Ajustez cette valeur pour l'espacement entre l'image et le texte */
 }
 .titre-bio-page h1{ 
-    color: #E9CB3D;
+    color: #12671f;
     padding-top: 200px;
 
 }
@@ -506,6 +519,7 @@ h1 {
 #title-coach-page {
     text-align: center;
     margin-bottom: 40px;
+    
 }
 
 #title-coach-page h3 {
@@ -541,6 +555,7 @@ h1 {
 
 #update-button {
     padding-top: 25px;
+    
 }
 
 .container-box {
@@ -896,6 +911,7 @@ h1 {
     background-color: rgb(143, 176, 143);
     padding: 10px;
     border-bottom: 2px solid rgb(37, 131, 136);
+    
 }
 
 .message {
