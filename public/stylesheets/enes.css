@@ -1,9 +1,0 @@
-.container-book{
-    max-width: 600px;
-    margin: 20px auto; /* J'ai réduit la marge */
-    padding: 20px;
-    background: rgba(191, 213, 183, 0.63);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}

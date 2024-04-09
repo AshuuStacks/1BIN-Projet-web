@@ -1,18 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const Message = require('../models/Message.js');
+const Coach = require('./coaches.js');
 
 
 /* GET messages page. */
 router.get('/', (req, res) => {
     const errors = req.session.errors;
   req.session.errors = null;
-    res.render('messages/index.hbs', {  messages: Message.info(), errors: errors });
+    res.render('messages/index.hbs', {  messages: Message.info(), errors: errors , receivers : Message.getReceiver() });
 });
 
-router.get('/details', (req, res) => {
+router.get('/ReplyTo', (req, res) => {
     const messageId = req.query.message_id;
     const userId = req.query.user_id;
+    const receiverid = req.query.receiver_id
+     console.log("receiver" + receiverid)
+     console.log("receiver" + receiverid)
 
       
     if (isNaN(messageId)) {
@@ -28,7 +32,8 @@ router.get('/details', (req, res) => {
     }
   
     const message = Message.findById(messageId);
-    const coach = Message.findById(userId);
+    const coach = Coach.findById(userId);
+    const receiver = Message.getReceiver(receiverid);
 
   
     if (!message) {
@@ -36,16 +41,23 @@ router.get('/details', (req, res) => {
       res.redirect('/message');
       return;
 
+    }
+
       if (!coach) {
         req.session.errors = 'Messages not found';
         res.redirect('/message');
         return;
       }
-    }
+
+
+      
+    
    console.log("testt" + message);
 
-    res.render('messages/index.hbs', { message , coach });
+    res.render('messages/index.hbs', { message , coach , receiver });
   });
+
+
 
 
 module.exports = router;

@@ -4,7 +4,7 @@
                     {{errors}}
                 </div>
                 {{/if}}    <div class="title-message">
-        <h1>Consultez vos messages</h1>
+        <h1>Consultez vos messages </h1>
     </div>
     <div class="message">
     <!--  Vérifié que le receiver_id est le même que l'utilisateur connecté !-->
@@ -35,30 +35,23 @@
 
 
             {{/each}}
+            text : {{receivers.firstname}}
 
-                        {{#each messages}}  
-                           {{#if (eq @root.session.user.user_id sender_id)}}    <!-- On est dans un each donc !-->
+  {{#each messages}}  
+        {{#if (eq @root.session.user.user_id sender_id)}}    <!-- On est dans un each donc !-->
                               <div class="message-instantanée">
-                <h2>Message de : {{firstname}}</h2>  
-                <h3>Voici son message : {{message_text}}</h3>
+                <h3>Votre message : {{message_text}}</h3>
                 <br></br>
-                {{#if response_text}}
-                <h3>Réponse : {{response_text}}</h3>
-                {{else}}
-                {{#if receiver_id}}
-                <form action="/repondre" method="post">
-                    <label for="reponse">Votre réponse :</label><br>
-                    <textarea id="reponse" name="reponse" rows="4" cols="50"></textarea><br>
-        <td><a href="/messages" class="modify-button">Envoyez</a></td> 
-                </form>
-                {{else}}
-                <h3>Réponse : Aucune réponse disponible pour le moment.</h3>
-                {{/if}}
-                {{/if}}
+                     {{#if response_text}}
+                <h3>Réponse de votre coach {{@root.receivers.firstname}} : {{response_text}}</h3>
+                    {{else}}
+                <h3>Réponse de votre coach  {{@root.receivers.firstname}}  : Aucune réponse disponible pour le moment.</h3>
+                     {{/if}}
+      {{/if}}
             </div>
 
 
-                                    {{/each}}
+   {{/each}}
 
 
         </div>

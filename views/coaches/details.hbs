@@ -1,7 +1,7 @@
 <main>
     <section>
         <div class="bioImage">
-            <img src="{{coach.picture_path}}" height="650" width="auto" alt="">
+            <img src="{{coach.picture_path}}" height="400" width="auto" alt="">
         </div>
         <div id="containe-center">
             <div class="titre-bio-page">
@@ -14,7 +14,6 @@
     {{/if}}
 </div>
 
-          
         </div>
         <br>
 
@@ -23,14 +22,15 @@
         {{#if ./session.connected}}
              {{#unless (eq session.user.status "coach")}}
             <h2>Contactez Notre Coach</h2>
-            <form action="formulaire" method="POST">
-                 <label for="message">Envoyez un message à  : {{coach.firstname}}</label>
-                <div class="form-group">
-                    <label for="message">Message :</label>
-                    <textarea id="message" name="message" rows="4" required></textarea>
-                </div>
-        <td><a href="/messages" class="modify-button">Envoyez</a></td> 
-            </form>
+          <form action="/coaches/sendTo" method="POST">
+    <label for="message">Envoyez un message à : {{coach.firstname}}</label>
+    <div class="form-group">
+        <label for="message">Message :</label>
+        <textarea id="message" name="message_text" rows="4" required></textarea>
+    </div>
+    <input type="hidden" name="receiver_id" value="{{coach.id}}">
+    <button type="submit" class="modify-button">Envoyer</button>
+</form>
              {{/unless}}
        {{/if}}
                                      

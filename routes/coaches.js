@@ -94,9 +94,20 @@ router.get('/details', (req, res) => {
 
 
   router.post('/sendTo', (req, res, next) => {
-  
+    const { receiver_id, message_text } = req.body;
 
-      res.redirect('/messages/index.hbs');
-  });
+    // Vous pouvez générer un ID unique ici, par exemple en utilisant une bibliothèque comme `uuid`
+    const message_id = message_id.length;
 
+
+    // Supposons que Coach.save() prend un objet comme argument
+    Coach.save({ 
+        receiver_id: receiver_id,
+        message_id: message_id++,
+        message_text: message_text,
+        date_hour_message: new Date() // ou vous pouvez utiliser une date fournie par l'utilisateur
+    });
+
+    res.redirect('/message');
+});
 module.exports = router;
