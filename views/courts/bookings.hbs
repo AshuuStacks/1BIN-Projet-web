@@ -17,19 +17,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{#each bookings}}
-                        <tr>
-                            <td>{{court.name}}</td>
-                            <td>{{booking.date_booking}}</td>
-                            <td>
-                                <form action="/courts/unbook" method="post">
-                                    <input type="hidden" name="tennis_court_id" value="{{court.tennis_court_id}}">
-                                    <input type="hidden" name="date_booking" value="{{booking.date_booking}}">
-                                    <button type="submit" class="btn btn-danger">Annuler la réservation</button>
-                                </form>
-                            </td>
-                        </tr>
+                        {{#if bookings}}
+                            {{#each bookings}}
+                            <tr>
+                                <td>{{court.name}}</td>
+                                <td>{{booking.date_booking}}</td>
+                                <td>
+                                    <form action="/courts/unbook" method="post">
+                                        <input type="hidden" name="tennis_court_id" value="{{court.tennis_court_id}}">
+                                        <input type="hidden" name="date_booking" value="{{booking.date_booking}}">
+                                        <button type="submit" class="btn btn-danger">Annuler la réservation</button>
+                                    </form>
+                                </td>
+                            </tr>
                         {{/each}}
+                        {{else}}
+                            <tr>
+                                <td colspan="3">Pas de réservations</td>
+                            </tr>
+                        {{/if}}
+                        
                     </tbody>
                 </table>
             </div>
