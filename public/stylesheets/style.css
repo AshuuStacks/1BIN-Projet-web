@@ -4,6 +4,76 @@
 * {
   font-family: 'Karma', serif;
 }
+/* LAYOUT */
+.container-fluid {
+    padding: 0 !important;
+  }
+  
+  
+  #navbar-layout{
+    background: #e4edd800;
+    
+  }
+  .navbar ul li a {
+    font-size: 30px;
+    line-height: normal;
+    color: #ffffff;
+  }
+  .navbar ul li a:hover{
+      color: orange;
+      text-decoration: underline;
+  }
+  
+  li.nav-item {
+    margin: 0px 20px 0px 15px;
+  }
+  
+  #navbarSupportedContent {
+    margin-left: 1%;
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+  
+  footer {
+    background-color: #31464B;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  
+  footer #credits {
+    height: 10px;
+    text-align: center;
+  }
+
+#headerTitle{
+    margin-top: 15px;
+    color: #FFF;
+    font-family: Arial, sans-serif;
+    font-size: 80px;
+    font-weight: bold;
+    letter-spacing: 12.6px;
+    height: 100px;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #65a822 !important;
+
+}
+
+header {
+    background-color: #568e5100;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    margin: 0;
+}
 
 .page-content {
 	width: 100%;
@@ -326,47 +396,7 @@ input:-moz-placeholder { /* Firefox 18- */
 	}
 }
 
-/* LAYOUT */
-.container-fluid {
-  padding: 0 !important;
-}
 
-
-#navbar-layout{
-  background: #E4EDD8;
-  
-}
-.navbar ul li a {
-  font-size: 24px;
-  line-height: normal;
-  color: #000;
-}
-.navbar ul li a:hover{
-    color: #14a0e0;
-    text-decoration: underline;
-}
-
-li.nav-item {
-  margin: 0px 20px 0px 15px;
-}
-
-#navbarSupportedContent {
-  margin-left: 1%;
-  font-size: 15px;
-  letter-spacing: 1px;
-}
-
-
-
-
-footer {
-    display: flex;
-    flex-direction: column;
-}
-
-footer #credits {
-    text-align: center;
-}
 
 /* Coach */
 .bioImage {
@@ -466,23 +496,7 @@ textarea {
 
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #FBFEF8 !important;
 
-}
-
-header {
-    background-color: #568e51;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-}
-
-h1 {
-    margin: 0;
-}
 
 .center-list-page{
     max-width: 800px;
@@ -1061,3 +1075,45 @@ h1 {
 }
 
 
+/*TESTINGS*/
+.indexPage-title {
+    width: 700px;
+    color: #FFF;
+    font-family: Karma;
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 700;
+    height: 900px;
+}
+
+#indexPage {
+    background-image: url(../images/renith-r-A9VpotrPr1k-unsplash.jpg);
+    background-size: cover;
+    background-position-y: 20%;
+}
+
+.center-container {
+    display: flex;
+    flex-direction: column; /* Adjusted to make items stack vertically */
+    justify-content: center;
+    align-items: center;
+    height: 450px;
+    margin-top: 200px;
+}
+
+.info-container {
+    background: url(../images/cristina-anne-costello-rank-Px49iI-unsplash.jpg) lightgray 50% / cover no-repeat;
+    border-radius: 15px;
+    margin-bottom:60px; /* Adjusted to move it to the right */
+    padding: 20px;
+    font-size: 40px;
+    width: 450px;
+    color: #FFF;
+}
+.center-container-2 {
+    display: flex; /* Adjusted to make items stack vertically */
+    justify-content: right;
+    align-items: center;
+    margin-right: 25%;
+    margin-bottom: -50px;
+}
