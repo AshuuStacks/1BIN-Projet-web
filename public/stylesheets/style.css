@@ -59,7 +59,10 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #65a822 !important;
+    background-color: #FBFEF8 !important;
+    background-image: url(../images/renith-r-A9VpotrPr1k-unsplash.jpg);
+    background-size: cover;
+    background-position-y: 20%;
 
 }
 
@@ -82,7 +85,7 @@ h1 {
 	display: -webkit-flex;
 	justify-content: center;
 	align-items: center;
-    background-color: #FBFEF8;
+    background-color: #fbfef800;
 }
 
 .form-v2-content  {
