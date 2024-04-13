@@ -10,6 +10,7 @@
     <!--  Vérifié que le receiver_id est le même que l'utilisateur connecté !-->
          <div class="contenu">
                 
+
             {{#each messages}}  
             {{#if (eq @root.session.user.user_id receiver_id)}}    <!-- On est dans un each donc !-->
                 

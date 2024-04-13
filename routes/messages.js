@@ -8,7 +8,9 @@ const Coach = require('./coaches.js');
 router.get('/', (req, res) => {
     const errors = req.session.errors;
   req.session.errors = null;
-    res.render('messages/index.hbs', {  messages: Message.info(), errors: errors , receivers : Message.getReceiver() });
+  const msgs =  Message.info();
+  console.log(msgs);
+    res.render('messages/index.hbs', {  messages: msgs, errors: errors , receiver : Message.getReceiver() });
 });
 
 router.get('/ReplyTo', (req, res) => {
