@@ -1,6 +1,21 @@
-# DMD REDIRECTION EN CAS ERREUR /UPDATE car si /courts/update ou /courts/update?tennis_court_id=... et qu'on veut redirect sur courts details, on le fait avec quel id ??????? plus simple de juste redirect sur /courts avec erreur seul coach peut update et si coach avec erreur id de court non valide
-
-# COURTS : Error msg while booking both on details and index
+             .=.,
+            ;c =\
+          __|  _/
+        .'-'-._/-'-._
+       /..   ____    \
+      /' _  [<_->] )  \
+     (  / \--\_>/-/'._ )
+      \-;_/\__;__/ _/ _/
+       '._}|==o==\{_\/
+        /  /-._.--\  \_
+       // /   /|   \ \ \
+      / | |   | \;  |  \ \
+     / /  | :/   \: \   \_\
+    /  |  /.'|   /: |    \ \
+    |  |  |--| . |--|     \_\
+    / _/   \ | : | /___--._) \
+    |_(---'-| >-'-| |       '-'
+          /_/     \_\
 
 # Projet web 2024 - Groupe 14
 

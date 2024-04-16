@@ -62,7 +62,6 @@ router.get('/details', (req, res) => {
   if (isNaN(courtId)) {
     errors = "L'ID du court doit être un nombre";
     res.redirect('/courts?errors=' + encodeURIComponent(errors));
-    return;
   }
 
   const court = Court.findById(courtId);
@@ -71,7 +70,6 @@ router.get('/details', (req, res) => {
   if (!court) {
     errors = "Court non trouvé, veuillez réessayer";
     res.redirect('/courts?errors=' + encodeURIComponent(errors));
-    return;
   }
 
   const nextWeekDates = generateNextWeekDates();
@@ -91,7 +89,6 @@ router.post('/book', (req, res) => {
    if (existingBooking) {
         errors = "Ce terrain est déjà réservé pour cette date";
         res.redirect('/courts/details?tennis_court_id=' + courtId + '&errors=' + encodeURIComponent(errors));
-    return;
    }
 
   Court.book(dateBooking, courtId, userId);
@@ -109,7 +106,6 @@ router.get('/update', (req, res) => {
       if (!courtId) {
         errors = "Veuillez fournir un ID de court";
         res.redirect('/courts?errors=' + encodeURIComponent(errors));
-        return;
       }
 
       const court = Court.findById(courtId);
@@ -118,7 +114,6 @@ router.get('/update', (req, res) => {
       if (!court) {
         errors = "Court non trouvé, veuillez réessayer";
         res.redirect('/courts?errors=' + encodeURIComponent(errors));
-        return;
       }
 
       // Render the update form with the court data
@@ -155,7 +150,6 @@ router.post('/update', upload.single('picture_path'), (req, res, next) => {
 /* GET courts booking page */
 router.get('/bookings', (req, res) => {
 
-  // Check if the user is connected
   if (req.session.user !== undefined) {
     // Retrieve the user ID from the session, get the bookings and the court
     const userId = req.session.user.user_id;
@@ -164,13 +158,11 @@ router.get('/bookings', (req, res) => {
     
     for (const booking of bookings) {
       const court = Court.findById(booking.tennis_court_id);
-      // const courtName = court ? court.name : 'Court non trouvé' do we need to check?
       bookingInfos.push({ court, booking });
   }
 
   res.render('courts/bookings.hbs', { bookings: bookingInfos });
   } else {
-      // If the user is not connected, redirect with an error message
       errors = "Veuillez vous connecter pour accéder à la page des réservations";
       res.redirect('/courts?errors=' + encodeURIComponent(errors));
     }
