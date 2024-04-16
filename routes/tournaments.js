@@ -43,9 +43,7 @@ router.get('/details', function (req, res, next) {
         req.session.errors = 'invalid tournament id ';
         res.redirect('/tournaments');
     }
-
     const tournament = Tournament.findById(tournamentID);
-
     if(!tournament) {
         req.session.errors = 'Tournament was not found';
        res.redirect('/tournaments');
@@ -83,7 +81,6 @@ router.post('/create', upload.single('imageTournament'), function (req, res, nex
       res.redirect('/tournament?errors= Le nom d\'un tournoi doit faire entre 3 et 100 caractères');
   }
 });
-
 
 
 
