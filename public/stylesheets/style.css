@@ -857,6 +857,12 @@ textarea {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+#court-page-title {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: #333;
+}
 
 .court-list {
     width: 100%;
