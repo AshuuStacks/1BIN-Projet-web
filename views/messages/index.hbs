@@ -15,14 +15,15 @@
             {{#if (eq @root.session.user.user_id receiver_id)}}    <!-- On est dans un each donc !-->
                 
             <div class="message-instantanée">
-                <h2>Message de : {{firstname}}</h2>  
+                <h2>Message de : {{sender_id}}</h2>  
                 <h3>Voici son message : {{message_text}}</h3>
+                <h3>Date d'envoie : {{date_hour_message}}</h3>
                 <br></br>
                 {{#if response_text}}
                 <h3>Réponse : {{response_text}}</h3>
                 {{else}}
                 {{#if receiver_id}}
-                <form action="/repondre" method="post">
+                <form action="/response" method="post">
                     <label for="reponse">Votre réponse :</label><br>
                     <textarea id="reponse" name="reponse" rows="4" cols="50"></textarea><br>
         <td><a href="/messages" class="modify-button">Envoyez</a></td> 
@@ -36,7 +37,7 @@
 
 
             {{/each}}
-            text : {{receivers.firstname}}
+            text : {{sender.firstname}}
 
   {{#each messages}}  
         {{#if (eq @root.session.user.user_id sender_id)}}    <!-- On est dans un each donc !-->
@@ -44,9 +45,9 @@
                 <h3>Votre message : {{message_text}}</h3>
                 <br></br>
                      {{#if response_text}}
-                <h3>Réponse de votre coach {{@root.receivers.firstname}} : {{response_text}}</h3>
+                <h3>Réponse de votre coach {{receiver_id}} : {{response_text}}</h3>
                     {{else}}
-                <h3>Réponse de votre coach  {{@root.receivers.firstname}}  : Aucune réponse disponible pour le moment.</h3>
+                <h3>Réponse de votre coach  {{receiver_id}}  : Aucune réponse disponible pour le moment.</h3>
                      {{/if}}
       {{/if}}
             </div>

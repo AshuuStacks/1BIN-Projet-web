@@ -5,7 +5,7 @@
         </div>
         <div id="containe-center">
             <div class="titre-bio-page">
-                <h1>La biographie de : {{coach.firstname}}</h1>
+                <h1>{{coach.firstname}}</h1>
                 <h4>{{coach.biography }}</h4>
                  
              <div id="update-button">
@@ -28,7 +28,7 @@
         <label for="message">Message :</label>
         <textarea id="message" name="message_text" rows="4" required></textarea>
     </div>
-    <input type="hidden" name="receiver_id" value="{{coach.id}}">
+    <input type="hidden" name="receiver_id" value="{{coach.receiver_id}}">
     <button type="submit" class="modify-button">Envoyer</button>
 </form>
              {{/unless}}

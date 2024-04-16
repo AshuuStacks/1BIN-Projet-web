@@ -93,21 +93,27 @@ router.get('/details', (req, res) => {
   });
 
 
-  router.post('/sendTo', (req, res, next) => {
-    const { receiver_id, message_text } = req.body;
+  router.post('/coaches/sendTo', (req, res) => {
+    // Générer un message_id unique, par exemple en utilisant UUID ou une autre méthode
+    const message_id = generateUniqueId(); // Remplacez ceci par votre fonction de génération d'ID
 
-    // Vous pouvez générer un ID unique ici, par exemple en utilisant une bibliothèque comme `uuid`
-    const message_id = message_id.length;
+    // Récupérer le sender_id de la session de l'utilisateur
+    const sender_id = req.session.user_id; // Assurez-vous que user_id est bien stocké dans la session lors de la connexion
 
+    // Récupérer le receiver_id du formulaire
+    const receiver_id = req.body.receiver_id;
 
-    // Supposons que Coach.save() prend un objet comme argument
-    Coach.save({ 
-        receiver_id: receiver_id,
-        message_id: message_id++,
-        message_text: message_text,
-        date_hour_message: new Date() // ou vous pouvez utiliser une date fournie par l'utilisateur
-    });
+    // Récupérer le texte du message du formulaire
+    const message_text = req.body.message_text;
 
-    res.redirect('/message');
+    // Récupérer la date et l'heure actuelles
+    const date_hour_message = new Date().toISOString();
+
+    // Insérer le message dans la base de données
+    Message.save(message_id, sender_id, receiver_id, message_text, date_hour_message);
+
+    // Rediriger l'utilisateur vers une page de confirmation ou de retour
+    res.redirect('messages/confirmation.hbs');
 });
 module.exports = router;
+
