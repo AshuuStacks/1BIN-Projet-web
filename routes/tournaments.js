@@ -70,5 +70,4 @@ router.post('/create', upload.single('imageTournament'), function (req, res, nex
 
 
 
-
 module.exports = router;
