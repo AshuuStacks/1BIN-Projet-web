@@ -6,7 +6,7 @@ const Tournament = require('../models/Tournament.js');
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-      cb(null, 'public/images/courts/');
+      cb(null, 'public/images/tournaments/');
   },
   filename: function (req, file, cb) {
       const date = new Date();
@@ -24,15 +24,32 @@ const upload = multer({ storage: storage });
 /* GET tournaments index. */
 router.get('/', function (req, res, next) {
     const tournamentsTable = Tournament.list();
-    res.render('tournaments/index.hbs', { tournamentsTable });
+    const errors =req.session.errors
+    req.session.errors = null;
+    tournamentsTable.forEach(tournament => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    tournament.date_tournament = new Date(tournament.date_tournament).toLocaleDateString('fr-FR', options);
 });
+    res.render('tournaments/index.hbs', { tournamentsTable , errors });
+});
+
 
 
 /* GET details tournaments */
 router.get('/details', function (req, res, next) {
     console.log("GET DETAILS TOURNAMENTS");
     const tournamentID = req.query.tournament_id;
-    const tournament = Tournament.findById(tournamentID)
+    if(!tournamentID){
+        req.session.errors = 'invalid tournament id ';
+        res.redirect('/tournaments');
+    }
+
+    const tournament = Tournament.findById(tournamentID);
+
+    if(!tournament) {
+        req.session.errors = 'Tournament was not found';
+       res.redirect('/tournaments');
+    }
     res.render('tournaments/details.hbs', { tournament });
 });
 
@@ -47,7 +64,7 @@ router.get('/create', function (req, res, next) {
 /* Create a tournament */
 router.post('/create', upload.single('imageTournament'), function (req, res, next) {
   console.log("Create a tournament");
-  // validate name of explanet -> betweeen 3 and 100 character
+  // validate name of tournoi -> betweeen 3 and 100 character
   if (validator.isLength(req.body.uniqueNameTournament, { min: 3, max: 100 })) {
       console.log("req.file : " + JSON.stringify(req.file));
       let filename = null;

@@ -574,7 +574,6 @@ h1 {
 .tournament-body {
     margin: 0;
     padding: 0;
-    font-family: 'Karma', serif;
     background-color: #FBFEF8; 
 }
 
@@ -583,10 +582,23 @@ h1 {
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+
+#tournament-page-title {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: #333;
+}
+
+#tournament-page-h5 {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
 
 .tournament-details {
     width: 100%;
@@ -804,19 +816,6 @@ h1 {
     background-color: #27ae60;
 }
 
-
-#tournament-page-title {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    color: #333;
-}
-
-#tournament-page-h5 {
-    color: #666;
-    font-size: 18px;
-    margin-bottom: 10px;
-}
 
 #tournament-page-txt {
     color: #444;

@@ -22,11 +22,15 @@
                     </tbody>
                 </table>
         
-        <h4 id="nbinscrits"> Il y'a déjà 18 inscrits..<br>
+        <h4 id="nbinscrits"> Il y'a déjà {{getNumberOfRegistrations}}inscrits..<br>
         Ne tardez pas à vous inscrire!</h4>
        
     
     
+
+
+     {{#if ./session.connected}}
       <button class="inscription-btn">S'inscrire</button>
       <button class="desinscription-btn">Se désincrire</button>
+     {{/if}}
 
