@@ -423,7 +423,7 @@ input:-moz-placeholder { /* Firefox 18- */
     max-width: 600px;
     margin: 20px auto; /* J'ai réduit la marge */
     padding: 20px;
-    background: rgba(191, 213, 183, 0.63);
+    background: rgba(5, 6, 5, 0.63);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -476,7 +476,7 @@ textarea {
 }
 
 .bio-button:hover {
-    background-color: #36ba85;
+    background-color: #586560;
 }
 
 
@@ -494,7 +494,7 @@ textarea {
     margin-left: 150px; /* Ajustez cette valeur pour l'espacement entre l'image et le texte */
 }
 .titre-bio-page h1{ 
-    color: #12671f;
+    color: #060806;
     padding-top: 200px;
 
 }
@@ -541,7 +541,7 @@ textarea {
 
 #title-coach-page h3 {
     font-size: 45px;
-    color: #75a584;
+    color: #141e17;
     position: relative;
 }
 
@@ -579,7 +579,7 @@ textarea {
     border-radius: 100px;
     padding: 20px;
     margin-bottom: 20px;
-    background-color: rgb(145, 174, 143);/* Couleur de fond */
+    background-color:#2B454A;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
 }   
 
@@ -1055,15 +1055,16 @@ textarea {
 
 /* messages */
 .message-instantanée {
-    border: 2px solid green;
+    border: px solid rgb(34, 113, 153);
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
+    background-color: rgba(234, 225, 207, 0.507);
 }
 
 .title-message {
     text-align: center;
-    background-color: rgb(143, 176, 143);
+    background-color: rgb(56, 115, 145);
     padding: 10px;
     border-bottom: 2px solid rgb(37, 131, 136);
     
