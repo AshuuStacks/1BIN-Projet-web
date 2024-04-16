@@ -21,3 +21,14 @@ module.exports.save = (data) => {
 
 };
 
+// Méthode pour récupérer le nombre d'inscrits à un tournoi spécifique
+module.exports.getNumberOfRegistrations = (tournamentId) => {
+    const stmt = db.prepare("SELECT COUNT(*) AS count FROM registrations WHERE tournament_id = ?");
+    const result = stmt.get(tournamentId);
+    return result.count; 
+};
+
+
+
+
+

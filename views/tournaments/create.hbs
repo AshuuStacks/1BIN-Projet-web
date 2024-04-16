@@ -6,10 +6,13 @@
             <label>Nom du tournoi: </label>
             <input type="text" name="uniqueNameTournament" />
         </div>
-         <div>
-            <label> Date du tournoi: </label>
-            <input type="number" min="2024" max="2026" step="1" value="2024" name="dateTournament" />
-        </div>
+<div>
+    <label>Date du tournoi : </label>
+    <input type="date"
+           min="2024-04-25"
+           name="dateTournament"
+           required />
+</div>
          <div>
             <label> Nombre maximum de participants: </label>
             <input type="number" min="1" max="60" step="1" value="1" name="maxPeople" />
