@@ -408,22 +408,13 @@ input:-moz-placeholder { /* Firefox 18- */
     padding-left: 50px;
     padding-right: 30px;
 }
-.container {
-    clear: both;
-    max-width: 800px;
-    margin: 20px auto; /* J'ai réduit la marge */
-    padding: 20px;
-    background: rgba(191, 213, 183, 0.63);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
+
 .containerrr {
     clear: both;
     max-width: 600px;
     margin: 20px auto; /* J'ai réduit la marge */
     padding: 20px;
-    background: rgba(5, 6, 5, 0.63);
+    background: rgba(87, 195, 87, 0.63);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -432,6 +423,7 @@ input:-moz-placeholder { /* Firefox 18- */
 .containerrr h2 {
     text-align: center;
     padding-top: 20px;
+    color: #66b4b4;
 }
 .titre-ancienne-photo-profile h4{
     color: rgb(27, 16, 27);
@@ -466,7 +458,7 @@ textarea {
 .bio-button {
     width: auto; /* Ajuste la largeur du bouton en fonction de son contenu */
     padding: 10px 20px; /* Ajuste la taille du bouton */
-    background-color: #86CF80;
+    background-color: #8096cf;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -536,12 +528,13 @@ textarea {
 #title-coach-page {
     text-align: center;
     margin-bottom: 40px;
+
     
 }
 
 #title-coach-page h3 {
     font-size: 45px;
-    color: #141e17;
+    color: #66b4b4;
     position: relative;
 }
 
@@ -557,11 +550,12 @@ textarea {
 .design-mid {
     text-align: center;
     margin-bottom: 20px;
+    color: white;
 }
 
 .design-mid a {
     text-decoration: none;
-    color: #040506;
+    color: #66b4b4;
     font-weight: bold;
     font-size: 20px;
 }
