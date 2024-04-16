@@ -18,9 +18,10 @@
         <br>
 
         <!-- Formulaire de contact modifié -->
-        <div class="containerrr" style="background: rgba(255, 255, 255, 0.279);">
         {{#if ./session.connected}}
              {{#unless (eq session.user.status "coach")}}
+                     <div class="containerrr" style="background: rgba(255, 255, 255, 0.279);">
+
             <h2>Contactez Notre Coach</h2>
           <form action="/coaches/sendTo" method="POST">
     <label for="message">Envoyez un message à : {{coach.firstname}}</label>
@@ -31,11 +32,10 @@
     <input type="hidden" name="receiver_id" value="{{coach.receiver_id}}">
     <button type="submit" class="modify-button">Envoyer</button>
 </form>
+        </div>
+    </section>
              {{/unless}}
        {{/if}}
                                      
-        </div>
-
         <!-- Fin du formulaire de contact modifié -->
-    </section>
 </main>

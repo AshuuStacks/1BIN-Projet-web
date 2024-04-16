@@ -1,7 +1,6 @@
 <main>
     <section class="form-holder">
     <form action="/coaches/update" method="post" enctype="multipart/form-data" class="form-update border p-4">
-      <h2 class="title-update">Mettre à jour votre biographie</h2>
       <fieldset>
         <input type="hidden" name="user_id" value="{{coach.user_id}}">
         <div class="form-group">
@@ -26,10 +25,10 @@
   
   <style>
     .form-holder {
-        background-color: #FBFEF8;
+        background-color: #feffffc1;
         padding: 20px;
         border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 10px rgba(248, 243, 243, 0.1);
         margin-top: 20px;
         max-width: 600px; /* Change this value to adjust the maximum width */
         margin-left: auto;
@@ -39,7 +38,7 @@
 
   
     .title-update {
-      color: #000;
+      color: #f4f4f4;
       text-align: center;
       font-size: 24px;
       margin-bottom: 20px;
