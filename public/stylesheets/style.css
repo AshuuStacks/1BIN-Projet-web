@@ -938,8 +938,9 @@ textarea {
     border: px solid rgb(34, 113, 153);
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 5px;
+    border-radius: 25px;
     background-color: rgba(234, 225, 207, 0.507);
+    
 }
 
 .title-message {
