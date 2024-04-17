@@ -8,7 +8,16 @@
 .container-fluid {
     padding: 0 !important;
 }
-  
+.container-fluid-ls {   
+    margin-top: 400px;
+    padding: 20px; /* Espacement intérieur */
+    text-align: center; /* Alignement du texte au centre */
+}
+
+
+
+
+
   
 #navbar-layout {
     background: #e4edd800;    
@@ -37,7 +46,7 @@ li.nav-item {
   
 footer {
     margin-top: 50px;
-    background-color: #4097af8e;
+    background-color: #4097af3b;
     color: white;
     display: flex;
     flex-direction: column;
@@ -440,7 +449,7 @@ textarea {
 .container-box {
     border-radius: 100px;
     padding: 20px;
-    margin-bottom: 20px;
+    margin-top: 100px;
     background-color:#2b454ab3;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
 }   
