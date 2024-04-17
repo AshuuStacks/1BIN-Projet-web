@@ -36,7 +36,8 @@ li.nav-item {
 }
   
 footer {
-    background-color: #31464B;
+    margin-top: 50px;
+    background-color: #4097af8e;
     color: white;
     display: flex;
     flex-direction: column;
@@ -440,7 +441,7 @@ textarea {
     border-radius: 100px;
     padding: 20px;
     margin-bottom: 20px;
-    background-color:#2B454A;
+    background-color:#2b454ab3;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
 }   
 
