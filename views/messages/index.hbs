@@ -23,11 +23,11 @@
                 <h3>Réponse : {{response_text}}</h3>
                 {{else}}
                 {{#if receiver_id}}
-                <form action="/response" method="post">
-                    <label for="reponse">Votre réponse :</label><br>
-                    <textarea id="reponse" name="reponse" rows="4" cols="50"></textarea><br>
-        <td><a href="/messages" class="modify-button">Envoyez</a></td> 
-                </form>
+              <form action="/messages/replyTo" method="POST">
+            <input type="text" name="response_text" placeholder="Votre message" required>
+             <button type="submit">Envoyer</button>
+            </form>
+
                 {{else}}
                 <h3>Réponse : Aucune réponse disponible pour le moment.</h3>
                 {{/if}}

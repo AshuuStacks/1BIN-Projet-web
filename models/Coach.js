@@ -16,7 +16,12 @@ module.exports.update = (user_id, biography, picture_path) => {
     return result;
 };
 
-module.exports.save = (message_id, sender_id, receiver_id, message_text, date_hour_message) => {
-    const stmt = db.prepare("INSERT INTO messages (message_id, sender_id, receiver_id, message_text, date_hour_message) VALUES (?, ?, ?, ?, ?)");
-    const info = stmt.run(message_id, sender_id, receiver_id, message_text, date_hour_message);
+module.exports.list = () => {
+    const listmsg = db.prepare("SELECT message_id from messages");
+    return listmsg.all;
+   }
+
+module.exports.push = (message) => {
+    const stmt = db.prepare("INSERT INTO messages (message_text, date_hour_message ,message_id , sender_id , receiver_id ) VALUES (?, ?, ?, ?, ?)");
+    const info = stmt.run(message.message_id, message.sender_id,  message.receiver_id, message.message_text, message.date_hour_message);
 };
