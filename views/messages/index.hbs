@@ -23,12 +23,14 @@
                 <h3>Réponse : {{response_text}}</h3>
                 {{else}}
                 {{#if receiver_id}}
-           <form action="/messages/replyTo" method="POST">
-    <input type="text" name="response_text" placeholder="Votre message" required>
-    <input type="hidden" name="message_id" value="{{message_id}}"> <!-- Assurez-vous que cette valeur est correctement définie -->
-    <button type="submit">Envoyer</button>
+      <form class="message-form" action="/messages/replyTo" method="POST">
+    <div class="form-group">
+        <label for="response_text">Votre message:</label>
+        <input class="form-control" type="text" id="response_text" name="response_text" placeholder="Entrez votre message" required>
+    </div>
+    <input type="hidden" name="message_id" value="{{message_id}}">
+ <button type="submit" class="modify-button">Envoyer</button>
 </form>
-
                 {{else}}
                 <h3>Réponse : Aucune réponse disponible pour le moment.</h3>
                 {{/if}}

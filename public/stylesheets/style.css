@@ -301,8 +301,9 @@ input:-moz-placeholder { /* Firefox 18- */
 
 .containerrr h2 {
     text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     padding-top: 20px;
-    color: #66b4b4;
+    color: #000000;
 }
 .titre-ancienne-photo-profile h4{
     text-align: center;
@@ -364,12 +365,34 @@ textarea {
     line-height: normal;
     margin-left: 150px; /* Ajustez cette valeur pour l'espacement entre l'image et le texte */
 }
-.titre-bio-page h1{ 
-    color: #060806;
+.titre-bio-page h1 {
+    color: #f3f3f3; /* Couleur du texte */
+    font-size: 60px; /* Taille de la police */
+    font-weight: bold; /* Gras */
+    margin-bottom: 20px; /* Marge en bas */
     padding-top: 200px;
 
 }
 
+#biography-font-size-design h4 {
+    color: rgb(0, 0, 0); /* Couleur du texte */
+    font-size: 30px;
+    font-family:Arial, Helvetica, sans-serif;/* Police de caractères */
+    border: 10px solid #90d6d62c; /* Bordure de 5 pixels solide avec une couleur grise */
+    border-radius: 20px; /* Coins arrondis de 8 pixels */
+    display: inline-block; /* Afficher en tant que bloc en ligne */
+}
+
+
+/* Style pour le contenu de la biographie */
+.titre-bio-page p {
+    color: #fcfcfc; /* Couleur du texte */
+    font-size: 16px; /* Taille de la police */
+    line-height: 1.6; /* Hauteur de ligne pour une meilleure lisibilité */
+    margin-bottom: 30px; /* Marge en bas */
+    padding-top: 200px;
+
+}
 
 
 .center-list-page{
@@ -413,7 +436,7 @@ textarea {
 
 #title-coach-page h3 {
     font-size: 45px;
-    color: #66b4b4;
+    color: #7da0a0;
     position: relative;
 }
 
