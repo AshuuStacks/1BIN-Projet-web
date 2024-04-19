@@ -31,17 +31,11 @@ function formatDate(date) {
 }
 
 router.post('/replyTo', (req, res) => { 
-    const sender_id = req.session.user.user_id;
-        const receiver_id = req.body.receiver_id; // ID récupéré de la requête
-    console.log("test" + sender_id + "test 2 " + receiver_id + "test 3" + date_hour_message);
-    const message = {
-        response_text : req.body.response_text,
-        date_hour_message: date_hour_message,
-        sender_id: sender_id,
-        receiver_id: receiver_id
-    };
+  const message_id = req.body.message_id; // Vous devez récupérer l'ID du message à partir du formulaire
+  const response_text = req.body.response_text;
 
-    Message.push(message);
+  // Utilisez la nouvelle méthode updateResponseText
+  const result = Message.updateResponseText(message_id, response_text);
     res.redirect('/messages');
 });
 

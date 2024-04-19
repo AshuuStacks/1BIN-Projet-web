@@ -27,7 +27,8 @@ module.exports.findById = (message_id) => {
     return stmt.get(message_id);
 };
 
-module.exports.push = (message) => {
-    const stmt = db.prepare("INSERT INTO messages (sender_id, receiver_id,response_text, date_hour_message) VALUES (?, ?, ?, ?)");
-    const info = stmt.run(message.sender_id, message.receiver_id, message.response_text ,message.date_hour_message);
+module.exports.updateResponseText = (message_id, response_text) => {
+    const stmt = db.prepare("UPDATE messages SET response_text = ? WHERE message_id = ? AND response_text IS NULL");
+    const info = stmt.run(response_text, message_id);
+    return info.changes; // Cela retournera le nombre de lignes mises à jour
 };
