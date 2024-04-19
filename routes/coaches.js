@@ -60,7 +60,12 @@ router.get('/details', (req, res) => {
       return;
     }
 
-  
+    if(!req.session.connected){
+
+      req.session.errors = 'Vous pouvez pas avoir accès à la modification du  profile du coach';
+      res.redirect('/coaches');
+      return;
+    }
     const coach = Coach.findById(userId);
   
     // Check if coach exists
@@ -78,6 +83,8 @@ router.get('/details', (req, res) => {
     // Retrieve court ID and other details from the request body
     const coachId = req.body.user_id;
     const { biography } = req.body;
+
+   
   
     const coach = Coach.findById(coachId);
     console.log("testing if coach_userId work" + coach);

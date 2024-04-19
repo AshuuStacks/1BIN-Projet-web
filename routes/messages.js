@@ -12,10 +12,13 @@ router.get('/', (req, res) => {
         isRegular = true;
       }
 
-    } else {
-      req.session.errors='Il faut être connecté pour accéder aux messages';
-      console.log("Il faut être connecté pour accéder aux messages");
-      res.redirect('/coaches')
+    } 
+
+    if(!req.session.connected){
+
+      req.session.errors = 'Vous ne pouvez pas accéder aux messages';
+      res.redirect('/coaches');
+      return;
     }
     
   
