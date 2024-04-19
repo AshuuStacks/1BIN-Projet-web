@@ -366,7 +366,7 @@ textarea {
     margin-left: 150px; /* Ajustez cette valeur pour l'espacement entre l'image et le texte */
 }
 .titre-bio-page h1 {
-    color: #f3f3f3; /* Couleur du texte */
+    color: #929288; /* Couleur du texte */
     font-size: 60px; /* Taille de la police */
     font-weight: bold; /* Gras */
     margin-bottom: 20px; /* Marge en bas */
@@ -375,12 +375,9 @@ textarea {
 }
 
 #biography-font-size-design h4 {
-    color: rgb(0, 0, 0); /* Couleur du texte */
+    color: rgb(207, 185, 185); /* Couleur du texte */
     font-size: 30px;
     font-family:Arial, Helvetica, sans-serif;/* Police de caractères */
-    border: 10px solid #90d6d62c; /* Bordure de 5 pixels solide avec une couleur grise */
-    border-radius: 20px; /* Coins arrondis de 8 pixels */
-    display: inline-block; /* Afficher en tant que bloc en ligne */
 }
 
 
