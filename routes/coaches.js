@@ -80,6 +80,7 @@ router.get('/details', (req, res) => {
     const { biography } = req.body;
   
     const coach = Coach.findById(coachId);
+    console.log("testing if coach_userId work" + coach);
   
     // If a new picture is uploaded, use it. Otherwise, use the existing picture path
     let picture = coach.picture_path;
@@ -92,20 +93,37 @@ router.get('/details', (req, res) => {
     res.redirect('/coaches/details?user_id=' + coachId);
   });
 
-  router.post('/sendTo', (req, res) => {
-    const msg = req.session.user_id;
-    log
+  router.post('/sendTo', (req, res, next) => {  
+ 
+    
+    const sender_id = req.session.user.user_id;
+        const receiver_id = req.body.receiver_id; // ID récupéré de la requête
+        const date = new Date();
+
+        // Obtient le décalage horaire en minutes et le convertit en millisecondes
+        const timezoneOffset = date.getTimezoneOffset() * 60000;
+        
+        // Ajuste la date en fonction du décalage horaire local
+        const localDate = new Date(date - timezoneOffset);
+        
+        // Formate la date au format souhaité 'YYYY-MM-DD HH:MM:SS'
+        const date_hour_message = localDate.toISOString().replace('T', ' ').substring(0, 19);
+        
+        console.log(date_hour_message);
+    console.log("test" + sender_id + "test 2 " + receiver_id + "test 3" + date_hour_message);
     const message = {
         message_text: req.body.message_text,
-        date_hour_message: req.body.date_hour_message,
-        message_id: req.body.message_id,
-        sender_id: req.session.user_id, // Assurez-vous que l'ID de l'utilisateur est stocké dans la session sous le nom 'user_id'
-        receiver_id: req.body.receiver_id
+        date_hour_message: date_hour_message,
+        sender_id: sender_id,
+        receiver_id: receiver_id
     };
 
     Coach.push(message);
     res.redirect('/messages');
 });
+
+
+
     
 module.exports = router;
 

@@ -1,7 +1,7 @@
 const db = require("./db_conf.js");
 
 module.exports.info = (isRegular) => {
-    const stmt = db.prepare("SELECT * FROM messages");
+    const stmt = db.prepare("SELECT * FROM messages ORDER BY date_hour_message DESC ");
     const msgs = stmt.all();
     if (isRegular) {
         // Si c'est un utilisateur normal, remplacer receiver_id par nom du coach
@@ -27,3 +27,7 @@ module.exports.findById = (message_id) => {
     return stmt.get(message_id);
 };
 
+module.exports.push = (message) => {
+    const stmt = db.prepare("INSERT INTO messages (sender_id, receiver_id,response_text, date_hour_message) VALUES (?, ?, ?, ?)");
+    const info = stmt.run(message.sender_id, message.receiver_id, message.response_text ,message.date_hour_message);
+};

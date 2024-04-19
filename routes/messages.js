@@ -30,23 +30,20 @@ function formatDate(date) {
   return `${year}-${month}-${day}`;
 }
 
-router.post('/replyTo', (req, res) => {
-const response = req.query.message_id;
-  // Insérez le response_text dans la base de données
-  const messages  = Message.insertResponse(message_id, response_text);
+router.post('/replyTo', (req, res) => { 
+    const sender_id = req.session.user.user_id;
+        const receiver_id = req.body.receiver_id; // ID récupéré de la requête
+    console.log("test" + sender_id + "test 2 " + receiver_id + "test 3" + date_hour_message);
+    const message = {
+        response_text : req.body.response_text,
+        date_hour_message: date_hour_message,
+        sender_id: sender_id,
+        receiver_id: receiver_id
+    };
 
-  console.log("test" + messages);
-
-  // Redirigez l'utilisateur vers la page "/messages" (ou toute autre page appropriée)
-  res.redirect('/messages');
+    Message.push(message);
+    res.redirect('/messages');
 });
-
-module.exports = router;
-
-      
-
- 
-
 
 
 module.exports = router;

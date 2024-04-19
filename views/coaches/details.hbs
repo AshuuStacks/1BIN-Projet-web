@@ -29,8 +29,9 @@
         <label for="message">Message :</label>
         <textarea id="message" name="message_text" rows="4" required></textarea>
     </div>
-    <input type="hidden" name="receiver_id" value="{{coach.receiver_id}}">
-    <button type="submit" class="modify-button">Envoyer</button>
+ <input type="hidden" name="receiver_id" value="{{coach.user_id }}">
+ <input type="hidden" name="user_id" value="{{session.user.user_id}}">  
+ <button type="submit" class="modify-button">Envoyer</button>
 </form>
         </div>
     </section>
