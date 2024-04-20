@@ -125,7 +125,7 @@ router.get('/update', (req, res) => {
       res.render('courts/update.hbs', { court });
   } else {
       // If the user is not a coach, redirect with an access denied message
-    errors = "Accès refusé: seuls les coachs peuvent mettre à jour les courts";
+    errors = "Accès refusé | seuls les coachs peuvent mettre à jour les courts";
     res.redirect('/courts?errors=' + encodeURIComponent(errors));
   }
 });

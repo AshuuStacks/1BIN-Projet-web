@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 
     if(!req.session.connected){
 
-      req.session.errors = 'Vous ne pouvez pas accéder aux messages';
+      req.session.errors = 'Accès refusé | seuls les coachs peuvent mettre à jour leur biographie';
       res.redirect('/coaches');
       return;
     }
