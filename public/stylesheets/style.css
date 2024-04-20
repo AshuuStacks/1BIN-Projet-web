@@ -640,12 +640,13 @@ textarea {
     padding-top: 50px;
     text-align: center; 
     margin: 0 auto; 
+    color: white;
 }
 
 #titleTournamentZak{
     font-style: italic;
     text-align: center;
-    padding-top: 35px;  
+    padding-top: 35px;
 }
 
 #introTournament{
@@ -694,15 +695,15 @@ textarea {
 .tournament-item {
     border-bottom: 1px solid #ddd;
     transition: background-color 0.3s ease;
+    color:#282525;
+    background-color: #E4EDD8;
 }
 
 .tournament-item:last-child {
     border-bottom: none;
 }
 
-.tournament-item:hover {
-    background-color: #E4EDD8;
-}
+
 
 
 .img-tournament{
@@ -737,7 +738,7 @@ textarea {
     color: white;
 }
 
-.inscription-btn {
+#inscription-btn {
     background-color: #4CAF50; 
     color: white; 
     padding: 10px 20px; 
@@ -752,6 +753,7 @@ textarea {
 #tournamentName{
     text-align: center;
     margin-top: 22px;
+    color: wheat;
 }
 
 .img-tournament{
@@ -768,7 +770,7 @@ textarea {
 }
 
 
-.desinscription-btn{
+#desinscription-btn{
     background-color: #4CAF50; 
     color: white; 
     padding: 10px 20px; 
@@ -787,6 +789,7 @@ textarea {
 #titleCreation{
     text-align: center;
     margin-top: 20px;
+    color: white;
 }
 
 #formCreation {
