@@ -6,8 +6,8 @@
         <div id="containe-center">
             <div class="titre-bio-page">
                 <h1>{{coach.firstname}}</h1>
-                <h4>{{coach.biography }}</h4>
-                 
+                 </div>
+                <div id="biography-font-size-design"><h4>{{coach.biography }}</h4></div>
              <div id="update-button">
     {{#if (eq coach.email session.user.email)}}
         <td><a href="/coaches/update?user_id={{coach.user_id}}" class="modify-button">Mettre à jour</a></td> 
@@ -18,9 +18,10 @@
         <br>
 
         <!-- Formulaire de contact modifié -->
-        <div class="containerrr" style="background: rgba(191, 213, 183, 0.63);">
         {{#if ./session.connected}}
              {{#unless (eq session.user.status "coach")}}
+                     <div class="containerrr" style="background: rgba(255, 255, 255, 0.279);">
+
             <h2>Contactez Notre Coach</h2>
           <form action="/coaches/sendTo" method="POST">
     <label for="message">Envoyez un message à : {{coach.firstname}}</label>
@@ -28,14 +29,14 @@
         <label for="message">Message :</label>
         <textarea id="message" name="message_text" rows="4" required></textarea>
     </div>
-    <input type="hidden" name="receiver_id" value="{{coach.receiver_id}}">
-    <button type="submit" class="modify-button">Envoyer</button>
+ <input type="hidden" name="receiver_id" value="{{coach.user_id }}">
+ <input type="hidden" name="user_id" value="{{session.user.user_id}}">  
+ <button type="submit" class="modify-button">Envoyer</button>
 </form>
+        </div>
+    </section>
              {{/unless}}
        {{/if}}
                                      
-        </div>
-
         <!-- Fin du formulaire de contact modifié -->
-    </section>
 </main>

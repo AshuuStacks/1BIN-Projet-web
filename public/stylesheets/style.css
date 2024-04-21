@@ -7,64 +7,79 @@
 /* LAYOUT */
 .container-fluid {
     padding: 0 !important;
-  }
+}
+.container-fluid-ls {   
+    margin-top: 400px;
+    padding: 20px; /* Espacement intérieur */
+    text-align: center; /* Alignement du texte au centre */
+}
+
+
+
+
+
   
-  
-  #navbar-layout{
-    background: #e4edd800;
-    
-  }
-  .navbar ul li a {
-    font-size: 30px;
+#navbar-layout {
+    background: #e4edd800;    
+}
+
+.navbar ul li a {
+    font-size: 25px;
     line-height: normal;
     color: #ffffff;
-  }
-  .navbar ul li a:hover{
+}
+
+.navbar ul li a:hover{
       color: orange;
       text-decoration: underline;
-  }
+}
   
-  li.nav-item {
+li.nav-item {
     margin: 0px 20px 0px 15px;
-  }
+}
   
-  #navbarSupportedContent {
+#navbarSupportedContent {
     margin-left: 1%;
     font-size: 15px;
     letter-spacing: 1px;
-  }
+}
   
-  footer {
-    background-color: #31464B;
+footer {
+    margin-top: 50px;
+    background-color: #4097af3b;
     color: white;
     display: flex;
     flex-direction: column;
     margin-top: 20px;
-  }
+}
   
-  footer #credits {
+footer #credits {
     height: 10px;
     text-align: center;
-  }
+}
 
 #headerTitle{
     margin-top: 15px;
     color: #FFF;
     font-family: Arial, sans-serif;
-    font-size: 80px;
+    font-size: 75px;
     font-weight: bold;
     letter-spacing: 12.6px;
     height: 100px;
 }
+
 body {
     margin: 0;
     padding: 0;
-    background-color: #FBFEF8 !important;
     background-image: url(../images/renith-r-A9VpotrPr1k-unsplash.jpg);
     background-size: cover;
     background-position-y: 20%;
-
+    scrollbar-width: none;
 }
+
+body::-webkit-scrollbar {
+    display: none;
+  }
 
 header {
     background-color: #568e5100;
@@ -78,6 +93,7 @@ h1 {
     margin: 0;
 }
 
+/* Login - Register Pages */
 .page-content {
 	width: 100%;
 	margin:  0 auto;
@@ -89,7 +105,7 @@ h1 {
 }
 
 .form-v2-content  {
-	background: #fdfffc;
+	background: #2b454ab3;
 	width: 900px;
 	border-radius: 15px;
 	margin: 25px 0;
@@ -144,7 +160,7 @@ h1 {
 .form-v2-content .form-detail h2 {
 	font-family: 'Karma', sans-serif;
 	font-weight: 700;
-	color: #333;
+	color: #ffffff;
 	font-size: 28px;
 	position: relative;
 	padding: 6px 0 0;
@@ -158,67 +174,9 @@ h1 {
 	font-family: 'Karma', sans-serif;
 	font-weight: 400;
 	font-size: 16px;
-	color: #666;
+	color: #ffffff;
 	display: block;
 	margin-bottom: 11px;
-}
-.form-v2-content .form-detail .form-row label#valid {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    -o-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    background: #53c83c;
-}
-.form-v2-content .form-detail .form-row label#valid::after {
-	content: "";
-    position: absolute;
-    left: 5px;
-    top: 1px;
-    width: 3px;
-    height: 8px;
-    border: 1px solid #fff;
-    border-width: 0 2px 2px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-.form-v2-content .form-detail .form-row label.error {
-	padding-left: 0;
-	margin-left: 0;
-    display: block;
-    position: absolute;
-    bottom: -10px;
-    width: 100%;
-    background: none;
-    color: red;
-}
-.form-v2-content .form-detail .form-row label.error::after {
-    content: "\f343";
-    font-family: "LineAwesome";
-    position: absolute;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    right: 10px;
-    top: -31px;
-    color: red;
-    font-size: 18px;
-    font-weight: 900;
 }
 .form-v2-content .form-detail .input-text {
 	margin-bottom: 27px;
@@ -226,7 +184,7 @@ h1 {
 .form-v2-content .form-detail input {
 	width: 91%;
     padding: 14.5px 15px;
-    border: 1px solid #b3a6a6;
+    border: 1px solid #ffffff;
     border-radius: 5px;
     -o-border-radius: 5px;
     -ms-border-radius: 5px;
@@ -244,91 +202,16 @@ h1 {
     -ms-outline: none;
     font-family: 'Karma', sans-serif;
     font-size: 16px;
+    /* background-color: #4f5e437a; */
     color: #333;
 }
 .form-v2-content .form-detail .form-row input:focus {
-	border: 1px solid #53c83c;
-}
-.form-v2-content .form-detail input[type="radio"] {
-	outline: none;
-    -moz-outline: none;
-    -webkit-outline: none;
-    -o-outline: none;
-    -ms-outline: none;
-    -o-appearance: none;
-    -ms-appearance: none;
-	-webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    display: inline-block;
-  	width: 20px;
-  	height: 20px;
-  	padding:  4px;
-  	background-clip: content-box;
-  	border: 1px solid #e5e5e5;
-  	background-color: #fff;
-  	border-radius: 50%;
-  	-o-border-radius: 50%;
-  	-ms-border-radius: 50%;
-  	-moz-border-radius: 50%;
-  	-webkit-border-radius: 50%;
-  	cursor: pointer;
-  	margin-top: 0;
-}
-.form-v2-content .form-detail .form-checkbox {
-	width: 80%;
-	margin-top: -17px;
-	position: relative;
-}
-.form-v2-content .form-detail .form-checkbox input {
-    position: absolute;
-    opacity: 0;
-}
-.form-v2-content .form-detail .form-checkbox .checkmark {
-    position: absolute;
-    top: 20px;
-    left: 0;
-    height: 15px;
-    width: 15px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-}
-.form-v2-content .form-detail .form-checkbox .checkmark::after {
-    content: "";
-    position: absolute;
-    left: 5px;
-    top: 1px;
-    width: 3px;
-    height: 8px;
-    border: 1px solid #385cb9;
-    border-width: 0 2px 2px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    transform: rotate(45deg);
-    display: none;
-}
-.form-v2-content .form-detail .form-checkbox input:checked ~ .checkmark::after {
-    display: block;
-}
-.form-v2-content .form-detail .form-checkbox p {
-    margin-left: 35px;
-    color: #666;
-    font-size: 16px;
-    font-weight: 400;
-    font-family: 'Karma', sans-serif;
-    line-height: 1.67;
-}
-.form-v2-content .form-detail .form-checkbox a {
-	font-weight: 500;
-	color: #385cb9;
-	text-decoration: underline;
+	border: 1px solid orange;
 }
 .form-v2-content .form-detail .register {
-	background: #3b63ca;
+	/* background: #3b63ca; */
+    background: black;
 	border-radius: 6px;
-	-o-border-radius: 6px;
 	-ms-border-radius: 6px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
@@ -342,7 +225,7 @@ h1 {
 	font-size: 16px;
 }
 .form-v2-content .form-detail .register:hover {
-	background: #3356b0;
+	background: orange;
 }
 .form-v2-content .form-detail .form-row-last input {
 	padding: 15.5px;
@@ -389,16 +272,12 @@ input:-moz-placeholder { /* Firefox 18- */
 	.form-v2-content .form-detail .form-row input {
 		width: 95%;
 	}
-	.form-v2-content .form-detail .form-checkbox {
-		width: 100%;
-	}
 }
 @media screen and (max-width: 575px) {
 	.form-v2-content .form-detail .form-row input {
 		width: 89.5%;
 	}
 }
-
 
 
 /* Coach */
@@ -408,22 +287,13 @@ input:-moz-placeholder { /* Firefox 18- */
     padding-left: 50px;
     padding-right: 30px;
 }
-.container {
-    clear: both;
-    max-width: 800px;
-    margin: 20px auto; /* J'ai réduit la marge */
-    padding: 20px;
-    background: rgba(191, 213, 183, 0.63);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
+
 .containerrr {
     clear: both;
     max-width: 600px;
     margin: 20px auto; /* J'ai réduit la marge */
     padding: 20px;
-    background: rgba(191, 213, 183, 0.63);
+    background: rgba(87, 195, 87, 0.63);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -431,12 +301,14 @@ input:-moz-placeholder { /* Firefox 18- */
 
 .containerrr h2 {
     text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     padding-top: 20px;
+    color: #000000;
 }
 .titre-ancienne-photo-profile h4{
-    color: rgb(27, 16, 27);
     text-align: center;
-    font-family: fantasy;
+   text-decoration: solid;
+
 }
 .photo-center {
     display: flex;
@@ -466,7 +338,7 @@ textarea {
 .bio-button {
     width: auto; /* Ajuste la largeur du bouton en fonction de son contenu */
     padding: 10px 20px; /* Ajuste la taille du bouton */
-    background-color: #86CF80;
+    background-color: #8096cf;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -476,7 +348,7 @@ textarea {
 }
 
 .bio-button:hover {
-    background-color: #36ba85;
+    background-color: #586560;
 }
 
 
@@ -493,12 +365,31 @@ textarea {
     line-height: normal;
     margin-left: 150px; /* Ajustez cette valeur pour l'espacement entre l'image et le texte */
 }
-.titre-bio-page h1{ 
-    color: #12671f;
+.titre-bio-page h1 {
+    color: #929288; /* Couleur du texte */
+    font-size: 60px; /* Taille de la police */
+    font-weight: bold; /* Gras */
+    margin-bottom: 20px; /* Marge en bas */
     padding-top: 200px;
 
 }
 
+#biography-font-size-design h4 {
+    color: rgb(207, 185, 185); /* Couleur du texte */
+    font-size: 30px;
+    font-family:Arial, Helvetica, sans-serif;/* Police de caractères */
+}
+
+
+/* Style pour le contenu de la biographie */
+.titre-bio-page p {
+    color: #fcfcfc; /* Couleur du texte */
+    font-size: 16px; /* Taille de la police */
+    line-height: 1.6; /* Hauteur de ligne pour une meilleure lisibilité */
+    margin-bottom: 30px; /* Marge en bas */
+    padding-top: 200px;
+
+}
 
 
 .center-list-page{
@@ -536,12 +427,13 @@ textarea {
 #title-coach-page {
     text-align: center;
     margin-bottom: 40px;
+
     
 }
 
 #title-coach-page h3 {
     font-size: 45px;
-    color: #75a584;
+    color: #7da0a0;
     position: relative;
 }
 
@@ -557,11 +449,12 @@ textarea {
 .design-mid {
     text-align: center;
     margin-bottom: 20px;
+    color: white;
 }
 
 .design-mid a {
     text-decoration: none;
-    color: #040506;
+    color: #66b4b4;
     font-weight: bold;
     font-size: 20px;
 }
@@ -578,8 +471,8 @@ textarea {
 .container-box {
     border-radius: 100px;
     padding: 20px;
-    margin-bottom: 20px;
-    background-color: rgb(145, 174, 143);/* Couleur de fond */
+    margin-top: 100px;
+    background-color:#2b454ab3;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
 }   
 
@@ -848,7 +741,7 @@ textarea {
     margin: 0;
     padding: 0;
     font-family: 'Karma', serif;
-    background-color: #FBFEF8; 
+    background-color: #fbfef800; 
 }
 
 .container-court {
@@ -922,7 +815,7 @@ textarea {
 }
 
 .court-details-titles {
-    color: #000000;
+    color: #ffffff;
     font-family: Karma;
     font-style: normal;
     font-weight: 700;
@@ -1018,7 +911,7 @@ textarea {
     padding: 10px;
     text-align: center;
     display: inline-block;
-    background-color: #e7e7e7;
+    background-color: #ffffff9a;
     transition: all 0.5s ease;
 }
 .card .name {
@@ -1065,15 +958,17 @@ textarea {
 
 /* messages */
 .message-instantanée {
-    border: 2px solid green;
+    border: px solid rgb(34, 113, 153);
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 5px;
+    border-radius: 25px;
+    background-color: rgba(234, 225, 207, 0.507);
+    
 }
 
 .title-message {
     text-align: center;
-    background-color: rgb(143, 176, 143);
+    background-color: rgb(56, 115, 145);
     padding: 10px;
     border-bottom: 2px solid rgb(37, 131, 136);
     

@@ -62,6 +62,7 @@ router.get('/details', (req, res) => {
   if (isNaN(courtId)) {
     errors = "L'ID du court doit être un nombre";
     res.redirect('/courts?errors=' + encodeURIComponent(errors));
+    return;
   }
 
   const court = Court.findById(courtId);
@@ -70,6 +71,7 @@ router.get('/details', (req, res) => {
   if (!court) {
     errors = "Court non trouvé, veuillez réessayer";
     res.redirect('/courts?errors=' + encodeURIComponent(errors));
+    return;
   }
 
   const nextWeekDates = generateNextWeekDates();
@@ -88,7 +90,8 @@ router.post('/book', (req, res) => {
    const existingBooking = Court.findByDateAndCourt(dateBooking, courtId);
    if (existingBooking) {
         errors = "Ce terrain est déjà réservé pour cette date";
-        res.redirect('/courts/details?tennis_court_id=' + courtId + '&errors=' + encodeURIComponent(errors));
+     res.redirect('/courts/details?tennis_court_id=' + courtId + '&errors=' + encodeURIComponent(errors));
+     return;
    }
 
   Court.book(dateBooking, courtId, userId);
@@ -106,6 +109,7 @@ router.get('/update', (req, res) => {
       if (!courtId) {
         errors = "Veuillez fournir un ID de court";
         res.redirect('/courts?errors=' + encodeURIComponent(errors));
+        return
       }
 
       const court = Court.findById(courtId);
@@ -114,13 +118,14 @@ router.get('/update', (req, res) => {
       if (!court) {
         errors = "Court non trouvé, veuillez réessayer";
         res.redirect('/courts?errors=' + encodeURIComponent(errors));
+        return;
       }
 
       // Render the update form with the court data
       res.render('courts/update.hbs', { court });
   } else {
       // If the user is not a coach, redirect with an access denied message
-    errors = "Accès refusé: seuls les coachs peuvent mettre à jour les courts";
+    errors = "Accès refusé | seuls les coachs peuvent mettre à jour les courts";
     res.redirect('/courts?errors=' + encodeURIComponent(errors));
   }
 });

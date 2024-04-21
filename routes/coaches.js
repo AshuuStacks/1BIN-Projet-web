@@ -60,7 +60,12 @@ router.get('/details', (req, res) => {
       return;
     }
 
-  
+    if(!req.session.connected){
+
+      req.session.errors = 'Vous pouvez pas avoir accès à la modification du  profile du coach';
+      res.redirect('/coaches');
+      return;
+    }
     const coach = Coach.findById(userId);
   
     // Check if coach exists
@@ -78,8 +83,11 @@ router.get('/details', (req, res) => {
     // Retrieve court ID and other details from the request body
     const coachId = req.body.user_id;
     const { biography } = req.body;
+
+   
   
     const coach = Coach.findById(coachId);
+    console.log("testing if coach_userId work" + coach);
   
     // If a new picture is uploaded, use it. Otherwise, use the existing picture path
     let picture = coach.picture_path;
@@ -92,28 +100,37 @@ router.get('/details', (req, res) => {
     res.redirect('/coaches/details?user_id=' + coachId);
   });
 
+  router.post('/sendTo', (req, res, next) => {  
+ 
+    
+    const sender_id = req.session.user.user_id;
+        const receiver_id = req.body.receiver_id; // ID récupéré de la requête
+        const date = new Date();
 
-  router.post('/coaches/sendTo', (req, res) => {
-    // Générer un message_id unique, par exemple en utilisant UUID ou une autre méthode
-    const message_id = generateUniqueId(); // Remplacez ceci par votre fonction de génération d'ID
+        // Obtient le décalage horaire en minutes et le convertit en millisecondes
+        const timezoneOffset = date.getTimezoneOffset() * 60000;
+        
+        // Ajuste la date en fonction du décalage horaire local
+        const localDate = new Date(date - timezoneOffset);
+        
+        // Formate la date au format souhaité 'YYYY-MM-DD HH:MM:SS'
+        const date_hour_message = localDate.toISOString().replace('T', ' ').substring(0, 19);
+        
+        console.log(date_hour_message);
+    console.log("test" + sender_id + "test 2 " + receiver_id + "test 3" + date_hour_message);
+    const message = {
+        message_text: req.body.message_text,
+        date_hour_message: date_hour_message,
+        sender_id: sender_id,
+        receiver_id: receiver_id
+    };
 
-    // Récupérer le sender_id de la session de l'utilisateur
-    const sender_id = req.session.user_id; // Assurez-vous que user_id est bien stocké dans la session lors de la connexion
-
-    // Récupérer le receiver_id du formulaire
-    const receiver_id = req.body.receiver_id;
-
-    // Récupérer le texte du message du formulaire
-    const message_text = req.body.message_text;
-
-    // Récupérer la date et l'heure actuelles
-    const date_hour_message = new Date().toISOString();
-
-    // Insérer le message dans la base de données
-    Message.save(message_id, sender_id, receiver_id, message_text, date_hour_message);
-
-    // Rediriger l'utilisateur vers une page de confirmation ou de retour
-    res.redirect('messages/confirmation.hbs');
+    Coach.push(message);
+    res.redirect('/messages');
 });
+
+
+
+    
 module.exports = router;
 
