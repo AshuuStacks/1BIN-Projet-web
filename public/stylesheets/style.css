@@ -1109,7 +1109,7 @@ textarea {
   .message-count {
     text-align: center;
     margin-top: 20px;
-    background-color: #007bff2f; /* Couleur de fond légèrement transparente */
+    background-color: #414e5c2f; /* Couleur de fond légèrement transparente */
     padding: 10px;
     border-radius: 5px;
     display: inline-block; /* Pour limiter la longueur du fond */
