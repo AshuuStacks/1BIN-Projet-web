@@ -589,7 +589,7 @@ input:-moz-placeholder { /* Firefox 18- */
 
 .modify-button {
     margin-top: 10px;
-    background-color: #3cb2e98e;
+    background-color: #1a41538e;
     color: white;
     border: none;
     border-radius: 30px;
@@ -601,7 +601,7 @@ input:-moz-placeholder { /* Firefox 18- */
 }
 
 .modify-button:hover {
-    background-color: rgb(202, 177, 34);
+    background-color: rgb(34, 70, 202);
 }
 
 .court-details {
@@ -1026,7 +1026,6 @@ textarea {
 
 .half-width {
     width: 40%; /* Définit la largeur à 50% de la page */
-    max-width: 800px; /* Limite la largeur maximale à 500 pixels pour éviter qu'elle ne devienne trop large */
 }
 .message {
     padding: 10px;
