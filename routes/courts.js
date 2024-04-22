@@ -21,15 +21,14 @@ const upload = multer({ storage: storage });
 
 /* GET courts page. */
 router.get('/', (req, res) => {
-  // const errors = errors;
 
-  // errors = null;
   const errors = req.query.errors || null;
   res.render('courts/index.hbs', { courts: Court.info(), errors: errors });
 });
 
 /* GET courts details page */
 router.get('/details', (req, res) => {
+
   const courtId = req.query.tennis_court_id;
   let errors = req.query.errors || null;
   
@@ -57,7 +56,6 @@ router.get('/details', (req, res) => {
         const day = date.getDate().toString().padStart(2, '0');
         return `${year}-${month}-${day}`;
     }
-  
   // Check if courtId is a number
   if (isNaN(courtId)) {
     errors = "Accès refusé | L'ID du court doit être un nombre";
@@ -124,9 +122,10 @@ router.get('/update', (req, res) => {
       // Render the update form with the court data
       res.render('courts/update.hbs', { court });
   } else {
-      // If the user is not a coach, redirect with an access denied message
+    // If the user is not a coach, redirect with an access denied message
+    const courtId = req.query.tennis_court_id;
     errors = "Accès refusé | seuls les coachs peuvent mettre à jour les courts";
-    res.redirect('/courts?errors=' + encodeURIComponent(errors));
+    res.redirect('/courts/details?tennis_court_id=' + courtId + '&errors=' + encodeURIComponent(errors));
   }
 });
 

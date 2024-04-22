@@ -1053,7 +1053,7 @@ textarea {
 }
 
 /* update */
-.form-holder-display {
+.form-holder-update {
         background-color: #FBFEF8;
         padding: 20px;
         border-radius: 10px;
@@ -1066,7 +1066,7 @@ textarea {
     }
 
   
-    .title-update H4{
+    .title-update{
       color: #000;
       text-align: center;
       font-size: 24px;
@@ -1080,6 +1080,9 @@ textarea {
     }
   
 
+    .input-court-name,
+    .input-flooring-type,
+    .input-location,
     .input-picture {
       width: 100%;
       padding: 10px;
