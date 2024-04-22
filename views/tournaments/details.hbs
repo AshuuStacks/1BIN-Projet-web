@@ -22,15 +22,20 @@
                     </tbody>
                 </table>
         
-        <h4 id="nbinscrits"> Il y'a déjà {{getNumberOfRegistrations}}inscrits..<br>
+        <h4 id="nbinscrits"> Il y'a {{ getNumberOfRegistrations}} inscrits..<br>
         Ne tardez pas à vous inscrire!</h4>
        
-    
-    
-
-
-     {{#if ./session.connected}}
-      <button class="inscription-btn">S'inscrire</button>
-      <button class="desinscription-btn">Se désincrire</button>
-     {{/if}}
+  
+           {{#if session.connected}} 
+            <form action="/tournaments/register" method="POST">
+                <input id="inscription-btn" type="submit" value="S'inscrire">
+            </form>
+         {{/if}}
+          {{#if isregister}}
+       <form action="/tournaments/unregister" method="POST">
+      <button id="desinscription-btn" type="submit" >Se désinscrire</button>
+    </form>    
+        {{/if}}
+  
+     
 

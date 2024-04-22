@@ -1,24 +1,20 @@
 const db = require('../models/db_conf');
 
 
+/*new Date() creates a new Date object representing the current date and time.
+.toISOString() converts this Date object into a string in ISO 8601 format, which looks like this: 'YYYY-MM-DDTHH:mm:ss.sssZ'.
+.split('T')[0] splits this string into two parts using the 'T' character as a separator and retrieves only the first part, which is the date in the format 'YYYY-MM-DD'.
+const currentDate stores this date in the 'YYYY-MM-DD' format.
+*/
 module.exports.list = () => {
-    return db.prepare("SELECT * FROM tournaments").all();
+    const currentDate = new Date().toISOString().split('T')[0];
+    const stmt_all = db.prepare("SELECT * FROM tournaments WHERE date_tournament >= ? ORDER BY date_tournament");
+    return stmt_all.all(currentDate);
 };
 
 
 module.exports.findById = (id) => {
-    return db.prepare("SELECT * FROM tournaments WHERE tournament_id = ?").get(id);
-};
-
-
-module.exports.save = (data) => {
-    console.log("SAVE :" + JSON.stringify(data));
-    if (data.id === undefined) {
-        const stmt = db.prepare('INSERT INTO TOURNAMENTS(name, date_tournament, nb_max_participants, banner_image_path) VALUES (?, ?, ?, ?)');
-        const info = stmt.run(data.uniqueNameTournament, data.dateTournament, data.maxPeople, data.filename);
-        console.log("tournament save" + info.changes);
-    }
-
+    return db.prepare("SELECT * FROM tournaments WHERE tournament_id = ?  ").get(id);
 };
 
 // Méthode pour récupérer le nombre d'inscrits à un tournoi spécifique
@@ -27,6 +23,27 @@ module.exports.getNumberOfRegistrations = (tournamentId) => {
     const result = stmt.get(tournamentId);
     return result.count; 
 };
+
+module.exports.registerUser =  (userId, tournamentId) => {
+    const stmt_insert = db.prepare("INSERT INTO registrations (user_id, tournament_id) VALUES (?, ?)");
+    stmt_insert.run(userId, tournamentId);
+};
+
+module.exports.unregisterUser= (userId, tournamentId) => {
+    const stmt_delete = db.prepare("DELETE FROM registrations WHERE user_id = ? AND tournament_id = ?");
+    stmt_delete.run(userId, tournamentId);
+};
+
+module.exports.save = (tournamentDetails) => {
+    console.log("SAVE :" + JSON.stringify(tournamentDetails));
+    if(tournamentDetails.id===undefined){
+    const stmt = db.prepare('INSERT INTO tournaments (name, date_tournament,nb_max_participants, banner_image_path ) VALUES (?, ?, ?, ?)');
+    stmt.run(tournamentDetails.name, tournamentDetails.banner_image_path, tournamentDetails.date_tournament, tournamentDetails.nb_max_participants, tournamentDetails.creator);
+    }
+};
+
+
+   
 
 
 

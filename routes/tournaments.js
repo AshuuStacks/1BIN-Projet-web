@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Tournament = require('../models/Tournament.js');
 
-
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -20,7 +19,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-
 /* GET tournaments index. */
 router.get('/', function (req, res, next) {
     const tournamentsTable = Tournament.list();
@@ -34,21 +32,38 @@ router.get('/', function (req, res, next) {
 });
 
 
-
 /* GET details tournaments */
 router.get('/details', function (req, res, next) {
     console.log("GET DETAILS TOURNAMENTS");
     const tournamentID = req.query.tournament_id;
     if(!tournamentID){
-        req.session.errors = 'invalid tournament id ';
+        req.session.errors = 'Id du tournoi invalid ';
         res.redirect('/tournaments');
     }
     const tournament = Tournament.findById(tournamentID);
+    const getNumberOfRegistrations = Tournament.getNumberOfRegistrations(tournamentID)
     if(!tournament) {
-        req.session.errors = 'Tournament was not found';
+        req.session.errors = 'Tournoi introuvable';
        res.redirect('/tournaments');
     }
-    res.render('tournaments/details.hbs', { tournament });
+    res.render('tournaments/details.hbs', { tournament, getNumberOfRegistrations, });
+});
+
+router.post('/register', function(req, res, next) {
+    const tournamentId = req.body.tournamentId;
+    const userId = req.session.user.user_id;
+    Tournament.registerUser(userId, tournamentId);
+    req.session.success = "Inscription réussie au tournoi ✅";
+    res.redirect('/tournaments');
+});
+
+router.post('/unregister', function(req, res, next) {
+    const tournamentId = req.body.tournamentId;
+    const userId = req.session.user.user_id;
+    // Désinscrire l'utilisateur du tournoi
+    Tournament.unregisterUser(userId, tournamentId);
+    req.session.success = "Désinscription réussie du tournoi ✅";
+    res.redirect('/tournaments');
 });
 
 
@@ -58,30 +73,26 @@ router.get('/create', function (req, res, next) {
     res.render('tournaments/create.hbs');
 });
 
-
-/* Create a tournament */
-router.post('/create', upload.single('imageTournament'), function (req, res, next) {
-  console.log("Create a tournament");
-  // validate name of tournoi -> betweeen 3 and 100 character
-  if (validator.isLength(req.body.uniqueNameTournament, { min: 3, max: 100 })) {
-      console.log("req.file : " + JSON.stringify(req.file));
-      let filename = null;
-      // req.file must be undefined if no file given
-      if (req.file === undefined) filename = null;
-      else filename = 'images/' + req.file.filename;
-      Tournament.save({
-          uniqueName: req.body.uniqueNameTournament,
-          date: req.body.dateTournament,
-          maxpoeple: req.body.maxPeople,
-          image: filename
-      });
-      res.redirect('/tournament');
-  }
-  else {
-      res.redirect('/tournament?errors= Le nom d\'un tournoi doit faire entre 3 et 100 caractères');
-  }
+router.post('/create', upload.single('filename'), function(req, res, next) {
+    console.log("POST CREATE TOURNAMENT");
+    console.log("req.file : " + JSON.stringify(req.file));
+    const currentDate = new Date();
+    const tournamentDate = new Date(req.body.date);
+    if (currentDate > tournamentDate) {
+        req.session.error = "La date du tournoi est déjà passée ❌";
+        return res.redirect('/tournaments'); 
+    }
+    if (req.file === undefined) filename = null;
+    else filename = 'images/' + req.file.filename;
+    Tournament.save({
+        name: req.body.uniqueNameTournament,
+        date_tournament: req.body.dateTournament,
+        nb_max_participants: req.body.maxPeople,
+        banner_image_path: filename,  
+    });
+    req.session.success = "Le tournoi a été créé avec succès ✅";
+    res.redirect('/tournaments');
 });
-
 
 
 module.exports = router;
