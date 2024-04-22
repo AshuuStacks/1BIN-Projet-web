@@ -60,7 +60,7 @@ router.get('/details', (req, res) => {
   
   // Check if courtId is a number
   if (isNaN(courtId)) {
-    errors = "L'ID du court doit être un nombre";
+    errors = "Accès refusé | L'ID du court doit être un nombre";
     res.redirect('/courts?errors=' + encodeURIComponent(errors));
     return;
   }
@@ -69,7 +69,7 @@ router.get('/details', (req, res) => {
 
   // Check if court exists
   if (!court) {
-    errors = "Court non trouvé, veuillez réessayer";
+    errors = "Accès refusé | Court non trouvé, veuillez réessayer";
     res.redirect('/courts?errors=' + encodeURIComponent(errors));
     return;
   }
@@ -89,7 +89,7 @@ router.post('/book', (req, res) => {
    // Check if the court is already booked for the specified date
    const existingBooking = Court.findByDateAndCourt(dateBooking, courtId);
    if (existingBooking) {
-        errors = "Ce terrain est déjà réservé pour cette date";
+        errors = "Accès refusé | Ce terrain est déjà réservé pour cette date";
      res.redirect('/courts/details?tennis_court_id=' + courtId + '&errors=' + encodeURIComponent(errors));
      return;
    }

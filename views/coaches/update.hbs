@@ -1,17 +1,16 @@
 <main>
-    <section class="form-holder">
-    <form action="/coaches/update" method="post" enctype="multipart/form-data" class="form-update border p-4">
-      <fieldset>
+    <section class="form-holder-display">
+    <form action="/coaches/update" method="post" class="form-update border p-4">
         <input type="hidden" name="user_id" value="{{coach.user_id}}">
         <div class="form-group">
-          <div class="titre-ancienne-photo-profile"</div>
+          <div class="titre-ancienne-photo-profile"></div>
                                 <h4> Votre ancienne photo de profile</H4> 
                                 </div>
           <div class="photo-center">
-                      <img src="{{coach.picture_path}}" height="500"  alt="">
+                      <img src="{{coach.picture_path}}" height="500"  alt="photo de profile">
                       </div>
-          <label for="location" class="title-in-update">Biographie :</label>
-          <input class="form-control input-location" type="text" id="biography" name="biography" placeholder="Emplacement" value="{{coach.biography}}">
+          <label for="biographie" class="title-in-update">Biographie :</label>
+          <input class="form-control input-biographie" type="text" id="biography" name="biography" placeholder="Emplacement" value="{{coach.biography}}">
         </div>
         
         <div class="form-group">
@@ -19,62 +18,7 @@
           <input class="form-control input-picture" type="file" id="user_image" name="picture_path">
         </div>
         <input class="btn btn-primary submit-button" type="submit" value="Mettre à jour">
-      </fieldset>
     </form>
   </section>
-  
-  <style>
-    .form-holder {
-        background-color: #feffffc1;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(248, 243, 243, 0.1);
-        margin-top: 20px;
-        max-width: 600px; /* Change this value to adjust the maximum width */
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 20px;
-    }
 
-  
-    .title-update {
-      color: #f4f4f4;
-      text-align: center;
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-  
-    .title-in-update {
-      color: #000;
-      font-size: 18px;
-      margin-bottom: 10px;
-    }
-  
-    .input-court-name,
-    .input-flooring-type,
-    .input-location,
-    .input-picture {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      margin-bottom: 15px;
-    }
-  
-    .submit-button {
-      width: 100%;
-      padding: 10px;
-      background-color: #006a4e8e;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-  
-    .submit-button:hover {
-      background-color: orange;
-    }
-  </style>
-  
 </main>

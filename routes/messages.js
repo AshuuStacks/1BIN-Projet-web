@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 
     if(!req.session.connected){
 
-      req.session.errors = 'Accès refusé | Connectez vous pour voir vos messages';
+      req.session.errors = 'Accès refusé | Connectez-vous pour accéder à vos messages';
       res.redirect('/coaches');
       return;
     }

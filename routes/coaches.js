@@ -33,7 +33,7 @@ router.get('/details', (req, res) => {
       
     // Check if courtId is a number
     if (isNaN(userId)) {
-      req.session.errors = 'Accès refusé | Invalid user id';
+      req.session.errors = "Accès refusé | l'User ID fourni n'existe pas";
       res.redirect('/coaches');
       return;
     }
@@ -41,7 +41,7 @@ router.get('/details', (req, res) => {
     const coach = Coach.findById(userId);
     // Check if coach exists
     if (!coach) {
-      req.session.errors = 'Accès refusé | Coach not found';
+      req.session.errors = " Accès refusé | La biographie de ce coach n'existe pas";
       res.redirect('/coaches');
       return;
     }
@@ -55,14 +55,14 @@ router.get('/details', (req, res) => {
       
     // Check if courtId is a number
     if (isNaN(userId)) {
-      req.session.errors = ' Accès refusé | Invalid user id';
+      req.session.errors = " Accès refusé | l'User ID fourni n'existe pas";
       res.redirect('/coaches');
       return;
     }
 
     if(!req.session.connected){
 
-      req.session.errors = ' Accès refusé | Vous ne pouvez pas modifier la biographie du coach';
+      req.session.errors = "Accès refusé | Vous n'avez pas accès à cette page";
       res.redirect('/coaches');
       return;
     }
@@ -70,7 +70,7 @@ router.get('/details', (req, res) => {
   
     // Check if coach exists
     if (!coach) {
-      req.session.errors = 'Accès refusé | Coach not found';
+      req.session.errors = "Accès refusé | La page de ce coach n'existe pas";
       res.redirect('/coaches');
       return;
     }

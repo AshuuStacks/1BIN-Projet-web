@@ -938,7 +938,14 @@ textarea {
 #containe-center{
     text-align: center;
 }
-
+.container-coach {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
 
 #title-coach-page {
@@ -1017,8 +1024,8 @@ textarea {
 }
 
 .half-width {
-    width: 50%; /* Définit la largeur à 50% de la page */
-    max-width: 500px; /* Limite la largeur maximale à 500 pixels pour éviter qu'elle ne devienne trop large */
+    width: 40%; /* Définit la largeur à 50% de la page */
+    max-width: 800px; /* Limite la largeur maximale à 500 pixels pour éviter qu'elle ne devienne trop large */
 }
 .message {
     padding: 10px;
@@ -1027,3 +1034,40 @@ textarea {
 .contenu {
     margin-top: 20px;
 }
+
+
+/* update */
+.form-holder-display {
+    background-color: #feffffc1;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(248, 243, 243, 0.1);
+    margin-top: 20px;
+    max-width: 600px; /* Change this value to adjust the maximum width */
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+.title-in-update {
+  color: #000;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+  
+    .submit-button {
+        margin-top: 10px;
+        width: 100%;
+      padding: 10px;
+      background-color: #006a4e8e;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+  
+    .submit-button:hover {
+      background-color: orange;
+    }
+
+    
