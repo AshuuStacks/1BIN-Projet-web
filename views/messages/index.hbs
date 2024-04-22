@@ -14,9 +14,9 @@
                 <h2>Message de : {{sender_id}}</h2>  
                 <h3>Voici son message : {{message_text}}</h3>
                 <h3>Date d'envoie : {{date_hour_message}}</h3>
-                <br></br>
                 {{#if response_text}}
-                <h3>Réponse : {{response_text}}</h3>
+                    <br></br>
+                <h3>Vous avez répondu à ce message</h3>
                 {{else}}
                 {{#if receiver_id}}
       <form class="message-form" action="/messages/replyTo" method="POST">
