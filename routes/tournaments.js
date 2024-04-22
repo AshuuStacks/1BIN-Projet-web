@@ -50,19 +50,20 @@ router.get('/details', function (req, res, next) {
 });
 
 router.post('/register', function(req, res, next) {
-    const tournamentId = req.body.tournamentId;
+    const tournamentId = req.body.tournament_id;
     const userId = req.session.user.user_id;
     Tournament.registerUser(userId, tournamentId);
     req.session.success = "Inscription réussie au tournoi ✅";
     res.redirect('/tournaments');
 });
 
+
 router.post('/unregister', function(req, res, next) {
-    const tournamentId = req.body.tournamentId;
+    const tournamentId = req.body.tournament_id;
     const userId = req.session.user.user_id;
     // Désinscrire l'utilisateur du tournoi
     Tournament.unregisterUser(userId, tournamentId);
-    req.session.success = "Désinscription réussie du tournoi ✅";
+    req.session.success = "Vous venez de vous désinscrire au tournoi ";
     res.redirect('/tournaments');
 });
 

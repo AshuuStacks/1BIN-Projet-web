@@ -684,19 +684,17 @@ textarea {
 }
 
 #formCreation {
-    max-width: 600px;
+    max-width: 610px;
     margin: 40px auto;
     padding: 30px;
-    border: 2px solid #3498db;
+    border: 2px solid rgb(196, 174, 134);
     border-radius: 8px;
     background-color: #ecf0f1;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 }
 
 #formCreation label {
     display: block;
     margin-bottom: 15px;
-    font-weight: bold;
     font-size: 1.1em;
 }
 
@@ -709,7 +707,7 @@ textarea {
     border: 2px solid #bdc3c7;
     border-radius: 5px;
     box-sizing: border-box;
-    font-size: 1em;
+   
 }
 
 #formCreation input[type="submit"] {
@@ -725,7 +723,7 @@ textarea {
 }
 
 #formCreation input[type="submit"]:hover {
-    background-color: #27ae60;
+    background-color: #06af4d;
 }
 
 
