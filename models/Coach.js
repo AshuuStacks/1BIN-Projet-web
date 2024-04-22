@@ -16,6 +16,7 @@ module.exports.update = (user_id, biography, picture_path) => {
     return result;
 };
 
+
    module.exports.push = (message) => {
     const stmt = db.prepare("INSERT INTO messages (sender_id, receiver_id,message_text, date_hour_message) VALUES (?, ?, ?, ?)");
     const info = stmt.run(message.sender_id, message.receiver_id, message.message_text ,message.date_hour_message);

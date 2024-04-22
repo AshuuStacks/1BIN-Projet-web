@@ -55,22 +55,17 @@ router.get('/details', (req, res) => {
       
     // Check if courtId is a number
     if (isNaN(userId)) {
-      req.session.errors = " Accès refusé | l'User ID fourni n'existe pas";
+      req.session.errors = 'Invalid user id';
       res.redirect('/coaches');
       return;
     }
 
-    if(!req.session.connected){
-
-      req.session.errors = "Accès refusé | Vous n'avez pas accès à cette page";
-      res.redirect('/coaches');
-      return;
-    }
+  
     const coach = Coach.findById(userId);
   
     // Check if coach exists
     if (!coach) {
-      req.session.errors = "Accès refusé | La page de ce coach n'existe pas";
+      req.session.errors = 'Coach not found';
       res.redirect('/coaches');
       return;
     }
@@ -83,11 +78,8 @@ router.get('/details', (req, res) => {
     // Retrieve court ID and other details from the request body
     const coachId = req.body.user_id;
     const { biography } = req.body;
-
-   
   
     const coach = Coach.findById(coachId);
-    console.log("testing if coach_userId work" + coach);
   
     // If a new picture is uploaded, use it. Otherwise, use the existing picture path
     let picture = coach.picture_path;
@@ -99,6 +91,8 @@ router.get('/details', (req, res) => {
     Coach.update(coachId, biography, picture);
     res.redirect('/coaches/details?user_id=' + coachId);
   });
+
+  
 
   router.post('/sendTo', (req, res, next) => {  
  
