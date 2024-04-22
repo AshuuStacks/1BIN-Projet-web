@@ -26,12 +26,7 @@ router.get('/', (req, res) => {
     res.render('messages/index.hbs', { errors: errors , messages : Message.info(isRegular)  });
 });
 
-function formatDate(date) {
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const day = date.getDate().toString().padStart(2, '0');
-  return `${year}-${month}-${day}`;
-}
+
 
 router.post('/replyTo', (req, res) => { 
   const message_id = req.body.message_id; // Vous devez récupérer l'ID du message à partir du formulaire

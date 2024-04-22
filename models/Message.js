@@ -1,5 +1,10 @@
 const db = require("./db_conf.js");
 
+module.exports.select = () => {
+    const stmt = db.prepare("SELECT COUNT(message_id) AS total FROM messages WHERE date_hour_message >= datetime('now', '-7 days')");
+    return stmt.get();
+};
+
 module.exports.info = (isRegular) => {
     const stmt = db.prepare("SELECT * FROM messages ORDER BY date_hour_message DESC ");
     const msgs = stmt.all();

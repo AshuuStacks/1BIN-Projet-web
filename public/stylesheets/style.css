@@ -1103,4 +1103,22 @@ textarea {
     background-color: #182c5c;
   }
 
+  .message-count {
+    text-align: center;
+    margin-top: 20px;
+    background-color: #007bff2f; /* Couleur de fond légèrement transparente */
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block; /* Pour limiter la longueur du fond */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.message-count h3 {
+    color: #fff;
+    padding: 10px 20px;
+    margin: 0; /* Réinitialiser les marges pour éviter les espaces supplémentaires */
+    border-radius: 5000px;
+}
+
 

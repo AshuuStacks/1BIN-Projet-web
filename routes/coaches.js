@@ -72,11 +72,6 @@ router.get('/details', (req, res) => {
     }
   
     const coach = Coach.findById(userId);
-    if (coach.status === 'normal') {
-      req.session.errors = " Accès refusé | Cette page n'existe pas";
-      res.redirect('/coaches');
-      return;
-    }
   
     // Check if coach exists
     if (!coach) {
@@ -84,6 +79,18 @@ router.get('/details', (req, res) => {
       res.redirect('/coaches');
       return;
     }
+    if(req.session.user.status === 'normal'){
+      req.session.errors = "Accès refusé | Vous n'avez pas accès à cette page";
+      res.redirect('/coaches');
+
+    } 
+    if (req.session.user.user_id !== req.query.user_id) {
+      console.log("Valeur de la session connectée :", req.session.user.user_id, "Valeur de l'user_id de la page :", req.query.user_id);
+      req.session.errors = "Accès refusé | Vous n'avez pas accès à cette page ";
+      res.redirect('/coaches');
+  }
+
+  
 
 
     res.render('coaches/update.hbs', { coach });
@@ -114,22 +121,17 @@ router.get('/details', (req, res) => {
     
     const sender_id = req.session.user.user_id;
         const receiver_id = req.body.receiver_id; // ID récupéré de la requête
-        const date = new Date();
+        const today = new Date();
 
-        // Obtient le décalage horaire en minutes et le convertit en millisecondes
-        const timezoneOffset = date.getTimezoneOffset() * 60000;
+    
         
-        // Ajuste la date en fonction du décalage horaire local
-        const localDate = new Date(date - timezoneOffset);
+        const todayString =  today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()+" " + today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+      
         
-        // Formate la date au format souhaité 'YYYY-MM-DD HH:MM:SS'
-        const date_hour_message = localDate.toISOString().replace('T', ' ').substring(0, 19);
-        
-        console.log(date_hour_message);
-    console.log("test" + sender_id + "test 2 " + receiver_id + "test 3" + date_hour_message);
+  
     const message = {
         message_text: req.body.message_text,
-        date_hour_message: date_hour_message,
+        date_hour_message: todayString,
         sender_id: sender_id,
         receiver_id: receiver_id
     };
