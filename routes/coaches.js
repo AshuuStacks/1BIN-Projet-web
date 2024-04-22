@@ -84,8 +84,13 @@ router.get('/details', (req, res) => {
       res.redirect('/coaches');
 
     } 
-   
-  
+    
+    // a vérifier 
+    if (req.session.user.user_id !== req.query.user_id) {
+      console.log("Valeur de la session connectée :", req.session.user.user_id, "Valeur de l'user_id de la page :", req.query.user_id);
+      req.session.errors = "Accès refusé | Vous n'avez pas accès à cette page ";
+      res.redirect('/coaches');
+  }
 
   
 
