@@ -107,7 +107,7 @@ router.get('/update', (req, res) => {
       
       // If court ID is not provided, redirect with an error
       if (!courtId) {
-        errors = "Veuillez fournir un ID de court";
+        errors = "Accès refusé | Veuillez fournir un ID de court";
         res.redirect('/courts?errors=' + encodeURIComponent(errors));
         return
       }
@@ -116,7 +116,7 @@ router.get('/update', (req, res) => {
 
       // If court is not found, redirect with an error
       if (!court) {
-        errors = "Court non trouvé, veuillez réessayer";
+        errors = "Accès refusé | Court non trouvé, veuillez réessayer";
         res.redirect('/courts?errors=' + encodeURIComponent(errors));
         return;
       }
@@ -168,7 +168,7 @@ router.get('/bookings', (req, res) => {
 
   res.render('courts/bookings.hbs', { bookings: bookingInfos });
   } else {
-      errors = "Veuillez vous connecter pour accéder à la page des réservations";
+      errors = "Accès refusé | Veuillez vous connecter pour accéder à la page des réservations";
       res.redirect('/courts?errors=' + encodeURIComponent(errors));
     }
 });
