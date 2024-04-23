@@ -98,6 +98,7 @@ router.get('/create', function (req, res, next) {
 router.post('/create', upload.single('filename'), function(req, res, next) {
     console.log("POST CREATE TOURNAMENT");
     console.log("req.file : " + JSON.stringify(req.file));
+    const min = currentDate;
     const currentDate = new Date();
     const tournamentDate = new Date(req.body.date);
     if (currentDate > tournamentDate) {
@@ -113,6 +114,7 @@ router.post('/create', upload.single('filename'), function(req, res, next) {
         banner_image_path: filename,
         creator:req.body.creator
     });
+    
     req.session.success = "Le tournoi a été créé avec succès ✅";
     res.redirect('/tournaments');
 });
