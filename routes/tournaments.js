@@ -82,7 +82,7 @@ router.post('/create', upload.single('filename'), function(req, res, next) {
     const currentDate = new Date();
     const tournamentDate = new Date(req.body.date);
     if (currentDate > tournamentDate) {
-        req.session.error = "La date du tournoi est déjà passée ❌";
+        req.session.error = "Accès refusé |La date du tournoi est déjà passée ❌";
         return res.redirect('/tournaments'); 
     }
     if (req.file === undefined) filename = null;

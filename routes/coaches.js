@@ -33,15 +33,20 @@ router.get('/details', (req, res) => {
       
     // Check if courtId is a number
     if (isNaN(userId)) {
-      req.session.errors = 'Invalid user id';
+      req.session.errors = "Accès refusé | l'User ID fourni n'existe pas";
       res.redirect('/coaches');
       return;
     }
-  
+   
     const coach = Coach.findById(userId);
     // Check if coach exists
     if (!coach) {
-      req.session.errors = 'Coach not found';
+      req.session.errors = " Accès refusé | La biographie de ce coach n'existe pas";
+      res.redirect('/coaches');
+      return;
+    }
+    if (coach.status === 'normal') {
+      req.session.errors = " Accès refusé | Cette page n'existe pas";
       res.redirect('/coaches');
       return;
     }
@@ -55,25 +60,39 @@ router.get('/details', (req, res) => {
       
     // Check if courtId is a number
     if (isNaN(userId)) {
-      req.session.errors = 'Invalid user id';
+      req.session.errors = "Accès refusé | l'User ID fourni n'existe pas";
       res.redirect('/coaches');
       return;
     }
 
     if(!req.session.connected){
-
-      req.session.errors = 'Vous pouvez pas avoir accès à la modification du  profile du coach';
+      req.session.errors ="Accès refusé | Vous ne pouvez pas accéder à cette page";
       res.redirect('/coaches');
-      return;
+
     }
+  
     const coach = Coach.findById(userId);
   
     // Check if coach exists
     if (!coach) {
-      req.session.errors = 'Coach not found';
+      req.session.errors = "Accès refusé | Le coach n'existe pas";
       res.redirect('/coaches');
       return;
     }
+    if(req.session.user.status === 'normal'){
+      req.session.errors = "Accès refusé | Vous n'avez pas accès à cette page";
+      res.redirect('/coaches');
+
+    } 
+    
+    // a vérifier 
+    if (req.session.user.user_id !== req.query.user_id) {
+      console.log("Valeur de la session connectée :", req.session.user.user_id, "Valeur de l'user_id de la page :", req.query.user_id);
+      req.session.errors = "Accès refusé | Vous n'avez pas accès à cette page ";
+      res.redirect('/coaches');
+  }
+
+  
 
 
     res.render('coaches/update.hbs', { coach });
@@ -83,11 +102,8 @@ router.get('/details', (req, res) => {
     // Retrieve court ID and other details from the request body
     const coachId = req.body.user_id;
     const { biography } = req.body;
-
-   
   
     const coach = Coach.findById(coachId);
-    console.log("testing if coach_userId work" + coach);
   
     // If a new picture is uploaded, use it. Otherwise, use the existing picture path
     let picture = coach.picture_path;
@@ -100,27 +116,24 @@ router.get('/details', (req, res) => {
     res.redirect('/coaches/details?user_id=' + coachId);
   });
 
+  
+
   router.post('/sendTo', (req, res, next) => {  
  
     
     const sender_id = req.session.user.user_id;
         const receiver_id = req.body.receiver_id; // ID récupéré de la requête
-        const date = new Date();
+        const today = new Date();
 
-        // Obtient le décalage horaire en minutes et le convertit en millisecondes
-        const timezoneOffset = date.getTimezoneOffset() * 60000;
+    
         
-        // Ajuste la date en fonction du décalage horaire local
-        const localDate = new Date(date - timezoneOffset);
+        const todayString =  today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()+" " + today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+      
         
-        // Formate la date au format souhaité 'YYYY-MM-DD HH:MM:SS'
-        const date_hour_message = localDate.toISOString().replace('T', ' ').substring(0, 19);
-        
-        console.log(date_hour_message);
-    console.log("test" + sender_id + "test 2 " + receiver_id + "test 3" + date_hour_message);
+  
     const message = {
         message_text: req.body.message_text,
-        date_hour_message: date_hour_message,
+        date_hour_message: todayString,
         sender_id: sender_id,
         receiver_id: receiver_id
     };

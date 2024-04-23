@@ -46,7 +46,7 @@ li.nav-item {
   
 footer {
     margin-top: 50px;
-    background-color: #4097af3b;
+    background-color: #cfd9db41;
     color: white;
     display: flex;
     flex-direction: column;
@@ -278,208 +278,6 @@ input:-moz-placeholder { /* Firefox 18- */
 		width: 89.5%;
 	}
 }
-
-
-/* Coach */
-.bioImage {
-    float: left; /* ou 'right' selon la position souhaitée de l'image */
-    padding-top: 50px;
-    padding-left: 50px;
-    padding-right: 30px;
-}
-
-.containerrr {
-    clear: both;
-    max-width: 600px;
-    margin: 20px auto; /* J'ai réduit la marge */
-    padding: 20px;
-    background: rgba(87, 195, 87, 0.63);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.containerrr h2 {
-    text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding-top: 20px;
-    color: #000000;
-}
-.titre-ancienne-photo-profile h4{
-    text-align: center;
-   text-decoration: solid;
-
-}
-.photo-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-label {
-    display: block;
-    font-weight: bold;
-}
-
-input[type="text"],
-input[type="email"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-textarea {
-    resize: vertical;
-}
-
-.bio-button {
-    width: auto; /* Ajuste la largeur du bouton en fonction de son contenu */
-    padding: 10px 20px; /* Ajuste la taille du bouton */
-    background-color: #8096cf;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 0 auto; /* Centrer le bouton horizontalement */
-    display: block; /* Assurez-vous que le bouton est affiché en tant que bloc */
-}
-
-.bio-button:hover {
-    background-color: #586560;
-}
-
-
-.biotext  {
-    padding-top: 100px;
-    float: left; /* ou 'right' pour le placer à côté de l'image */
-    width: 600px;
-    height: 1189.994px;
-    color: #000;
-    font-family: Karma;
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 200;
-    line-height: normal;
-    margin-left: 150px; /* Ajustez cette valeur pour l'espacement entre l'image et le texte */
-}
-.titre-bio-page h1 {
-    color: #929288; /* Couleur du texte */
-    font-size: 60px; /* Taille de la police */
-    font-weight: bold; /* Gras */
-    margin-bottom: 20px; /* Marge en bas */
-    padding-top: 200px;
-
-}
-
-#biography-font-size-design h4 {
-    color: rgb(207, 185, 185); /* Couleur du texte */
-    font-size: 30px;
-    font-family:Arial, Helvetica, sans-serif;/* Police de caractères */
-}
-
-
-/* Style pour le contenu de la biographie */
-.titre-bio-page p {
-    color: #fcfcfc; /* Couleur du texte */
-    font-size: 16px; /* Taille de la police */
-    line-height: 1.6; /* Hauteur de ligne pour une meilleure lisibilité */
-    margin-bottom: 30px; /* Marge en bas */
-    padding-top: 200px;
-
-}
-
-
-.center-list-page{
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 0 20px;
-}
-
-.coach {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.coach h2 {
-    margin-top: 0;
-}
-
-.bioupdate {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 8px 16px; /* ajustez la taille du padding selon vos besoins */
-    font-size: 14px; /
-}
-
-#containe-center{
-    text-align: center;
-}
-
-
-
-#title-coach-page {
-    text-align: center;
-    margin-bottom: 40px;
-
-    
-}
-
-#title-coach-page h3 {
-    font-size: 45px;
-    color: #7da0a0;
-    position: relative;
-}
-
-
-
-
-#description-coach-page {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-
-.design-mid {
-    text-align: center;
-    margin-bottom: 20px;
-    color: white;
-}
-
-.design-mid a {
-    text-decoration: none;
-    color: #66b4b4;
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.design-mid a:hover {
-    text-decoration: underline;
-}
-
-#update-button {
-    padding-top: 25px;
-    
-}
-
-.container-box {
-    border-radius: 100px;
-    padding: 20px;
-    margin-top: 100px;
-    background-color:#2b454ab3;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
-}   
-
-.container-box:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée au survol */
-}
-
 
 /* Tournament */
 .tournament-body {
@@ -788,7 +586,8 @@ textarea {
 }
 
 .modify-button {
-    background-color: #006a4e8e;
+    margin-top: 10px;
+    background-color: #1a41538e;
     color: white;
     border: none;
     border-radius: 30px;
@@ -800,7 +599,7 @@ textarea {
 }
 
 .modify-button:hover {
-    background-color: orange;
+    background-color: rgb(34, 70, 202);
 }
 
 .court-details {
@@ -954,31 +753,7 @@ textarea {
     transform: scale(1.1);
 }
 
-/* messages */
-.message-instantanée {
-    border: px solid rgb(34, 113, 153);
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 25px;
-    background-color: rgba(234, 225, 207, 0.507);
-    
-}
 
-.title-message {
-    text-align: center;
-    background-color: rgb(56, 115, 145);
-    padding: 10px;
-    border-bottom: 2px solid rgb(37, 131, 136);
-    
-}
-
-.message {
-    padding: 10px;
-}
-
-.contenu {
-    margin-top: 20px;
-}
 
 /*TESTINGS*/
 .indexPage-title {
@@ -1022,29 +797,329 @@ textarea {
     margin-right: 25%;
     margin-bottom: -50px;
 }
- /* confirmation page*/
-.ocean {
+
+/* Coach */
+.bioImage {
+    float: left; /* ou 'right' selon la position souhaitée de l'image */
+    padding-top: 50px;
+    padding-left: 50px;
+    padding-right: 30px;
+}
+
+.containerrr {
+    clear: both;
+    max-width: 600px;
+    margin: 20px auto; /* J'ai réduit la marge */
+    padding: 20px;
+    background: rgba(87, 195, 87, 0.63);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.containerrr h2 {
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 20px;
+    color: #000000;
+}
+.titre-ancienne-photo-profile h4{
+    text-align: center;
+   text-decoration: solid;
+
+}
+.photo-center {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f0f8ea; /* Fond vert clair */
+
 }
 
-.message-container {
-    text-align: center;
-    background-color: white;
+label {
+    display: block;
+    font-weight: bold;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.bio-button {
+    width: auto; /* Ajuste la largeur du bouton en fonction de son contenu */
+    padding: 10px 20px; /* Ajuste la taille du bouton */
+    background-color: #8096cf;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 auto; /* Centrer le bouton horizontalement */
+    display: block; /* Assurez-vous que le bouton est affiché en tant que bloc */
+}
+
+.bio-button:hover {
+    background-color: #586560;
+
+}
+
+
+.biotext  {
+    padding-top: 100px;
+    float: left; /* ou 'right' pour le placer à côté de l'image */
+    width: 600px;
+    height: 1189.994px;
+    color: #000;
+    font-family: Karma;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    margin-left: 150px; /* Ajustez cette valeur pour l'espacement entre l'image et le texte */
+}
+.titre-bio-page h1 {
+    color: #929288; /* Couleur du texte */
+    font-size: 60px; /* Taille de la police */
+    font-weight: bold; /* Gras */
+    margin-bottom: 20px; /* Marge en bas */
+    padding-top: 200px;
+
+}
+
+#biography-font-size-design h4 {
+    color: rgb(207, 185, 185); /* Couleur du texte */
+    font-size: 30px;
+    font-family:Arial, Helvetica, sans-serif;/* Police de caractères */
+}
+
+
+/* Style pour le contenu de la biographie */
+.titre-bio-page p {
+    color: #fcfcfc; /* Couleur du texte */
+    font-size: 16px; /* Taille de la police */
+    line-height: 1.6; /* Hauteur de ligne pour une meilleure lisibilité */
+    margin-bottom: 30px; /* Marge en bas */
+    padding-top: 200px;
+
+}
+
+
+.center-list-page{
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.coach {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     padding: 20px;
+    margin-bottom: 20px;
+}
+
+.coach h2 {
+    margin-top: 0;
+}
+
+.bioupdate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px; /* ajustez la taille du padding selon vos besoins */
+    font-size: 14px; /
+}
+
+#containe-center{
+    text-align: center;
+}
+.container-coach {
+    color: #b4ffff;
+    text-align: center;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+.container-message {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff45;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.container-message h1 {
+    color: #0c3939;
 
-.wave {
-    font-size: 24px;
-    color: #333;
 }
 
-.ripple {
-    font-size: 18px;
-    color: #666;
+
+
+
+#title-coach-page {
+    text-align: center;
+    margin-bottom: 40px;
+
+    
 }
+
+#title-coach-page h3 {
+    font-size: 45px;
+    color: #7da0a0;
+    position: relative;
+}
+
+
+
+
+#description-coach-page {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+
+.design-mid {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.design-mid a {
+    text-decoration: none;
+    color: #66b4b4;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.design-mid a:hover {
+    text-decoration: underline;
+}
+
+#update-button {
+    padding-top: 25px;
+    
+}
+
+.container-box {
+    border-radius: 100px;
+    padding: 20px;
+    margin-top: 100px;
+    background-color:#2b454ab3;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}   
+
+.container-box:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée au survol */
+}
+
+
+/* messages */
+.message-instantanée {
+    border: px solid rgb(34, 113, 153);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    background-color: rgba(234, 225, 207, 0.507);
+    
+}
+
+.title-message {
+    text-align: center;
+    background-color: rgb(56, 115, 145);
+    padding: 10px;
+    border-bottom: 2px solid rgb(37, 131, 136);
+    
+}
+
+.half-width {
+    width: 40%; /* Définit la largeur à 50% de la page */
+}
+.message {
+    padding: 10px;
+}
+
+.contenu {
+    margin-top: 20px;
+}
+
+/* update */
+.form-holder-update {
+        background-color: #FBFEF8;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+        max-width: 600px; /* Change this value to adjust the maximum width */
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+    }
+
+  
+    .title-update{
+      color: #000;
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  
+    .title-in-updates {
+      color: #000;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+  
+
+    .input-court-name,
+    .input-flooring-type,
+    .input-location,
+    .input-picture {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 15px;
+    }
+  
+    .submit-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #5184a1;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+    
+ .submit-button:hover {
+    background-color: #182c5c;
+  }
+
+  .message-count {
+    text-align: center;
+    margin-top: 20px;
+    background-color: #414e5c2f; /* Couleur de fond légèrement transparente */
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block; /* Pour limiter la longueur du fond */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.message-count h3 {
+    color: #fff;
+    padding: 10px 20px;
+    margin: 0; /* Réinitialiser les marges pour éviter les espaces supplémentaires */
+    border-radius: 5000px;
+}
+
+

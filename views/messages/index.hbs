@@ -1,5 +1,5 @@
 <main>
-     <div class="title-message">
+     <div class="container-message">
         <h1>Consultez vos messages </h1>
     </div>
     <div class="message">
@@ -8,32 +8,28 @@
                 
 
             {{#each messages}}  
-            {{#if (eq @root.session.user.user_id receiver_id)}}    <!-- On est dans un each donc !-->
+            {{#if (eq @root.session.user.user_id receiver_id)}}   
+              {{#unless response_text}} <!-- On est dans un each donc !-->
                 
             <div class="message-instantanée">
                 <h2>Message de : {{sender_id}}</h2>  
                 <h3>Voici son message : {{message_text}}</h3>
                 <h3>Date d'envoie : {{date_hour_message}}</h3>
-                <br></br>
-                {{#if response_text}}
-                <h3>Réponse : {{response_text}}</h3>
-                {{else}}
+            
                 {{#if receiver_id}}
       <form class="message-form" action="/messages/replyTo" method="POST">
-    <div class="form-group">
-        <label for="response_text">Votre message:</label>
-        <input class="form-control" type="text" id="response_text" name="response_text" placeholder="Entrez votre message" required>
-    </div>
+ <div class="form-group">
+    <label for="response_text">Votre message:</label>
+    <textarea class="form-control half-width" id="response_text" name="response_text" placeholder="Entrez votre message" rows="4" required></textarea>
+</div>
     <input type="hidden" name="message_id" value="{{message_id}}">
  <button type="submit" class="modify-button">Envoyer</button>
 </form>
-                {{else}}
-                <h3>Réponse : Aucune réponse disponible pour le moment.</h3>
+
                 {{/if}}
-                {{/if}}
+                {{/unless}}
             </div>
                         {{/if}}              
-
 
             {{/each}}
      
@@ -44,7 +40,7 @@
                 <h3>Votre message : {{message_text}}</h3>
               <h3>Date d'envoie : {{date_hour_message}}</h3>
 
-                <br></br>
+             <br>
                      {{#if response_text}}
                 <h3>Réponse de votre coach {{receiver_id}} : {{response_text}}</h3>
                     {{else}}
