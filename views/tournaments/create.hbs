@@ -9,21 +9,21 @@
 <div>
     <label>Date du tournoi : </label>
     <input type="date"
-           min="2024-04-25"
+            min="{{minDate}}" value="{{minDate}}"
            name="dateTournament"
-           required />
+           required/>
 </div>
          <div>
             <label> Nombre maximum de participants: </label>
-            <input type="number" min="1" max="500" step="1" value="1" name="maxPeople" />
+            <input type="number" min="1" max="500" name="maxPeople" required/>
         </div>
         <div>
             <label> Image du tournoi : </label>
-            <input type="file" name="filename">
+            <input type="file" name="filename" required/>
         </div>
          <div>
             <label> Id du coach qui l'a crée: </label>
-            <input type="number" min="1" max="3" name="creator" />
+            <input type="number" min="1" max="3" name="creator" required/>
         </div>
         <div>
             <input type="submit" value="Créer">
