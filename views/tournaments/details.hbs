@@ -24,21 +24,22 @@
         
         <h4 id="nbinscrits"> Il y'a {{ getNumberOfRegistrations}} inscrits..<br>
         Ne tardez pas à vous inscrire!</h4>
-        
-    {{#if session.connected}} 
-    <form action="/tournaments/register" method="POST">
-                <input id="inscription-btn" type="submit" value="S'inscrire">
-<input type="hidden" name="tournament_id" value="{{tournament.tournament_id}}">
-                            <input type="hidden" name="user_id" value="{{session.user.user_id}}">
-            </form>
-    {{/if}}
-
-
-    {{#if isregister}}
-    <form action="/tournaments/unregister" method="POST">
-    <button id="desinscription-btn" type="submit" >Se désinscrire</button>
-    </form>    
-    {{/if}}
-  
-     
+                {{#if (eq session.connected true)}}
+                    {{#if (eq registeredStatus false)}}
+                        <form action="/tournaments/register" method="POST">
+                        <input id="inscription-btn" type="submit" value="S'inscrire">
+                        <input type="hidden" name="tournament_id" value="{{tournament.tournament_id}}">
+                        <input type="hidden" name="user_id" value="{{session.user.user_id}}">
+                        </form>
+                    {{/if}}
+                    {{#if (eq registeredStatus true)}}
+                    <form action="/tournaments/unregister" method="POST">
+                        <button id="desinscription-btn" type="submit" >Se désinscrire</button>
+                        <input type="hidden" name="tournament_id" value="{{tournament.tournament_id}}">
+                        <input type="hidden" name="user_id" value="{{session.user.user_id}}">
+                    </form>
+                     {{/if}}
+                 {{else}}
+                 <h1>test</h1>    
+                {{/if}}
 
