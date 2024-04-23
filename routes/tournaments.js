@@ -19,20 +19,21 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ storage: storage });
+let registeredStatus = false;
 
 
 /* GET tournaments index. */
 router.get('/', function (req, res, next) {
     const tournamentsTable = Tournament.list();
-    const errors =req.session.errors
+    const errors =req.session.error
     req.session.errors = null;
-    const success =req.session.success
+    const success = req.session.success
     req.session.success = null;
     tournamentsTable.forEach(tournament => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     tournament.date_tournament = new Date(tournament.date_tournament).toLocaleDateString('fr-FR', options);
 });
-    res.render('tournaments/index.hbs', { tournamentsTable , errors });
+    res.render('tournaments/index.hbs', { tournamentsTable , errors, success : success });
 });
 
 
@@ -50,24 +51,34 @@ router.get('/details', function (req, res, next) {
         req.session.errors = 'Tournoi introuvable';
        res.redirect('/tournaments');
     }
-    res.render('tournaments/details.hbs', { tournament, getNumberOfRegistrations, });
+    res.render('tournaments/details.hbs', { tournament, getNumberOfRegistrations, registeredStatus});
 });
 
 router.post('/register', function(req, res, next) {
-    const tournamentId = req.body.tournament_id;
-    const userId = req.session.user.user_id;
-    Tournament.registerUser(userId, tournamentId);
-    req.session.success = "Inscription réussie au tournoi ✅";
+    if (req.session.user){
+        const tournamentId = req.body.tournament_id;
+        const userId = req.session.user.user_id;
+        Tournament.registerUser(userId, tournamentId);
+        req.session.success = "Inscription réussie au tournoi ✅";
+        registeredStatus = true;
+
+
+    }
+    
     res.redirect('/tournaments');
 });
 
 
 router.post('/unregister', function(req, res, next) {
-    const tournamentId = req.body.tournament_id;
-    const userId = req.session.user.user_id;
-    // Désinscrire l'utilisateur du tournoi
-    Tournament.unregisterUser(userId, tournamentId);
-    req.session.success = "Vous venez de vous désinscrire au tournoi ";
+    if (req.session.user) {
+        const tournamentId = req.body.tournament_id;
+        const userId = req.session.user.user_id;
+        // Désinscrire l'utilisateur du tournoi
+        Tournament.unregisterUser(userId, tournamentId);
+        req.session.success = "Vous venez de vous désinscrire au tournoi ";
+        registeredStatus = false;
+    }
+    
     res.redirect('/tournaments');
 });
 

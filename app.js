@@ -28,6 +28,14 @@ hbs.registerHelper('eq', function (a, b) {
   }
 });
 
+hbs.registerHelper('neq', function (a, b) {
+  if (a !== b) {
+    return true;
+  } else {
+    return false;
+  }
+});
+
 hbs.registerHelper('arrayLength', function(array) {
   return array.length;
 });
