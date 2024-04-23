@@ -85,12 +85,14 @@ router.get('/details', (req, res) => {
 
     } 
     
-    // a vérifier 
+    // a vérifier pourquoi Je rentre quand même dans cette condition ??
     if (req.session.user.user_id !== req.query.user_id) {
       console.log("Valeur de la session connectée :", req.session.user.user_id, "Valeur de l'user_id de la page :", req.query.user_id);
       req.session.errors = "Accès refusé | Vous n'avez pas accès à cette page ";
       res.redirect('/coaches');
   }
+
+
 
   
 
@@ -122,20 +124,14 @@ router.get('/details', (req, res) => {
  
     
     const sender_id = req.session.user.user_id;
-        const receiver_id = req.body.receiver_id; // ID récupéré de la requête
-        const today = new Date();
-
-    
-        
-        const todayString =  today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()+" " + today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
-      
-        
-  
-    const message = {
-        message_text: req.body.message_text,
-        date_hour_message: todayString,
-        sender_id: sender_id,
-        receiver_id: receiver_id
+   const receiver_id = req.body.receiver_id; // ID récupéré de la requête
+  const today = new Date();
+const todayString =  today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()+" " + today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+const message = {
+      message_text: req.body.message_text,
+       date_hour_message: todayString,
+       sender_id: sender_id,
+       receiver_id: receiver_id
     };
 
     Coach.push(message);
