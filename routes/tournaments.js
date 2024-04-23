@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Tournament = require('../models/Tournament.js');
 
+
 const multer = require('multer');
+const session = require('express-session');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
       cb(null, 'public/images/tournaments/');
@@ -72,8 +74,17 @@ router.post('/unregister', function(req, res, next) {
 
 /* GET creation tournaments */
 router.get('/create', function (req, res, next) {
+    const errors = req.session.errors;
+
+ if(!req.session.connected){ /* C'est moi(Ashu) qui a ajouté comme ça les gens pas connecté n'ont pas accès à la création du tournoi
+                                faudrait aussi faire pour les gens qui sont pas coaches ou soit tu mets && user.status === 'normal*/
+
+    req.session.errors="Vous n'avez pas accès à cette page";
+    res.redirect('/tournaments')
+
+ }
     console.log("GET THE CREATION PAGE");
-    res.render('tournaments/create.hbs');
+    res.render('tournaments/create.hbs',{errors : errors});
 });
 
 router.post('/create', upload.single('filename'), function(req, res, next) {
@@ -85,6 +96,7 @@ router.post('/create', upload.single('filename'), function(req, res, next) {
         req.session.error = "Accès refusé |La date du tournoi est déjà passée ❌";
         return res.redirect('/tournaments'); 
     }
+
     if (req.file === undefined) filename = null;
     else filename = 'images/' + req.file.filename;
     Tournament.save({
