@@ -16,9 +16,15 @@ module.exports.findById = (court_id) => {
     return result;
 };
 
-module.exports.findByNameOrLocation = (name, location) => {
-    const stmt = db.prepare("SELECT * FROM tennis_courts WHERE name = ? OR location = ?");
-    const result = stmt.get(name, location);
+module.exports.findByName = (name) => {
+    const stmt = db.prepare("SELECT * FROM tennis_courts WHERE name = ?");
+    const result = stmt.get(name);
+    return result;
+};
+
+module.exports.findByLocation = (location) => {
+    const stmt = db.prepare("SELECT * FROM tennis_courts WHERE location = ?");
+    const result = stmt.get(location);
     return result;
 };
 

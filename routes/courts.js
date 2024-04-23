@@ -120,7 +120,7 @@ router.get('/update', (req, res) => {
         res.redirect('/courts?errors=' + encodeURIComponent(errors));
         return;
       }
-
+    
       // Render the update form with the court data
       res.render('courts/update.hbs', { court, errors });
   } else {
@@ -133,17 +133,13 @@ router.get('/update', (req, res) => {
 
 /* POST courts update page */
 router.post('/update', upload.single('picture_path'), (req, res, next) => {
+  console.log("Update route executed");
   
   // Retrieve court ID and other details from the request body
   const courtId = req.body.tennis_court_id;
   const { name, flooring_type, location } = req.body;
-
-  const existingCourt = Court.findByNameOrLocation(name, location);
-  if (existingCourt && existingCourt.tennis_court_id !== courtId) {
-    errors = "Accès refusé | Un terrain avec ce nom ou cette localisation existe déjà, veuillez réessayer";
-    res.redirect('/courts/update?tennis_court_id=' + courtId + '&errors=' + encodeURIComponent(errors));
-    return;
-  }
+  console.log("Received name:", name);
+  console.log("Received location:", location);
 
   const court = Court.findById(courtId);
 
@@ -151,6 +147,28 @@ router.post('/update', upload.single('picture_path'), (req, res, next) => {
   let picture = court.picture_path;
   if (req.file) {
     picture = "/images/" + req.file.filename;
+  }
+
+  let errors = [];
+
+  // Check if the name is being updated and conflicts with existing courts
+  if (name !== court.name) {
+      const existingCourt = Court.findByName(name);
+      if (existingCourt && existingCourt.tennis_court_id !== courtId) {
+          errors.push("Accès refusé | Un terrain avec ce nom existe déjà, veuillez réessayer");
+      }
+  }
+
+  // Check if the location is being updated and conflicts with existing courts
+  if (location !== court.location) {
+      const existingCourt = Court.findByLocation(location);
+      if (existingCourt && existingCourt.tennis_court_id !== courtId) {
+          errors.push("Accès refusé | Un terrain avec cette localisation existe déjà, veuillez réessayer");
+      }
+  }
+
+  if (errors.length > 0) {
+      return res.redirect('/courts/update?tennis_court_id=' + courtId + '&errors=' + encodeURIComponent(errors.join(' ')));
   }
 
   // Update the court with the new details
