@@ -41,10 +41,11 @@ module.exports.save = (tournamentDetails) => {
 };
 
 
-module.exports.select= (userId, tournamentId) => {
-    const stmt_select = db.prepare("SELECT COUNT(t.*) FROM tournaments t WHERE t.date_tournament > currentDate");
-    stmt_select.run(userId, tournamentId);
-};
+module.exports.select = () => {
+    const stmt_select = db.prepare("SELECT COUNT(*) AS total FROM tournaments WHERE date_tournament > date('now');");
+    return stmt_select.get();
+}
+
 
 
    

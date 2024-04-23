@@ -83,18 +83,14 @@ router.post('/unregister', function(req, res, next) {
 /* GET creation tournaments */
 router.get('/create', function (req, res, next) {
     const errors = req.session.error    ;
- if(!req.session.connected){ /* C'est moi(Ashu) qui a ajouté comme ça les gens pas connecté n'ont pas accès à la création du tournoi
-                                faudrait aussi faire pour les gens qui sont pas coaches ou soit tu mets && user.status === 'normal*/
+ if(!req.session.connected){ 
     req.session.errors="Vous n'avez pas accès à cette page";
     res.redirect('/tournaments')
  }
-
  if(req.session.user.status === 'normal'){
     req.session.errors = "Accès refusé | Vous n'avez pas accès à cette page";
     res.redirect('/tournaments');
-
   }
-
     console.log("GET THE CREATION PAGE");
     res.render('tournaments/create.hbs',{errors : errors});
 });
@@ -120,6 +116,8 @@ router.post('/create', upload.single('filename'), function(req, res, next) {
     req.session.success = "Le tournoi a été créé avec succès ✅";
     res.redirect('/tournaments');
 });
+
+
 
 
 module.exports = router;
