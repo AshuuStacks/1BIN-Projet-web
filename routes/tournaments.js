@@ -7,7 +7,7 @@ const multer = require('multer');
 const session = require('express-session');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-      cb(null, 'public/images/tournaments/');
+      cb(null, 'public/images/');
   },
   filename: function (req, file, cb) {
       const date = new Date();
@@ -54,6 +54,7 @@ router.get('/details', function (req, res, next) {
     res.render('tournaments/details.hbs', { tournament, getNumberOfRegistrations, registeredStatus});
 });
 
+
 router.post('/register', function(req, res, next) {
     if (req.session.user){
         const tournamentId = req.body.tournament_id;
@@ -61,10 +62,7 @@ router.post('/register', function(req, res, next) {
         Tournament.registerUser(userId, tournamentId);
         req.session.success = "Inscription réussie au tournoi ✅";
         registeredStatus = true;
-
-
     }
-    
     res.redirect('/tournaments');
 });
 
@@ -73,7 +71,6 @@ router.post('/unregister', function(req, res, next) {
     if (req.session.user) {
         const tournamentId = req.body.tournament_id;
         const userId = req.session.user.user_id;
-        // Désinscrire l'utilisateur du tournoi
         Tournament.unregisterUser(userId, tournamentId);
         req.session.success = "Vous venez de vous désinscrire au tournoi ";
         registeredStatus = false;
@@ -85,15 +82,19 @@ router.post('/unregister', function(req, res, next) {
 
 /* GET creation tournaments */
 router.get('/create', function (req, res, next) {
-    const errors = req.session.errors;
-
+    const errors = req.session.error    ;
  if(!req.session.connected){ /* C'est moi(Ashu) qui a ajouté comme ça les gens pas connecté n'ont pas accès à la création du tournoi
                                 faudrait aussi faire pour les gens qui sont pas coaches ou soit tu mets && user.status === 'normal*/
-
     req.session.errors="Vous n'avez pas accès à cette page";
     res.redirect('/tournaments')
-
  }
+
+ if(req.session.user.status === 'normal'){
+    req.session.errors = "Accès refusé | Vous n'avez pas accès à cette page";
+    res.redirect('/tournaments');
+
+  }
+
     console.log("GET THE CREATION PAGE");
     res.render('tournaments/create.hbs',{errors : errors});
 });
@@ -107,14 +108,14 @@ router.post('/create', upload.single('filename'), function(req, res, next) {
         req.session.error = "Accès refusé |La date du tournoi est déjà passée ❌";
         return res.redirect('/tournaments'); 
     }
-
     if (req.file === undefined) filename = null;
-    else filename = 'images/' + req.file.filename;
+    else filename = '/images/' + req.file.filename;
     Tournament.save({
         name: req.body.uniqueNameTournament,
         date_tournament: req.body.dateTournament,
         nb_max_participants: req.body.maxPeople,
-        banner_image_path: filename,  
+        banner_image_path: filename,
+        creator:req.body.creator
     });
     req.session.success = "Le tournoi a été créé avec succès ✅";
     res.redirect('/tournaments');

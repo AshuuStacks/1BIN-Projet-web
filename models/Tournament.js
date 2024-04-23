@@ -1,6 +1,5 @@
 const db = require('../models/db_conf');
 
-
 /*new Date() creates a new Date object representing the current date and time.
 .toISOString() converts this Date object into a string in ISO 8601 format, which looks like this: 'YYYY-MM-DDTHH:mm:ss.sssZ'.
 .split('T')[0] splits this string into two parts using the 'T' character as a separator and retrieves only the first part, which is the date in the format 'YYYY-MM-DD'.
@@ -17,10 +16,6 @@ module.exports.findById = (id) => {
     return db.prepare("SELECT * FROM tournaments WHERE tournament_id = ?  ").get(id);
 };
 
-
-
-
-// Méthode pour récupérer le nombre d'inscrits à un tournoi spécifique
 module.exports.getNumberOfRegistrations = (tournamentId) => {
     const stmt = db.prepare("SELECT COUNT(*) AS count FROM registrations WHERE tournament_id = ?");
     const result = stmt.get(tournamentId);
@@ -40,9 +35,15 @@ module.exports.unregisterUser= (userId, tournamentId) => {
 module.exports.save = (tournamentDetails) => {
     console.log("SAVE :" + JSON.stringify(tournamentDetails));
     if(tournamentDetails.id===undefined){
-    const stmt = db.prepare('INSERT INTO tournaments (name, date_tournament,nb_max_participants, banner_image_path ) VALUES (?, ?, ?, ?)');
-    stmt.run(tournamentDetails.name, tournamentDetails.banner_image_path, tournamentDetails.date_tournament, tournamentDetails.nb_max_participants, tournamentDetails.creator);
+    const stmt = db.prepare('INSERT INTO tournaments (name, date_tournament,nb_max_participants, banner_image_path, creator ) VALUES (?, ?, ?, ?, ?)');
+    stmt.run(tournamentDetails.name, tournamentDetails.date_tournament, tournamentDetails.nb_max_participants,tournamentDetails.banner_image_path, tournamentDetails.creator);
     }
+};
+
+
+module.exports.select= (userId, tournamentId) => {
+    const stmt_select = db.prepare("SELECT COUNT(t.*) FROM tournaments t WHERE t.date_tournament > currentDate");
+    stmt_select.run(userId, tournamentId);
 };
 
 
