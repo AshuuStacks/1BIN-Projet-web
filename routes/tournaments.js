@@ -24,6 +24,8 @@ router.get('/', function (req, res, next) {
     const tournamentsTable = Tournament.list();
     const errors =req.session.errors
     req.session.errors = null;
+    const success =req.session.success
+    req.session.success = null;
     tournamentsTable.forEach(tournament => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     tournament.date_tournament = new Date(tournament.date_tournament).toLocaleDateString('fr-FR', options);
