@@ -99,6 +99,8 @@ router.post('/book', (req, res) => {
 /* GET courts update page */
 router.get('/update', (req, res) => {
   
+  let errors = req.query.errors || null;
+  
   if (req.session.connected && req.session.user.status === 'coach') {
       
       const courtId = req.query.tennis_court_id;
@@ -120,7 +122,7 @@ router.get('/update', (req, res) => {
       }
 
       // Render the update form with the court data
-      res.render('courts/update.hbs', { court });
+      res.render('courts/update.hbs', { court, errors });
   } else {
     // If the user is not a coach, redirect with an access denied message
     const courtId = req.query.tennis_court_id;
@@ -135,6 +137,13 @@ router.post('/update', upload.single('picture_path'), (req, res, next) => {
   // Retrieve court ID and other details from the request body
   const courtId = req.body.tennis_court_id;
   const { name, flooring_type, location } = req.body;
+
+  const existingCourt = Court.findByNameOrLocation(name, location);
+  if (existingCourt && existingCourt.tennis_court_id !== courtId) {
+    errors = "Accès refusé | Un terrain avec ce nom ou cette localisation existe déjà, veuillez réessayer";
+    res.redirect('/courts/update?tennis_court_id=' + courtId + '&errors=' + encodeURIComponent(errors));
+    return;
+  }
 
   const court = Court.findById(courtId);
 
@@ -151,26 +160,7 @@ router.post('/update', upload.single('picture_path'), (req, res, next) => {
 
 
 
-// /* GET courts booking page */
-// router.get('/bookings', (req, res) => {
-
-//   if (req.session.user !== undefined) {
-//     // Retrieve the user ID from the session, get the bookings and the court
-//     const userId = req.session.user.user_id;
-//     const bookings = Court.getBookings(userId);
-//     const bookingInfos = [];
-    
-//     for (const booking of bookings) {
-//       const court = Court.findById(booking.tennis_court_id);
-//       bookingInfos.push({ court, booking });
-//   }
-
-//   res.render('courts/bookings.hbs', { bookings: bookingInfos });
-//   } else {
-//       errors = "Accès refusé | Veuillez vous connecter pour accéder à la page des réservations";
-//       res.redirect('/courts?errors=' + encodeURIComponent(errors));
-//     }
-// });
+/* GET courts booking page */
 router.get('/bookings', (req, res) => {
   if (req.session.user !== undefined) {
   // Retrieve the user ID from the session, get the bookings and the court
