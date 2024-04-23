@@ -286,6 +286,36 @@ input:-moz-placeholder { /* Firefox 18- */
     background-color: #fbfef800; 
 }
 
+.container-tournament {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tournament-list {
+    width: 60%; 
+    margin: 20px auto; 
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 10px; 
+    overflow: hidden; 
+}
+
+.tournament-list th,
+.tournament-list td {
+    padding: 15px;
+    text-align: left;
+}
+
+.tournament-list th {
+    background-color: #f2f2f2;
+    font-size: 18px;
+}
+
+
 .tournament-title {
     max-width: 800px;
     margin: 20px auto;
@@ -353,31 +383,12 @@ input:-moz-placeholder { /* Firefox 18- */
     font-size: 30px;
 }
 
-#tableTournament{
-    margin-left: auto;
-    margin-right: auto;
-}
 
 #trTournament{
     font-size: 20px;
 }
 
-.tournament-list {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
 
-.tournament-list th,
-.tournament-list td {
-    padding: 15px;
-    text-align: left;
-}
-
-.tournament-list th {
-    background-color: #f2f2f2;
-    font-size: 18px;
-}
 
 .tournament th {
     background-color: #f2f2f2;
@@ -883,7 +894,7 @@ textarea {
     margin-left: 150px; /* Ajustez cette valeur pour l'espacement entre l'image et le texte */
 }
 .titre-bio-page h1 {
-    color: #929288; /* Couleur du texte */
+    color: rgb(208, 208, 135); /* Couleur du texte */
     font-size: 60px; /* Taille de la police */
     font-weight: bold; /* Gras */
     margin-bottom: 20px; /* Marge en bas */
@@ -892,7 +903,7 @@ textarea {
 }
 
 #biography-font-size-design h4 {
-    color: rgb(207, 185, 185); /* Couleur du texte */
+    color: rgb(173, 173, 173); /* Couleur du texte */
     font-size: 30px;
     font-family:Arial, Helvetica, sans-serif;/* Police de caractères */
 }

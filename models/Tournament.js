@@ -17,6 +17,9 @@ module.exports.findById = (id) => {
     return db.prepare("SELECT * FROM tournaments WHERE tournament_id = ?  ").get(id);
 };
 
+
+
+
 // Méthode pour récupérer le nombre d'inscrits à un tournoi spécifique
 module.exports.getNumberOfRegistrations = (tournamentId) => {
     const stmt = db.prepare("SELECT COUNT(*) AS count FROM registrations WHERE tournament_id = ?");

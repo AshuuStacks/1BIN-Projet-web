@@ -1,12 +1,13 @@
 <main>
     <body>
-        <div class="tournament-body">   
-            <div class="tournament-title">
-            {{#if errors}}
+        <div class="tournament-body">
+            <div class="container-tournament">
+               {{#if errors}}
                 <div class="alert alert-danger" role="alert">
                     {{errors}}
                 </div>
             {{/if}}
+
             {{#if success}}
                 <div class="alert alert-success" role="alert">
                     {{success}}
@@ -23,7 +24,8 @@
                     {{success}}
                 </div>
             {{/if}}
-                <table class="tournament-list">
+        </div> 
+                    <table class="tournament-list">
                     <thead>
                         <tr>
                         <th>Id du tournoi</th>
