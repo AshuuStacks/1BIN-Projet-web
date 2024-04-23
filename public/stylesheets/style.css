@@ -68,6 +68,8 @@ footer #credits {
     height: 100px;
 }
 
+
+
 body {
     margin: 0;
     padding: 0;
@@ -803,10 +805,32 @@ input:-moz-placeholder { /* Firefox 18- */
 }
 .center-container-2 {
     display: flex; /* Adjusted to make items stack vertically */
-    justify-content: right;
+    justify-content: center;
     align-items: center;
     margin-right: 25%;
     margin-bottom: -50px;
+    padding-left: 450px;
+}
+.cent-cont {
+    display: flex;
+    justify-content: center;
+
+}
+#description-container {
+    margin-top: 70px;
+    width: 600px;
+    display: flex;
+    border: 2px solid rgb(255, 243, 243); /* Ajout d'une bordure de 1 pixel de large, solide et noire */
+    border-radius: 15px;
+}
+#description-container H5{
+    color: white;
+    padding-top: 20px !important;
+    padding: 10px;  
+
+    width: 600px;
+    
+
 }
 
 /* Coach */
@@ -954,7 +978,7 @@ textarea {
     text-align: center;
     max-width: 800px;
     margin: 20px auto;
-    padding: 20px;
+    padding: 10px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -984,7 +1008,7 @@ textarea {
 
 #title-coach-page h3 {
     font-size: 45px;
-    color: #7da0a0;
+    color: #000000;
     position: relative;
 }
 
@@ -1117,19 +1141,17 @@ textarea {
 
   .message-count {
     text-align: center;
-    margin-top: 20px;
     background-color: #414e5c2f; /* Couleur de fond légèrement transparente */
     padding: 10px;
     border-radius: 5px;
-    display: inline-block; /* Pour limiter la longueur du fond */
-    margin-left: auto;
-    margin-right: auto;
+    display: flex; /* Pour limiter la longueur du fond */
+
 }
 
 .message-count h3 {
     color: #fff;
     padding: 10px 20px;
-    margin: 0; /* Réinitialiser les marges pour éviter les espaces supplémentaires */
+    margin: auto; /* Réinitialiser les marges pour éviter les espaces supplémentaires */
     border-radius: 5000px;
 }
 
