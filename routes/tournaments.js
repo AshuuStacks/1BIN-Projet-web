@@ -92,17 +92,20 @@ router.get('/create', function (req, res, next) {
     res.redirect('/tournaments');
   }
     console.log("GET THE CREATION PAGE");
-    res.render('tournaments/create.hbs',{errors : errors});
+    let minDate = new Date().toISOString().slice(0,10);
+    res.render('tournaments/create.hbs',{errors : errors, minDate});
 });
 
 router.post('/create', upload.single('filename'), function(req, res, next) {
     console.log("POST CREATE TOURNAMENT");
     console.log("req.file : " + JSON.stringify(req.file));
-    const min = currentDate;
     const currentDate = new Date();
-    const tournamentDate = new Date(req.body.date);
+    const tournamentDate = new Date(req.body.date_tournament);
+    console.log("TEST");
+    console.log(currentDate);
+    console.log(tournamentDate);
     if (currentDate > tournamentDate) {
-        req.session.error = "Accès refusé |La date du tournoi est déjà passée ❌";
+        req.session.errors= "La date du tournoi est déjà passée ❌";
         return res.redirect('/tournaments'); 
     }
     if (req.file === undefined) filename = null;
@@ -114,7 +117,7 @@ router.post('/create', upload.single('filename'), function(req, res, next) {
         banner_image_path: filename,
         creator:req.body.creator
     });
-    
+
     req.session.success = "Le tournoi a été créé avec succès ✅";
     res.redirect('/tournaments');
 });
