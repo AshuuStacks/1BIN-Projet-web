@@ -5,6 +5,11 @@ module.exports.info = () => {
     return stmt.all();
 };
 
+module.exports.select = () => {
+    const stmt = db.prepare("SELECT COUNT(*) AS total FROM bookings WHERE date_booking > date('now');");
+    return stmt.get();
+}
+
 module.exports.findById = (court_id) => {
     const stmt = db.prepare("SELECT * FROM tennis_courts WHERE tennis_court_id = ?");
     const result = stmt.get(court_id);
@@ -39,4 +44,5 @@ module.exports.unbook = (tennis_court_id, date_booking) => {
     const result = stmt.run(tennis_court_id, date_booking);
     return result;
 };
+
 
