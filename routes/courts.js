@@ -151,26 +151,52 @@ router.post('/update', upload.single('picture_path'), (req, res, next) => {
 
 
 
-/* GET courts booking page */
-router.get('/bookings', (req, res) => {
+// /* GET courts booking page */
+// router.get('/bookings', (req, res) => {
 
+//   if (req.session.user !== undefined) {
+//     // Retrieve the user ID from the session, get the bookings and the court
+//     const userId = req.session.user.user_id;
+//     const bookings = Court.getBookings(userId);
+//     const bookingInfos = [];
+    
+//     for (const booking of bookings) {
+//       const court = Court.findById(booking.tennis_court_id);
+//       bookingInfos.push({ court, booking });
+//   }
+
+//   res.render('courts/bookings.hbs', { bookings: bookingInfos });
+//   } else {
+//       errors = "Accès refusé | Veuillez vous connecter pour accéder à la page des réservations";
+//       res.redirect('/courts?errors=' + encodeURIComponent(errors));
+//     }
+// });
+router.get('/bookings', (req, res) => {
   if (req.session.user !== undefined) {
-    // Retrieve the user ID from the session, get the bookings and the court
+  // Retrieve the user ID from the session, get the bookings and the court
     const userId = req.session.user.user_id;
+    // Get reservations of the user
     const bookings = Court.getBookings(userId);
+    // Filter to only get upcoming bookings
+    const upcomingBookings = bookings.filter(booking => {
+      const bookingDate = new Date(booking.date_booking);
+      const currentDate = new Date();
+      return bookingDate > currentDate;
+    });
     const bookingInfos = [];
     
-    for (const booking of bookings) {
+    for (const booking of upcomingBookings) {
       const court = Court.findById(booking.tennis_court_id);
       bookingInfos.push({ court, booking });
-  }
-
-  res.render('courts/bookings.hbs', { bookings: bookingInfos });
-  } else {
-      errors = "Accès refusé | Veuillez vous connecter pour accéder à la page des réservations";
-      res.redirect('/courts?errors=' + encodeURIComponent(errors));
     }
+
+    res.render('courts/bookings.hbs', { bookings: bookingInfos });
+  } else {
+    errors = "Accès refusé | Veuillez vous connecter pour accéder à la page des réservations";
+    res.redirect('/courts?errors=' + encodeURIComponent(errors));
+  }
 });
+
 
 router.post('/unbook', (req, res) => {
   // Extract court ID and booking date from the request body
