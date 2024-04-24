@@ -119,7 +119,8 @@ router.get('/update', (req, res) => {
       }
     
       // Render the update form with the court data
-      res.render('courts/update.hbs', { court : court, errors: req.session.errors });
+    res.render('courts/update.hbs', { court: court, errors: req.session.errors });
+    req.session.errors = null;
   } else {
     // If the user is not a coach, redirect with an access denied message
     const courtId = req.query.tennis_court_id;
