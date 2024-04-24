@@ -99,6 +99,8 @@ router.post('/book', (req, res) => {
 /* GET courts update page */
 router.get('/update', (req, res) => {
   
+  let errors = req.query.errors || null;
+  
   if (req.session.connected && req.session.user.status === 'coach') {
       
       const courtId = req.query.tennis_court_id;
@@ -118,9 +120,9 @@ router.get('/update', (req, res) => {
         res.redirect('/courts?errors=' + encodeURIComponent(errors));
         return;
       }
-
+    
       // Render the update form with the court data
-      res.render('courts/update.hbs', { court });
+      res.render('courts/update.hbs', { court, errors });
   } else {
     // If the user is not a coach, redirect with an access denied message
     const courtId = req.query.tennis_court_id;
@@ -144,6 +146,28 @@ router.post('/update', upload.single('picture_path'), (req, res, next) => {
     picture = "/images/" + req.file.filename;
   }
 
+  let errors = [];
+
+  // Check if the name is being updated and conflicts with existing courts
+  if (name !== court.name) {
+      const existingCourt = Court.findByName(name);
+      if (existingCourt && existingCourt.tennis_court_id !== courtId) {
+          errors.push("Accès refusé | Un terrain avec ce nom existe déjà, veuillez réessayer");
+      }
+  }
+
+  // Check if the location is being updated and conflicts with existing courts
+  if (location !== court.location) {
+      const existingCourt = Court.findByLocation(location);
+      if (existingCourt && existingCourt.tennis_court_id !== courtId) {
+          errors.push("Accès refusé | Un terrain avec cette localisation existe déjà, veuillez réessayer");
+      }
+  }
+
+  if (errors.length > 0) {
+      return res.redirect('/courts/update?tennis_court_id=' + courtId + '&errors=' + encodeURIComponent(errors.join(' ')));
+  }
+
   // Update the court with the new details
   Court.update(courtId, name, flooring_type, location, picture);
   res.redirect('/courts/details?tennis_court_id=' + courtId);
@@ -151,26 +175,7 @@ router.post('/update', upload.single('picture_path'), (req, res, next) => {
 
 
 
-// /* GET courts booking page */
-// router.get('/bookings', (req, res) => {
-
-//   if (req.session.user !== undefined) {
-//     // Retrieve the user ID from the session, get the bookings and the court
-//     const userId = req.session.user.user_id;
-//     const bookings = Court.getBookings(userId);
-//     const bookingInfos = [];
-    
-//     for (const booking of bookings) {
-//       const court = Court.findById(booking.tennis_court_id);
-//       bookingInfos.push({ court, booking });
-//   }
-
-//   res.render('courts/bookings.hbs', { bookings: bookingInfos });
-//   } else {
-//       errors = "Accès refusé | Veuillez vous connecter pour accéder à la page des réservations";
-//       res.redirect('/courts?errors=' + encodeURIComponent(errors));
-//     }
-// });
+/* GET courts booking page */
 router.get('/bookings', (req, res) => {
   if (req.session.user !== undefined) {
   // Retrieve the user ID from the session, get the bookings and the court
