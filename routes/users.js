@@ -59,7 +59,7 @@ router.post('/create', (req, res) => {
         errors.push('Le nom de famille est requis');
     }
     if (!validator.isEmail(email)) {
-        errors.push('Format d\'email invalide');
+        errors.push("Format d'email invalide");
     }
     if (!validator.isStrongPassword(password, { minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 0})) {
         errors.push('Le mot de passe doit avoir au moins 8 caractères et contenir au moins une lettre minuscule, une lettre majuscule et un chiffre');
