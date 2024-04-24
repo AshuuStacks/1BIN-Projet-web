@@ -87,7 +87,7 @@ router.post('/book', (req, res) => {
    // Check if the court is already booked for the specified date
    const existingBooking = Court.findByDateAndCourt(dateBooking, courtId);
    if (existingBooking) {
-        errors = "Accès refusé | Ce terrain est déjà réservé pour cette date";
+        let errors = "Accès refusé | Ce terrain est déjà réservé pour cette date";
      res.redirect('/courts/details?tennis_court_id=' + courtId + '&errors=' + encodeURIComponent(errors));
      return;
    }
@@ -177,6 +177,9 @@ router.post('/update', upload.single('picture_path'), (req, res, next) => {
 
 /* GET courts booking page */
 router.get('/bookings', (req, res) => {
+
+  let errors = req.query.errors || null;
+
   if (req.session.user !== undefined) {
   // Retrieve the user ID from the session, get the bookings and the court
     const userId = req.session.user.user_id;
