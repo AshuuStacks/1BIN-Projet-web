@@ -133,13 +133,10 @@ router.get('/update', (req, res) => {
 
 /* POST courts update page */
 router.post('/update', upload.single('picture_path'), (req, res, next) => {
-  console.log("Update route executed");
   
   // Retrieve court ID and other details from the request body
   const courtId = req.body.tennis_court_id;
   const { name, flooring_type, location } = req.body;
-  console.log("Received name:", name);
-  console.log("Received location:", location);
 
   const court = Court.findById(courtId);
 
