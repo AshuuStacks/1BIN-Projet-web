@@ -11,6 +11,13 @@ module.exports.list = () => {
     return stmt_all.all(currentDate);
 };
 
+// verifie si user est inscrit à un tournoi
+module.exports.isUserRegistered = (userId, tournamentId) => {
+    const stmt = db.prepare("SELECT COUNT(*) AS count FROM registrations WHERE user_id = ? AND tournament_id = ?");
+    const result = stmt.get(userId, tournamentId);
+    return result.count > 0; 
+};
+
 
 module.exports.findById = (id) => {
     return db.prepare("SELECT * FROM tournaments WHERE tournament_id = ?  ").get(id);
@@ -39,7 +46,6 @@ module.exports.save = (tournamentDetails) => {
     stmt.run(tournamentDetails.name, tournamentDetails.date_tournament, tournamentDetails.nb_max_participants,tournamentDetails.banner_image_path, tournamentDetails.creator);
     }
 };
-
 
 module.exports.select = () => {
     const stmt_select = db.prepare("SELECT COUNT(*) AS total FROM tournaments WHERE date_tournament > date('now');");
