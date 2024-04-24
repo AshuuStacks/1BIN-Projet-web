@@ -43,7 +43,8 @@ router.get('/create', (req, res) => {
     if (req.session.connected) {
         res.redirect('/');
     }
-    res.render('users/create.hbs');
+    res.render('users/create.hbs', { errors: req.session.errors });
+    req.session.errors = null;
 });
 
 /* POST user register page. */
@@ -80,7 +81,8 @@ router.post('/create', (req, res) => {
         req.session.connected = false;
         res.redirect('/users/login');
     } else {
-        res.render('users/create', { errors });
+        req.session.errors = errors;
+        res.redirect('/users/create');
     }
 });
 

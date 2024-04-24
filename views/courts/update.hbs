@@ -1,9 +1,13 @@
 <main>
   <section class="form-holder-update">
     {{#if errors}}
-    <div class="alert alert-danger" role="alert">
-        {{errors}}
-    </div>
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                {{#each errors}}
+                    <li>{{this}}</li>
+                {{/each}}
+            </ul>
+        </div>
     {{/if}}
     <form action="/courts/update" method="post" enctype="multipart/form-data" class="form-update border p-4">
       <h2 class="title-update">Mettre à jour le terrain</h2>
