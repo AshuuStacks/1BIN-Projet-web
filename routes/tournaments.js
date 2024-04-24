@@ -19,15 +19,16 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ storage: storage });
+
 let registeredStatus = false;
 
 
 /* GET tournaments index. */
 router.get('/', function (req, res, next) {
     const tournamentsTable = Tournament.list();
-    const errors =req.session.error
+    const errors = req.session.errors;
     req.session.errors = null;
-    const success = req.session.success
+    const success = req.session.success;
     req.session.success = null;
     tournamentsTable.forEach(tournament => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -44,14 +45,38 @@ router.get('/details', function (req, res, next) {
     if(!tournamentID){
         req.session.errors = 'Id du tournoi invalid ';
         res.redirect('/tournaments');
+        return;
     }
     const tournament = Tournament.findById(tournamentID);
-    const getNumberOfRegistrations = Tournament.getNumberOfRegistrations(tournamentID)
     if(!tournament) {
         req.session.errors = 'Tournoi introuvable';
-       res.redirect('/tournaments');
+        res.redirect('/tournaments');
+        return;
     }
-    res.render('tournaments/details.hbs', { tournament, getNumberOfRegistrations, registeredStatus});
+    const getNumberOfRegistrations = Tournament.getNumberOfRegistrations(tournamentID);
+    let depasse;
+    let full;
+    if(new Date(tournamentID.date_tournament) < new Date()){
+        depasse=true;
+    } else {
+        depasse=false;
+    }
+
+    if(getNumberOfRegistrations > tournamentID.nb_max_participants){
+        full=true;
+    } else {
+        full=false;
+    }
+
+    let isUserRegistered= false;
+    if (req.session.user) {
+        isUserRegistered= Tournament.isUserRegistered(req.session.user.user_id, tournamentID);
+    }
+
+    console.log(full);
+    console.log(depasse);
+   
+    res.render('tournaments/details.hbs', { tournament, getNumberOfRegistrations, isUserRegistered , depasse , full});
 });
 
 
@@ -61,6 +86,7 @@ router.post('/register', function(req, res, next) {
         const userId = req.session.user.user_id;
         Tournament.registerUser(userId, tournamentId);
         req.session.success = "Inscription réussie au tournoi ✅";
+        
         registeredStatus = true;
     }
     res.redirect('/tournaments');
@@ -85,11 +111,13 @@ router.get('/create', function (req, res, next) {
     const errors = req.session.error    ;
  if(!req.session.connected){ 
     req.session.errors="Vous n'avez pas accès à cette page";
-    res.redirect('/tournaments')
+    res.redirect('/tournaments');
+    return;
  }
  if(req.session.user.status === 'normal'){
     req.session.errors = "Accès refusé | Vous n'avez pas accès à cette page";
     res.redirect('/tournaments');
+    return;
   }
     console.log("GET THE CREATION PAGE");
     let minDate = new Date().toISOString().slice(0,10);

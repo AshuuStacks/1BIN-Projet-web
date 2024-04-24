@@ -22,23 +22,33 @@
                     </tbody>
                 </table>
         
-        <h4 id="nbinscrits"> Il y'a {{ getNumberOfRegistrations}} inscrits..<br>
-        Ne tardez pas à vous inscrire!</h4>
+        <h4 id="nbinscrits"> Il y'a {{ getNumberOfRegistrations}} inscrits..</h4>
                 {{#if (eq session.connected true)}}
-                    {{#if (eq registeredStatus false)}}
+                <p>connecte</p>
+                    {{#if (eq depasse false)}}
+                    <p>depasse</p>
+                        {{#if (eq full false) }} 
+                        <p>full</p> 
+                            {{#if (eq isUserRegistered false)}}
+                            <p>inscrit</p>
+                              {{#unless eq getNumberOfRegistrations tournament}}
                         <form action="/tournaments/register" method="POST">
                         <input id="inscription-btn" type="submit" value="S'inscrire">
                         <input type="hidden" name="tournament_id" value="{{tournament.tournament_id}}">
                         <input type="hidden" name="user_id" value="{{session.user.user_id}}">
                         </form>
+                                {{/unless}}
+                            {{/if}}
+                       {{/if}}
                     {{/if}}
-                    {{#if (eq registeredStatus true)}}
-                    <form action="/tournaments/unregister" method="POST">
+            {{/if}}
+
+            {{#if (eq session.connected true)}}  
+             {{#if (eq isUserRegistered true)}}              
+                 <form action="/tournaments/unregister" method="POST">
                         <button id="desinscription-btn" type="submit" >Se désinscrire</button>
                         <input type="hidden" name="tournament_id" value="{{tournament.tournament_id}}">
                         <input type="hidden" name="user_id" value="{{session.user.user_id}}">
                     </form>
                      {{/if}}
-                 {{else}}   
-                {{/if}}
-
+            {{/if}}

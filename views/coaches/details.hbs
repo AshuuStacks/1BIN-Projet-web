@@ -10,7 +10,7 @@
                 <div id="biography-font-size-design"><h4>{{coach.biography }}</h4></div>
              <div id="update-button">
     {{#if (eq coach.email session.user.email)}}
-        <td><a href="/coaches/update?user_id={{coach.user_id}}" class="modify-button">Mettre à jour</a></td> 
+        <td><a href="/coaches/updateBio?user_id={{coach.user_id}}" class="modify-button">Mettre à jour</a></td> 
     {{/if}}
 </div>
 

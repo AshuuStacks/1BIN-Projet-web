@@ -55,7 +55,7 @@ router.get('/details', (req, res) => {
     res.render('coaches/details.hbs', { coach });
   });
 
-  router.get('/update', (req, res) => {
+  router.get('/updateBio', (req, res) => {
     const userId = req.query.user_id;
       
     // Check if courtId is a number
@@ -99,7 +99,7 @@ router.get('/details', (req, res) => {
 
     res.render('coaches/update.hbs', { coach });
   });
-  router.post('/update', upload.single('picture_path'), (req, res, next) => {
+  router.post('/updateBio', upload.single('picture_path'), (req, res, next) => {
   
     // Retrieve court ID and other details from the request body
     const coachId = req.body.user_id;

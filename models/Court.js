@@ -16,6 +16,18 @@ module.exports.findById = (court_id) => {
     return result;
 };
 
+module.exports.findByName = (name) => {
+    const stmt = db.prepare("SELECT * FROM tennis_courts WHERE name = ?");
+    const result = stmt.get(name);
+    return result;
+};
+
+module.exports.findByLocation = (location) => {
+    const stmt = db.prepare("SELECT * FROM tennis_courts WHERE location = ?");
+    const result = stmt.get(location);
+    return result;
+};
+
 module.exports.update = (tennis_court_id, name, flooring_type, location, picture_path) => {
     const stmt = db.prepare("UPDATE tennis_courts SET name = ?, flooring_type = ?, location = ?, picture_path = ? WHERE tennis_court_id = ?");
     const result = stmt.run(name, flooring_type, location, picture_path, tennis_court_id);
