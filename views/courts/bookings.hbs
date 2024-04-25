@@ -20,12 +20,12 @@
                         {{#if bookings}}
                             {{#each bookings}}
                             <tr>
-                                <td>{{court.name}}</td>
-                                <td>{{booking.date_booking}}</td>
+                                <td>{{this.court_name}}</td>
+                                <td>{{this.date_booking}}</td>
                                 <td>
                                     <form action="/courts/unbook" method="post">
-                                        <input type="hidden" name="tennis_court_id" value="{{court.tennis_court_id}}">
-                                        <input type="hidden" name="date_booking" value="{{booking.date_booking}}">
+                                        <input type="hidden" name="tennis_court_id" value="{{this.tennis_court_id}}">
+                                        <input type="hidden" name="date_booking" value="{{this.date_booking}}">
                                         <button type="submit" class="btn btn-danger">Annuler la réservation</button>
                                     </form>
                                 </td>
