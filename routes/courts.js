@@ -21,23 +21,21 @@ const upload = multer({ storage: storage });
 
 /* GET courts page. */
 router.get('/', (req, res) => {
-
-  const errors = req.query.errors || null;
-  res.render('courts/index.hbs', { courts: Court.info(), errors: errors });
+  res.render('courts/index.hbs', { courts: Court.info(), errors: req.session.errors });
+  req.session.errors = null;
 });
 
 /* GET courts details page */
 router.get('/details', (req, res) => {
-
+  
   const courtId = req.query.tennis_court_id;
-  let errors = req.query.errors || null;
   
     // Function to generate dates for the next week
     function generateNextWeekDates() {
       const today = new Date();
       // Start generating dates from tomorrow
-      const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
-      const nextWeekDates = [];
+      const tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000); // 24 hours * 60 minutes * 60 seconds * 1000 milliseconds
+      const nextWeekDates = []; 
 
       for (let i = 0; i < 7; i++) {
           const date = new Date(tomorrow.getTime() + i * 24 * 60 * 60 * 1000);
@@ -58,8 +56,8 @@ router.get('/details', (req, res) => {
     }
   // Check if courtId is a number
   if (isNaN(courtId)) {
-    errors = "Accès refusé | L'ID du court doit être un nombre";
-    res.redirect('/courts?errors=' + encodeURIComponent(errors));
+    req.session.errors = "Accès refusé | L'ID du court doit être un nombre";
+    res.redirect('/courts');
     return;
   }
 
@@ -67,14 +65,15 @@ router.get('/details', (req, res) => {
 
   // Check if court exists
   if (!court) {
-    errors = "Accès refusé | Court non trouvé, veuillez réessayer";
-    res.redirect('/courts?errors=' + encodeURIComponent(errors));
+    req.session.errors = "Accès refusé | Court non trouvé, veuillez réessayer";
+    res.redirect('/courts');
     return;
   }
 
   const nextWeekDates = generateNextWeekDates();
 
-  res.render('courts/details.hbs', { court, nextWeekDates, errors });
+  res.render('courts/details.hbs', { court, nextWeekDates, errors: req.session.errors });
+  req.session.errors = null;
 });
 
 /* POST book a court on details page */
@@ -86,9 +85,9 @@ router.post('/book', (req, res) => {
 
    // Check if the court is already booked for the specified date
    const existingBooking = Court.findByDateAndCourt(dateBooking, courtId);
-   if (existingBooking) {
-        errors = "Accès refusé | Ce terrain est déjà réservé pour cette date";
-     res.redirect('/courts/details?tennis_court_id=' + courtId + '&errors=' + encodeURIComponent(errors));
+  if (existingBooking) {
+    req.session.errors = "Accès refusé | Ce terrain est déjà réservé pour cette date";
+     res.redirect('/courts/details?tennis_court_id=' + courtId);
      return;
    }
 
@@ -99,16 +98,14 @@ router.post('/book', (req, res) => {
 /* GET courts update page */
 router.get('/update', (req, res) => {
   
-  let errors = req.query.errors || null;
-  
   if (req.session.connected && req.session.user.status === 'coach') {
       
       const courtId = req.query.tennis_court_id;
       
       // If court ID is not provided, redirect with an error
       if (!courtId) {
-        errors = "Accès refusé | Veuillez fournir un ID de court";
-        res.redirect('/courts?errors=' + encodeURIComponent(errors));
+        req.session.errors = "Accès refusé | Veuillez fournir un ID de court";
+        res.redirect('/courts');
         return
       }
 
@@ -116,18 +113,19 @@ router.get('/update', (req, res) => {
 
       // If court is not found, redirect with an error
       if (!court) {
-        errors = "Accès refusé | Court non trouvé, veuillez réessayer";
-        res.redirect('/courts?errors=' + encodeURIComponent(errors));
+        req.session.errors = "Accès refusé | Court non trouvé, veuillez réessayer";
+        res.redirect('/courts');
         return;
       }
     
       // Render the update form with the court data
-      res.render('courts/update.hbs', { court, errors });
+    res.render('courts/update.hbs', { court: court, errors: req.session.errors });
+    req.session.errors = null;
   } else {
     // If the user is not a coach, redirect with an access denied message
     const courtId = req.query.tennis_court_id;
-    errors = "Accès refusé | seuls les coachs peuvent mettre à jour les courts";
-    res.redirect('/courts/details?tennis_court_id=' + courtId + '&errors=' + encodeURIComponent(errors));
+    req.session.errors = "Accès refusé | seuls les coachs peuvent mettre à jour les courts";
+    res.redirect('/courts/details?tennis_court_id=' + courtId);
   }
 });
 
@@ -165,7 +163,9 @@ router.post('/update', upload.single('picture_path'), (req, res, next) => {
   }
 
   if (errors.length > 0) {
-      return res.redirect('/courts/update?tennis_court_id=' + courtId + '&errors=' + encodeURIComponent(errors.join(' ')));
+    req.session.errors = errors;
+    res.redirect('/courts/update?tennis_court_id=' + courtId);
+    return;
   }
 
   // Update the court with the new details
@@ -177,34 +177,31 @@ router.post('/update', upload.single('picture_path'), (req, res, next) => {
 
 /* GET courts booking page */
 router.get('/bookings', (req, res) => {
+
+
   if (req.session.user !== undefined) {
   // Retrieve the user ID from the session, get the bookings and the court
     const userId = req.session.user.user_id;
     // Get reservations of the user
     const bookings = Court.getBookings(userId);
-    // Filter to only get upcoming bookings
-    const upcomingBookings = bookings.filter(booking => {
-      const bookingDate = new Date(booking.date_booking);
-      const currentDate = new Date();
-      return bookingDate > currentDate;
-    });
+
     const bookingInfos = [];
-    
-    for (const booking of upcomingBookings) {
+    for (const booking of bookings) {
       const court = Court.findById(booking.tennis_court_id);
       bookingInfos.push({ court, booking });
     }
 
     res.render('courts/bookings.hbs', { bookings: bookingInfos });
+    req.session.errors = null;
   } else {
-    errors = "Accès refusé | Veuillez vous connecter pour accéder à la page des réservations";
-    res.redirect('/courts?errors=' + encodeURIComponent(errors));
+    req.session.errors = "Accès refusé | Veuillez vous connecter pour accéder à la page des réservations";
+    res.redirect('/courts');
   }
 });
 
 
 router.post('/unbook', (req, res) => {
-  // Extract court ID and booking date from the request body
+  // Retrieve the court ID and booking date from the request body
   const { tennis_court_id, date_booking } = req.body;
 
   Court.unbook(tennis_court_id, date_booking);

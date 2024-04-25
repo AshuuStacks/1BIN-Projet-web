@@ -823,7 +823,7 @@ input:-moz-placeholder { /* Firefox 18- */
     border: 2px solid rgb(255, 243, 243); /* Ajout d'une bordure de 1 pixel de large, solide et noire */
     border-radius: 15px;
 }
-#description-container H5{
+#description-container H4{
     color: white;
     padding-top: 20px !important;
     padding: 10px;  

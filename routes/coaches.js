@@ -46,7 +46,7 @@ router.get('/details', (req, res) => {
       return;
     }
     if (coach.status === 'normal') {
-      req.session.errors = " Accès refusé | Cette page n'existe pas";
+      req.session.errors = " Accès refusé | Cet utilisateur n'est pas un coach";
       res.redirect('/coaches');
       return;
     }
