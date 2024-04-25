@@ -61,7 +61,7 @@ router.get('/details', function (req, res, next) {
     } else {
         depasse=false;
     }
-
+    
     if(getNumberOfRegistrations > tournamentID.nb_max_participants){
         full=true;
     } else {
