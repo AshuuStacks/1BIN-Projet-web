@@ -101,20 +101,25 @@ router.get('/update', (req, res) => {
   if (req.session.connected && req.session.user.status === 'coach') {
       
       const courtId = req.query.tennis_court_id;
-      
+      let errors = [];
       // If court ID is not provided, redirect with an error
       if (!courtId) {
-        req.session.errors = "Accès refusé | Veuillez fournir un ID de court";
-        res.redirect('/courts');
+        errors.push("Accès refusé | ID du court non fourni, veuillez réessayer");
+        req.session.errors = errors;
+        res.render('courts/update.hbs', { court: null, errors: req.session.errors });
+        req.session.errors = null;
         return
       }
 
       const court = Court.findById(courtId);
 
+      
       // If court is not found, redirect with an error
       if (!court) {
-        req.session.errors = "Accès refusé | Court non trouvé, veuillez réessayer";
-        res.redirect('/courts');
+        errors.push("Accès refusé | Court non trouvé, veuillez réessayer");
+        req.session.errors = errors;
+        res.render('courts/update.hbs', { court: null, errors: req.session.errors });
+        req.session.errors = null;
         return;
       }
     

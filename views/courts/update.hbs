@@ -9,35 +9,37 @@
             </ul>
         </div>
     {{/if}}
-    <form action="/courts/update" method="post" enctype="multipart/form-data" class="form-update border p-4">
-      <h2 class="title-update">Mettre à jour le terrain</h2>
-      <fieldset>
-        <input type="hidden" name="tennis_court_id" value="{{court.tennis_court_id}}">
-        <div class="form-group">
-          <label for="name" class="title-in-updates">Nom :</label>
-          <input class="form-control input-court-name" type="text" id="name" name="name" placeholder="Nom" value="{{court.name}}">
-        </div>
-        
-        <div class="form-group">
-          <label for="flooring-type" class="title-in-updates">Revêtement :</label>
-          <select class="form-control input-flooring-type" id="flooring_type" name="flooring_type">
-            <option value="herbe" {{#if (eq court.flooring_type "herbe")}}selected{{/if}}>Herbe</option>
-            <option value="terre battue" {{#if (eq court.flooring_type "terre battue")}}selected{{/if}}>Terre Battue</option>
-            <option value="synthétique" {{#if (eq court.flooring_type "synthétique")}}selected{{/if}}>Synthétique</option>
-          </select>
-        </div>
-  
-        <div class="form-group">
-          <label for="location" class="title-in-updates">Emplacement :</label>
-          <input class="form-control input-location" type="text" id="location" name="location" placeholder="Emplacement" value="{{court.location}}">
-        </div>
-        
-        <div class="form-group">
-          <label for="picture" class="title-in-updates">Image :</label>
-          <input class="form-control input-picture" type="file" id="court_image" name="picture_path">
-        </div>
-        <input class="btn btn-primary submit-button" type="submit" value="Mettre à jour">
-      </fieldset>
-    </form>
+    {{#if court}}
+      <form action="/courts/update" method="post" enctype="multipart/form-data" class="form-update border p-4">
+        <h2 class="title-update">Mettre à jour le terrain</h2>
+        <fieldset>
+          <input type="hidden" name="tennis_court_id" value="{{court.tennis_court_id}}">
+          <div class="form-group">
+            <label for="name" class="title-in-updates">Nom :</label>
+            <input class="form-control input-court-name" type="text" id="name" name="name" placeholder="Nom" value="{{court.name}}">
+          </div>
+          
+          <div class="form-group">
+            <label for="flooring-type" class="title-in-updates">Revêtement :</label>
+            <select class="form-control input-flooring-type" id="flooring_type" name="flooring_type">
+              <option value="herbe" {{#if (eq court.flooring_type "herbe")}}selected{{/if}}>Herbe</option>
+              <option value="terre battue" {{#if (eq court.flooring_type "terre battue")}}selected{{/if}}>Terre Battue</option>
+              <option value="synthétique" {{#if (eq court.flooring_type "synthétique")}}selected{{/if}}>Synthétique</option>
+            </select>
+          </div>
+    
+          <div class="form-group">
+            <label for="location" class="title-in-updates">Emplacement :</label>
+            <input class="form-control input-location" type="text" id="location" name="location" placeholder="Emplacement" value="{{court.location}}">
+          </div>
+          
+          <div class="form-group">
+            <label for="picture" class="title-in-updates">Image :</label>
+            <input class="form-control input-picture" type="file" id="court_image" name="picture_path">
+          </div>
+          <input class="btn btn-primary submit-button" type="submit" value="Mettre à jour">
+        </fieldset>
+      </form>
+    {{/if}}
   </section>
 </main>
