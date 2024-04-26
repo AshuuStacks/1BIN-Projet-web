@@ -456,6 +456,18 @@ input:-moz-placeholder { /* Firefox 18- */
     margin-top: 20px;
 }
 
+#dont{
+    text-align: center;
+    margin-top: -7px;
+    color: white;
+}
+
+#niemeer{
+    text-align: center;
+    margin-top: -7px;
+    color: white;
+}
+
 #tournamentName{
     text-align: center;
     margin-top: 22px;
@@ -480,8 +492,8 @@ input:-moz-placeholder { /* Firefox 18- */
     border: none; 
     cursor: pointer; 
     border-radius: 5px; 
-    margin-left: 700px;
-    margin-top: 20px;
+    display: block; 
+    margin: 20px auto; 
 }
 
 .desinscription-btn:hover {
