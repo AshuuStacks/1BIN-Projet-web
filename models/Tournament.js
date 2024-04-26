@@ -6,7 +6,6 @@ module.exports.list = () => {
     return stmt_all.all(currentDate);
 };
 
-
 module.exports.isUserRegistered = (userId, tournamentId) => {
     const stmt = db.prepare("SELECT COUNT(*) AS count FROM registrations WHERE user_id = ? AND tournament_id = ?");
     const result = stmt.get(userId, tournamentId);
@@ -46,9 +45,8 @@ module.exports.select = () => {
     return stmt_select.get();
 }
 
-
-module.exports.creatorOfTournament = (idTournament) => {
-    return db.prepare("SELECT firstname, surname FROM users WHERE user_id = ?").get(idTournament);
+module.exports.creatorOfTournament = (tournament) => {
+    return db.prepare("SELECT u.firstname, u.surname FROM users u, tournaments t  WHERE u.user_id = t.creator AND t.tournament_id= ?").get(tournament);
 };
 
 

@@ -40,41 +40,35 @@ router.get('/', function (req, res, next) {
 router.get('/details', function (req, res, next) {
     console.log("GET DETAILS TOURNAMENTS");
     const tournamentID = req.query.tournament_id;
+    const coach = Tournament.creatorOfTournament(tournamentID);
+    const tournament = Tournament.findById(tournamentID);
+    const getNumberOfRegistrations = Tournament.getNumberOfRegistrations(tournamentID);
+    let isUserRegistered= false;
+    let depasse;
+    let full;
     if(!tournamentID){
         req.session.errors = 'Id du tournoi invalid ';
         res.redirect('/tournaments');
         return;
     }
-    const tournament = Tournament.findById(tournamentID);
     if(!tournament) {
         req.session.errors = "Ce tournoi n'existe pas! Faites attention aux fautes de frappe .Si l'errreur persiste, contactez un responsable";
         res.redirect('/tournaments');
         return;
     }
-    const getNumberOfRegistrations = Tournament.getNumberOfRegistrations(tournamentID);
-    let depasse;
     if(new Date(tournament.date_tournament) < new Date()){
         depasse=true;
     } else {
         depasse=false;
     }
-    let full;
     if(getNumberOfRegistrations >= tournament.nb_max_participants){
         full=true;
     } else {
         full=false;
-    }
-
-    let isUserRegistered= false;
+    }    
     if (req.session.user) {
         isUserRegistered= Tournament.isUserRegistered(req.session.user.user_id, tournamentID);
     }
-
-    const coach = Tournament.creatorOfTournament(tournamentID)
-
-    console.log(depasse);
-    console.log(full);
-    console.log(isUserRegistered);
     res.render('tournaments/details.hbs', { tournament, getNumberOfRegistrations, isUserRegistered , depasse , full, coach});
 });
 
@@ -142,7 +136,7 @@ router.post('/create', upload.single('filename'), function(req, res, next) {
         date_tournament: req.body.dateTournament,
         nb_max_participants: req.body.maxPeople,
         banner_image_path: filename,
-        creator:req.body.creator
+        creator:req.session.user.user_id
     });
 
     req.session.success = "Le tournoi a été créé avec succès ✅";
