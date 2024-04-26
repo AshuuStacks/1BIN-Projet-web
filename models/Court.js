@@ -30,12 +30,19 @@ module.exports.findByLocation = (location) => {
 
 module.exports.update = (tennis_court_id, name, flooring_type, location, picture_path) => {
     const stmt = db.prepare("UPDATE tennis_courts SET name = ?, flooring_type = ?, location = ?, picture_path = ? WHERE tennis_court_id = ?");
-    const result = stmt.run(name, flooring_type, location, picture_path, tennis_court_id);
+    const result = stmt.run(name, flooring_Itype, location, picture_path, tennis_court_id);
     return result;
 };
 
 module.exports.getBookings = (user_id) => {
-    const stmt = db.prepare("SELECT * FROM bookings WHERE user_id = ? AND date_booking > date('now') ORDER BY date_booking");
+    const stmt = db.prepare(`
+        SELECT bookings.*, tennis_courts.name AS court_name 
+        FROM bookings, tennis_courts 
+        WHERE bookings.tennis_court_id = tennis_courts.tennis_court_id 
+        AND bookings.user_id = ? 
+        AND bookings.date_booking > date('now') 
+        ORDER BY bookings.date_booking
+    `);
     return stmt.all(user_id);
 };
 
@@ -50,8 +57,8 @@ module.exports.findByDateAndCourt = (date_booking, tennis_court_id) => {
     return result;
 };
 
-module.exports.unbook = (tennis_court_id, date_booking) => {
-    const stmt = db.prepare("DELETE FROM bookings WHERE tennis_court_id = ? AND date_booking = ?");
-    const result = stmt.run(tennis_court_id, date_booking);
-    return result;
+module.exports.unbook = (user_id, tennis_court_id, date_booking) => {
+    const stmt = db.prepare(`DELETE FROM bookings WHERE user_id = ? AND tennis_court_id = ? AND date_booking = ?
+    `);
+    return stmt.run(user_id, tennis_court_id, date_booking);
 };

@@ -101,20 +101,25 @@ router.get('/update', (req, res) => {
   if (req.session.connected && req.session.user.status === 'coach') {
       
       const courtId = req.query.tennis_court_id;
-      
+      let errors = [];
       // If court ID is not provided, redirect with an error
       if (!courtId) {
-        req.session.errors = "Accès refusé | Veuillez fournir un ID de court";
-        res.redirect('/courts');
+        errors.push("Accès refusé | ID du court non fourni, veuillez réessayer");
+        req.session.errors = errors;
+        res.render('courts/update.hbs', { court: null, errors: req.session.errors });
+        req.session.errors = null;
         return
       }
 
       const court = Court.findById(courtId);
 
+      
       // If court is not found, redirect with an error
       if (!court) {
-        req.session.errors = "Accès refusé | Court non trouvé, veuillez réessayer";
-        res.redirect('/courts');
+        errors.push("Accès refusé | Court non trouvé, veuillez réessayer");
+        req.session.errors = errors;
+        res.render('courts/update.hbs', { court: null, errors: req.session.errors });
+        req.session.errors = null;
         return;
       }
     
@@ -185,13 +190,8 @@ router.get('/bookings', (req, res) => {
     // Get reservations of the user
     const bookings = Court.getBookings(userId);
 
-    const bookingInfos = [];
-    for (const booking of bookings) {
-      const court = Court.findById(booking.tennis_court_id);
-      bookingInfos.push({ court, booking });
-    }
 
-    res.render('courts/bookings.hbs', { bookings: bookingInfos });
+    res.render('courts/bookings.hbs', { bookings });
     req.session.errors = null;
   } else {
     req.session.errors = "Accès refusé | Veuillez vous connecter pour accéder à la page des réservations";
@@ -201,12 +201,18 @@ router.get('/bookings', (req, res) => {
 
 
 router.post('/unbook', (req, res) => {
-  // Retrieve the court ID and booking date from the request body
-  const { tennis_court_id, date_booking } = req.body;
+  if (req.session.user !== undefined) {
+    // Retrieve the user ID from the session
+    const userId = req.session.user.user_id;
+    // Retrieve the court ID and booking date from the request body
+    const { tennis_court_id, date_booking } = req.body;
 
-  Court.unbook(tennis_court_id, date_booking);
-  res.redirect('/courts/bookings');
-
+    Court.unbook(userId, tennis_court_id, date_booking);
+    res.redirect('/courts/bookings');
+  } else {
+    req.session.errors = "Accès refusé | Veuillez vous connecter pour accéder à la page des réservations";
+    res.redirect('/courts');
+  }
 });
 
 

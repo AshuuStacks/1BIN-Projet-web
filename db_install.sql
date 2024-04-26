@@ -63,19 +63,19 @@ INSERT INTO users(firstname, surname,email,password,status)VALUES ('Sébatien', 
 -- email: j.de@vinci.be, password: Tennis10, regular
 INSERT INTO users(firstname, surname,email,password,status)VALUES ('Jules', 'Desmet', 'j.de@vinci.be', '$2a$10$jOr2KFz6dk3kHZS4vnFijuukov9FCB/rUtI71b2Rw08eup88TYOVK', 'normal') ;
 -- email: loic.lecharlier, password: Javascript2, coach
-INSERT INTO users(firstname, surname,email,password,status,biography,picture_path)VALUES ('Loic', 'Lecharlier', 'loic.lecharlier@vinci.be', '$2a$10$035Tx/BCPuDZ7FYAUbsReOy7abjOg8sk/YYbTS3fb5bZrhBl08MOe', 'coach', 'Docteur en science mathématique. Je joue au tennis depuis que 30 ans. Je préfère le revers à une main.', 'images/Loic.png') ;
+INSERT INTO users(firstname, surname,email,password,status,biography,picture_path)VALUES ('Loic', 'Lecharlier', 'loic.lecharlier@vinci.be', '$2a$10$035Tx/BCPuDZ7FYAUbsReOy7abjOg8sk/YYbTS3fb5bZrhBl08MOe', 'coach', 'Docteur en science mathématique. Je joue au tennis depuis que 30 ans. Je préfère le revers à une main.', '/images/Loic.png') ;
 -- email: r.na@vinci.be, password: Roland14, coach
-INSERT INTO users(firstname, surname,email,password,status,biography,picture_path)VALUES ('Rafael', 'Naroni', 'r.na@vinci.be', '$2a$10$bBni.4t7THvnzMFZfwKGJ.iIyD/NR5Y8KR1WFQIzEERr1VUkyA0NG', 'coach', 'Informaticien suisso-espagnol. Je préfère la terre battue.', 'images/Rafael.png') ;
+INSERT INTO users(firstname, surname,email,password,status,biography,picture_path)VALUES ('Rafael', 'Naroni', 'r.na@vinci.be', '$2a$10$bBni.4t7THvnzMFZfwKGJ.iIyD/NR5Y8KR1WFQIzEERr1VUkyA0NG', 'coach', 'Informaticien suisso-espagnol. Je préfère la terre battue.', '/images/Rafael.png') ;
 -- email: b.ga@vinci.be, password: Wimbled4, coach
-INSERT INTO users(firstname, surname,email,password,status,biography,picture_path)VALUES ('Bjorn', 'Gazon', 'b.ga@vinci.be', '$2a$10$AsagnZ8Rg2BsjrCJQEY3Yus7gEd6ZzpqpEKRW0vG0YtD9THdiVHeG', 'coach', 'Passionné de tennis sur gazon depuis toujours, je suis un fan du service-volée.', 'images/Bjorn.png') ;
+INSERT INTO users(firstname, surname,email,password,status,biography,picture_path)VALUES ('Bjorn', 'Gazon', 'b.ga@vinci.be', '$2a$10$AsagnZ8Rg2BsjrCJQEY3Yus7gEd6ZzpqpEKRW0vG0YtD9THdiVHeG', 'coach', 'Passionné de tennis sur gazon depuis toujours, je suis un fan du service-volée.', '/images/Bjorn.png') ;
 
-INSERT INTO tennis_courts(name,flooring_type,location,picture_path) VALUES ('TB10','terre battue','Troisième terrain à gauche dans la deuxième allée','images/Tennis_clay_court.jpg') ;
-INSERT INTO tennis_courts(name,flooring_type,location,picture_path) VALUES ('GR10','herbe','Dernier terrain','images/Grass_tennis_court.png') ;
-INSERT INTO tennis_courts(name,flooring_type,location,picture_path) VALUES ('SY10','synthétique','Premier terrain à droite','images/Artificial_tennis_court.jpg') ;
+INSERT INTO tennis_courts(name,flooring_type,location,picture_path) VALUES ('TB10','terre battue','Troisième terrain à gauche dans la deuxième allée','/images/Tennis_clay_court.jpg') ;
+INSERT INTO tennis_courts(name,flooring_type,location,picture_path) VALUES ('GR10','herbe','Dernier terrain','/images/Grass_tennis_court.png') ;
+INSERT INTO tennis_courts(name,flooring_type,location,picture_path) VALUES ('SY10','synthétique','Premier terrain à droite','/images/Artificial_tennis_court.jpg') ;
 
-INSERT INTO tournaments(name,creator,date_tournament,nb_max_participants,banner_image_path) VALUES ('La Raquette d''or',3,DATE('now','+10 day'),64,'images/RaquetteDOr.png') ;
-INSERT INTO tournaments(name,creator,date_tournament,nb_max_participants,banner_image_path) VALUES ('Summer Open',4,DATE('now','-6 day'),128,'images/Summer.png') ;
-INSERT INTO tournaments(name,creator,date_tournament,nb_max_participants,banner_image_path) VALUES ('Funny Open',4,DATE('now','+14 day'),256,'images/Funny.png') ;
+INSERT INTO tournaments(name,creator,date_tournament,nb_max_participants,banner_image_path) VALUES ('La Raquette d''or',3,DATE('now','+10 day'),64,'/images/RaquetteDOr.png') ;
+INSERT INTO tournaments(name,creator,date_tournament,nb_max_participants,banner_image_path) VALUES ('Summer Open',4,DATE('now','-6 day'),128,'/images/Summer.png') ;
+INSERT INTO tournaments(name,creator,date_tournament,nb_max_participants,banner_image_path) VALUES ('Funny Open',4,DATE('now','+14 day'),256,'/images/Funny.png') ;
 
 INSERT INTO bookings(date_booking,tennis_court_id,user_id) VALUES(DATE('now','+3 day'),3,1) ;
 INSERT INTO bookings(date_booking,tennis_court_id,user_id) VALUES(DATE('now','+6 day'),1,1) ;
