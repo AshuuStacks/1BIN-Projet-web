@@ -19,9 +19,7 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ storage: storage });
-
 let registeredStatus = false;
-
 
 /* GET tournaments index. */
 router.get('/', function (req, res, next) {
@@ -42,73 +40,68 @@ router.get('/', function (req, res, next) {
 router.get('/details', function (req, res, next) {
     console.log("GET DETAILS TOURNAMENTS");
     const tournamentID = req.query.tournament_id;
+    const coach = Tournament.creatorOfTournament(tournamentID);
+    const tournament = Tournament.findById(tournamentID);
+    const getNumberOfRegistrations = Tournament.getNumberOfRegistrations(tournamentID);
+    let isUserRegistered= false;
+    let depasse;
+    let full;
     if(!tournamentID){
         req.session.errors = 'Id du tournoi invalid ';
         res.redirect('/tournaments');
         return;
     }
-    const tournament = Tournament.findById(tournamentID);
     if(!tournament) {
-        req.session.errors = 'Tournoi introuvable';
+        req.session.errors = "Ce tournoi n'existe pas! Faites attention aux fautes de frappe .Si l'errreur persiste, contactez un responsable";
         res.redirect('/tournaments');
         return;
     }
-    const getNumberOfRegistrations = Tournament.getNumberOfRegistrations(tournamentID);
-    let depasse;
-    let full;
-    if(new Date(tournamentID.date_tournament) < new Date()){
+    if(new Date(tournament.date_tournament) < new Date()){
         depasse=true;
     } else {
         depasse=false;
     }
-    
-    if(getNumberOfRegistrations > tournamentID.nb_max_participants){
+    if(getNumberOfRegistrations >= tournament.nb_max_participants){
         full=true;
     } else {
         full=false;
-    }
-
-    let isUserRegistered= false;
+    }    
     if (req.session.user) {
         isUserRegistered= Tournament.isUserRegistered(req.session.user.user_id, tournamentID);
     }
-
-    console.log(full);
-    console.log(depasse);
-   
-    res.render('tournaments/details.hbs', { tournament, getNumberOfRegistrations, isUserRegistered , depasse , full});
+    res.render('tournaments/details.hbs', { tournament, getNumberOfRegistrations, isUserRegistered , depasse , full, coach});
 });
 
 
 router.post('/register', function(req, res, next) {
+    const tournamentId = req.body.tournament_id;
     if (req.session.user){
-        const tournamentId = req.body.tournament_id;
         const userId = req.session.user.user_id;
         Tournament.registerUser(userId, tournamentId);
         req.session.success = "Inscription réussie au tournoi ✅";
-        
         registeredStatus = true;
     }
-    res.redirect('/tournaments');
+    res.redirect('/tournaments/details?tournament_id=' +tournamentId);
+
 });
 
 
 router.post('/unregister', function(req, res, next) {
+
+    const tournamentId = req.body.tournament_id;
     if (req.session.user) {
-        const tournamentId = req.body.tournament_id;
         const userId = req.session.user.user_id;
         Tournament.unregisterUser(userId, tournamentId);
-        req.session.success = "Vous venez de vous désinscrire au tournoi ";
+        req.session.success = "Vous venez de vous désinscrire du tournoi ";
         registeredStatus = false;
     }
-    
-    res.redirect('/tournaments');
+    res.redirect('/tournaments/details?tournament_id=' + tournamentId);
 });
 
 
 /* GET creation tournaments */
 router.get('/create', function (req, res, next) {
-    const errors = req.session.error    ;
+    const errors = req.session.error    ; 
  if(!req.session.connected){ 
     req.session.errors="Vous n'avez pas accès à cette page";
     res.redirect('/tournaments');
@@ -143,7 +136,7 @@ router.post('/create', upload.single('filename'), function(req, res, next) {
         date_tournament: req.body.dateTournament,
         nb_max_participants: req.body.maxPeople,
         banner_image_path: filename,
-        creator:req.body.creator
+        creator:req.session.user.user_id
     });
 
     req.session.success = "Le tournoi a été créé avec succès ✅";
