@@ -37,3 +37,16 @@ module.exports.updateResponseText = (message_id, response_text) => {
     const info = stmt.run(response_text, message_id);
     return info.changes; // Cela retournera le nombre de lignes mises à jour
 };
+
+
+module.exports.countMessage = (receiver_id) => {
+    const stmt = db.prepare("SELECT COUNT(*) as count FROM messages WHERE receiver_id = ? AND response_text IS NULL ");
+    const result = stmt.get(receiver_id);
+    return result.count;
+}
+
+module.exports.countMessageSender = (sender_id) => {
+    const stmt = db.prepare("SELECT COUNT(*) as count FROM messages WHERE sender_id = ? AND message_text IS NOT NULL ");
+    const result = stmt.get(sender_id);
+    return result.count;
+}

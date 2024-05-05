@@ -5,6 +5,12 @@ const Message = require('../models/Message.js');
 
 /* GET messages page. */
 router.get('/', (req, res) => {
+  const userId = req.session.user.user_id
+     console.log("receiver id " + userId);
+   const countMsg = Message.countMessage(userId);
+   const msgg = Message.countMessageSender(userId);
+
+
     const errors = req.session.errors;
     let isRegular = false;
     if(req.session.connected){
@@ -23,7 +29,7 @@ router.get('/', (req, res) => {
     
   
   req.session.errors = null;
-    res.render('messages/index.hbs', { errors: errors , messages : Message.info(isRegular)  });
+    res.render('messages/index.hbs', { errors: errors , messages : Message.info(isRegular), count : countMsg , count2 : msgg  });
 });
 
 
