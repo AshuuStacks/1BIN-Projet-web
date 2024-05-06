@@ -49,14 +49,43 @@ router.post('/suppmsg', (req, res) => {
   res.redirect('/messages');
 
 });
+router.get('/updateMessage', (req, res) => {
+  // Récupérer le message_id de la chaîne de requête
+  const message_id = req.query.message_id;
+ console.log("pourquoi ça ne marche pas" + message_id);
+  // Vérifier si message_id est un nombre
+  if (!message_id || isNaN(message_id)) {
+    req.session.errors = 'ID de message invalide';
+    res.redirect('/messages');
+    return;
+  }
+
+  // Utiliser findById pour obtenir les données du message
+  const message = Message.findById(message_id);
+
+  // Vérifier si le message existe
+  if (!message) {
+    req.session.errors = 'Message introuvable';
+    res.redirect('/messages');
+    return;
+  }
+
+  // Rendre la page de mise à jour avec les données du message
+  res.render('messages/update', { message: message, errors: req.session.errors });
+});
+
 
 router.post('/updateMessage', (req, res, next) => {
-  // Retrieve coach ID and other details from the request body
+  const message_id = req.body.message_id;
   const message_text = req.body.message_text;
-      Message.update(message_text)
-  // Redirect to the coach details page after update
-  res.redirect('/messages/update.hbs');
+
+  // Assurez-vous que l'ordre des paramètres est correct dans la méthode update
+  Message.update(message_id, message_text);
+
+  // Redirection vers la page des messages après la mise à jour
+  res.redirect('/messages');
 });
+
 
 
 

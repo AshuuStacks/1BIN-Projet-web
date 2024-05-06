@@ -136,7 +136,7 @@ router.post('/sendTo', (req, res, next) => {
   const sender_id = req.session.user.user_id;
   const receiver_id = req.body.receiver_id; 
   const today = new Date();
-  const todayString =  today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate() + " " + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  const todayString =    today.getDate() + "/" + (today.getMonth() + 1)  + "/"+today.getFullYear() + " | " + today.getHours()+":" + today.getMinutes() + ":" + today.getSeconds() ;
   const message = {
     message_text: req.body.message_text,
     date_hour_message: todayString,

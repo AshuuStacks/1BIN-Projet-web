@@ -1185,9 +1185,8 @@ textarea {
 }
 
 
-.button-inline {
+.supprimer-boutton {
     display: flex;
+    justify-content: flex-end;
 }
-.button-inline button {
-    margin: 20px;
-}
+

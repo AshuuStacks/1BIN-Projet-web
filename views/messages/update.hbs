@@ -1,91 +1,25 @@
 <main>
-     <div class="container-message">
-        <h1>Consultez vos messages </h1>
-    </div>
-    <div class="message">
-    <!--  Vérifié que le receiver_id est le même que l'utilisateur connecté !-->
-         <div class="contenu">
-            {{#if (eq session.user.status  "normal")}}
-              {{#if (eq count2 0 )}}
-           <div class="message-Attente">
-                         <h3>Vous n'avez pas encore envoyé de message</h3>
-                         </div>
-            {{/if}}
-                
-            {{/if}}
-                      {{#if (eq session.user.status "coach")}}
-                      {{#if (eq count 0)}}
-                      <div class="message-Attente">
-                         <h3>Vous n'avez pas de message</h3>
-                         </div>
-                      {{/if}}
-                                            {{/if}}
+    <section>
+        <!-- Affichage du message à mettre à jour -->
+        <fieldset>
+            <section class="form-holder-update">
+                <form action="/messages/updateMessage" method="post" enctype="multipart/form-data" class="form-update border p-4">
+                    <!-- Champ caché pour l'ID du message -->
+                    <input type="hidden" name="message_id" value="{{message.message_id}}">
+                         <input type="hidden" name="message_text" value="{{message.message_text}}">
 
-                           
-            {{#each messages}}  
-            {{#if (eq @root.session.user.user_id receiver_id)}}   
-              {{#unless response_text}} <!-- On est dans un each donc !-->
-                
-            <div class="message-instantanée">
-                <h2>Message de : {{sender_id}}</h2>  
-                <h3>Voici son message : {{message_text}}</h3>
-                <h3>Date d'envoie : {{date_hour_message}}</h3>
-            
-                {{#if receiver_id}}
-      <form class="message-form" action="/messages/replyTo" method="POST">
- <div class="form-group">
-    <textarea class="form-control half-width" id="response_text" name="response_text" placeholder="Ajoutez une réponse..." rows="4" required></textarea>
-</div>
-    <input type="hidden" name="message_id" value="{{message_id}}">
- <button type="submit" class="modify-button">Envoyer</button>
-</form>
-
-                {{/if}}
-                {{/unless}}
-            </div>
-                        {{/if}}              
-
-            {{/each}}
-     
-  {{#each messages}}            
-        
-        {{#if (eq @root.session.user.user_id sender_id)}}    <!-- On est dans un each donc !-->
-                              <div class="message-instantanée">
-                <h3>Votre message : {{message_text}}</h3>
-              <h3>Date d'envoie : {{date_hour_message}}</h3>
-
-             <br>
-                     {{#if response_text}}
-                <h3>Réponse de votre coach {{receiver_id}} : {{response_text}}</h3>
-                    {{else}}
-                <h3>Réponse de votre coach  {{receiver_id}}  : Aucune réponse disponible pour le moment.</h3>
-                     {{/if}}
-
-                     <div class="button-inline">
-          
-       <form class="message-form" action="/messages/suppmsg" method="POST">
-
-     <input type="hidden" name="message_id" value="{{message_id}}">
-    <button type="submit" class="modify-button">Supprimer</button>
- </form>
-  <form class="message-form" action="/messages/updateMessage" method="POST">
-          <label for="biographie" class="title-in-updates">message à modifier :</label>
-          <input class="form-control input-biographie" type="text" id="message_text" name="message_text" placeholder="Emplacement" value="{{message_text}}">
-     <input type="hidden" name="message_text" value="{{message_text}}">
-    <button type="submit" class="modify-button">modifier</button>
- </form>
- </div>
-      {{/if}}
-            </div>
-
-
-
-   {{/each}}
-
-
-        </div>
-    </div>
-       
-
-    <!-- Ajoutez plus de messages au besoin -->
+                    <div class="form-group">
+                        <h2 class="title-update">Modifier le message</h2>
+                        
+                        <!-- Champ de texte pour le message -->
+                        <label for="message" class="title-in-updates">Nouveau message :</label>
+                        <textarea id="message" name="message_textt" rows="5" required>{{message.message_text}}</textarea>
+                    </div>
+                    
+                    <!-- Bouton de soumission -->
+                    <input class="btn btn-primary submit-button" type="submit" value="Mettre à jour">
+                </form>
+            </section>
+        </fieldset>
+    </section>
 </main>
