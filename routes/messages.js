@@ -50,6 +50,13 @@ router.post('/suppmsg', (req, res) => {
 
 });
 
+router.post('/updateMessage', (req, res, next) => {
+  // Retrieve coach ID and other details from the request body
+  const message_text = req.body.message_text;
+      Message.update(message_text)
+  // Redirect to the coach details page after update
+  res.redirect('/messages/update.hbs');
+});
 
 
 

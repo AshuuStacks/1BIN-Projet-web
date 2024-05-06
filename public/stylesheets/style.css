@@ -1183,3 +1183,11 @@ textarea {
 .message-Attente p {
     margin: 0;
 }
+
+
+.button-inline {
+    display: flex;
+}
+.button-inline button {
+    margin: 20px;
+}
