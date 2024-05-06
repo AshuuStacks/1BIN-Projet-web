@@ -5,23 +5,21 @@
     <div class="message">
     <!--  Vérifié que le receiver_id est le même que l'utilisateur connecté !-->
          <div class="contenu">
-                
-            {{#if  (eq session.user.status "normal")}}
+            {{#if (eq session.user.status  "normal")}}
               {{#if (eq count2 0 )}}
            <div class="message-Attente">
-                         <h3>Vous n'avez pas encore envoyer de message</h3>
+                         <h3>Vous n'avez pas encore envoyé de message</h3>
                          </div>
             {{/if}}
-                        {{/if}}
-
                 
-            {{#if  (eq session.user.status "coach")}}
-                                      {{#if (eq count 0)}}
-               <div class="message-Attente">
+            {{/if}}
+                      {{#if (eq session.user.status "coach")}}
+                      {{#if (eq count 0)}}
+                      <div class="message-Attente">
                          <h3>Vous n'avez pas de message</h3>
                          </div>
                       {{/if}}
-                      {{/if}}
+                                            {{/if}}
 
                            
             {{#each messages}}  
@@ -62,8 +60,15 @@
                     {{else}}
                 <h3>Réponse de votre coach  {{receiver_id}}  : Aucune réponse disponible pour le moment.</h3>
                      {{/if}}
+          
+       <form class="message-form" action="/messages/suppmsg" method="POST">
+
+     <input type="hidden" name="message_id" value="{{message_id}}">
+    <button type="submit" class="modify-button">Supprimer</button>
+ </form>
       {{/if}}
             </div>
+
 
 
    {{/each}}

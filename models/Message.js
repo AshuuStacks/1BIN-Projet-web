@@ -50,3 +50,9 @@ module.exports.countMessageSender = (sender_id) => {
     const result = stmt.get(sender_id);
     return result.count;
 }
+
+module.exports.supprimerMessage = (message_id) => {
+    const stmt = db.prepare("DELETE FROM messages WHERE message_id = ?");
+    const result = stmt.run(message_id);
+    return result.changes; // Renvoie le nombre de lignes modifiées (0 si aucune ligne n'a été supprimée)
+}

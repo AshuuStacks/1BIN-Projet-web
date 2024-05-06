@@ -43,5 +43,14 @@ router.post('/replyTo', (req, res) => {
     res.redirect('/messages');
 });
 
+router.post('/suppmsg', (req, res) => { 
+ const messageID = req.body.message_id;
+ const message_id = Message.supprimerMessage(messageID);
+  res.redirect('/messages');
+
+});
+
+
+
 
 module.exports = router;
