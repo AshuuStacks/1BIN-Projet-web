@@ -7,7 +7,7 @@
                     {{errors}}
                 </div>
                 {{/if}}
-                    <h3> Liste des coachs de Vinci Court </h3>
+                <h1 id="tournament-page-title">List de Coachs de Vinci Court <br> ..</h1>
     </div>
 
 
@@ -18,8 +18,29 @@
             <td><a href="/coaches/details?user_id={{user_id}}">{{firstname}}  {{surname}}</a></td>
               
              <h6>Son adresse mail : {{email}}</h6>
-             
-            
+
+   {{#if (eq @root.session.user.status "coach")}}
+      {{#if (eq @root.session.user.user_id user_id)}}
+            <p>Souhaitez vous vous auto Licencier?</p>
+               <form action="/coaches/Approuval" method="POST">
+ <input type="hidden" name="status" value="{{user_id}}">
+          <button type="submit">Cliquez ici </button>
+          </form>  
+          {{#if (eq @root.session.approuve true)}}
+          <br>
+   <form action="/coaches/Licencier" method="POST">
+ <input type="hidden" name="status" value="{{user_id}}">
+          <button type="submit">Licencier</button>
+          </form>  
+          {{/if}}
+                {{else}}
+          <form action="/coaches/Licencier" method="POST">
+ <input type="hidden" name="status" value="{{user_id}}">
+          <button type="submit">Licencier</button>
+          </form>  
+          {{/if}}
+                      {{/if}} 
+
         {{/if}}
         </div>
 

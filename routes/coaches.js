@@ -122,7 +122,7 @@ router.post('/updateBio', upload.single('picture_path'), (req, res, next) => {
   // If a new picture is uploaded, use it. Otherwise, use the existing picture path
   let picture = coach.picture_path;
   if (req.file) {
-    picture = "/images/" + req.file.filename;
+    picture = "/images/" + req.filename;
   }
 
   // Update the coach with the new details
@@ -149,5 +149,25 @@ router.post('/sendTo', (req, res, next) => {
   // Redirect to the messages page after sending the message
   res.redirect('/messages');
 });
+router.post('/Licencier', (req, res, next) => {  
+  const userID = req.body.status;
+  Coach.updateStatus(userID);
+
+  res.redirect('/coaches');
+
+
+});
+
+
+  router.post('/Approuval', (req, res, next) => {  
+       let approuve = true;
+       req.session.approuve = approuve;
+
+    res.redirect('/coaches');
+  
+});
+
+
+
 
 module.exports = router;

@@ -23,3 +23,12 @@ module.exports.update = (user_id, biography, picture_path) => {
     const info = stmt.run(message.sender_id, message.receiver_id, message.message_text ,message.date_hour_message);
 };
 
+
+module.exports.updateStatus = (user_id) => {
+    const stmt = db.prepare("UPDATE users SET status='normal' WHERE user_id = ?");
+    const result = stmt.run( user_id);
+    return result;
+};
+
+
+

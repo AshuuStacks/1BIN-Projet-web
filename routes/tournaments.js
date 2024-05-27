@@ -138,7 +138,15 @@ router.post('/create', upload.single('filename'), function(req, res, next) {
         banner_image_path: filename,
         creator:req.session.user.user_id
     });
+    
+  // Supposons que 'req.body.name' contient le nom du tournoi à vérifier
+const name = req.body.uniqueNameTournament;
+if(Tournament.info(name)){
+    req.session.errors="Error";
+    res.redirect('/tournaments');
+}
 
+      
     req.session.success = "Le tournoi a été créé avec succès ✅";
     res.redirect('/tournaments');
 });

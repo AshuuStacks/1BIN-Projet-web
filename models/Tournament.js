@@ -49,7 +49,21 @@ module.exports.creatorOfTournament = (tournament) => {
     return db.prepare("SELECT u.firstname, u.surname FROM users u, tournaments t  WHERE u.user_id = t.creator AND t.tournament_id= ?").get(tournament);
 };
 
-
+module.exports.info = (name) => {
+    // Préparer la requête SQL pour rechercher un nom de tournoi spécifique
+    const stmt = db.prepare("SELECT name FROM tournaments WHERE name = ?");
+    // Exécuter la requête avec le nom fourni
+    const tournament = stmt.get(name);
+    
+    // Si un tournoi avec ce nom est trouvé, renvoyer true
+    if (tournament) {
+      return true;
+    }
+    // Sinon, renvoyer false
+    return false;
+  };
+  
+  
 
 
 
