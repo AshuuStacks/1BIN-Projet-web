@@ -1193,8 +1193,8 @@ textarea {
 
 .edit {
     margin: auto;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: #ffffff;
+    border: 10px solid #002944b7;
     border-radius: 8px;
     box-shadow: 0 4px 1px rgba(0, 0, 0, 0.1);
     padding: 20px;

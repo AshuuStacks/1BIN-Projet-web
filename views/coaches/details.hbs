@@ -9,25 +9,31 @@
                  </div>
                 <div id="biography-font-size-design"><h4>{{coach.biography }}</h4></div>
              <div id="update-button">
+                
+
     {{#if (eq coach.email session.user.email)}}
            <td><a href="/coaches/updateBio?user_id={{coach.user_id}}" class="modify-button">Mettre à jour</a></td> 
+      
+        {{/if}}
+
+        </div>
+        <br>
+        <br>
+        <br>
+ {{#if (eq coach.email session.user.email)}}
         <div class="edit">
         {{#if (eq nombreMessage 0)}}
             <a href="/messages"><img src="/images/3119338.png" height="50" alt=""></a>
             <h1>Pas de message en vue!</h1>
         {{else if (eq nombreMessage 1)}}
           <a href="/messages"><img src="/images\jecrois.PNG" height="100" alt=""></a> 
-         <h1>Vous avez un nouveau message ({{nombreMessage}})!</h1></div>
+         <h1>Vous avez un nouveau message non lu  ({{nombreMessage}})!</h1></div>
          {{else}}
            <a href="/messages"><img src="/images/Capture.PNG" height="50" alt=""></a> 
-         <h1>Vous avez des messages ({{nombreMessage}})!</h1></div>
+         <h1>Vous avez plusieurs messages non lus ({{nombreMessage}})!</h1></div>
 
     {{/if}}
         {{/if}}
-
-</div>
-        </div>
-        <br>
 
         <!-- Formulaire de contact modifié -->
         {{#if ./session.connected}}
