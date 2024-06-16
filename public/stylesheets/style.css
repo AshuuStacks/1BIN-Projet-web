@@ -611,7 +611,7 @@ input:-moz-placeholder { /* Firefox 18- */
 }
 
 .modify-button {
-    margin-top: 10px;
+    margin-bottom: 10px;
     background-color: #1a41538e;
     color: white;
     border: none;
@@ -1190,3 +1190,30 @@ textarea {
     justify-content: flex-end;
 }
 
+
+.edit {
+    margin: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 1px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Styles pour les titres */
+h1 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+/* Style spécifique pour le message sans nouveau message */
+.no-message {
+    color: #888;
+}
+
+/* Style spécifique pour le message de réponse */
+.unanswered-message {
+    color: #d9534f;
+}

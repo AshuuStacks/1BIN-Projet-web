@@ -6,15 +6,26 @@
         <div id="containe-center">
             <div class="titre-bio-page">
                 <h1>{{coach.firstname}} {{coach.surname}}</h1>
-                <h1>  {{coach.age}} ans</h1>
                  </div>
                 <div id="biography-font-size-design"><h4>{{coach.biography }}</h4></div>
              <div id="update-button">
     {{#if (eq coach.email session.user.email)}}
-        <td><a href="/coaches/updateBio?user_id={{coach.user_id}}" class="modify-button">Mettre à jour</a></td> 
-    {{/if}}
-</div>
+           <td><a href="/coaches/updateBio?user_id={{coach.user_id}}" class="modify-button">Mettre à jour</a></td> 
+        <div class="edit">
+        {{#if (eq nombreMessage 0)}}
+            <a href="/messages"><img src="/images/3119338.png" height="50" alt=""></a>
+            <h1>Pas de message en vue!</h1>
+        {{else if (eq nombreMessage 1)}}
+          <a href="/messages"><img src="/images\jecrois.PNG" height="100" alt=""></a> 
+         <h1>Vous avez un nouveau message ({{nombreMessage}})!</h1></div>
+         {{else}}
+           <a href="/messages"><img src="/images/Capture.PNG" height="50" alt=""></a> 
+         <h1>Vous avez des messages ({{nombreMessage}})!</h1></div>
 
+    {{/if}}
+        {{/if}}
+
+</div>
         </div>
         <br>
 

@@ -29,6 +29,12 @@ module.exports.updateStatus = (user_id) => {
     const result = stmt.run( user_id);
     return result;
 };
+module.exports.countMessageUnRead = (receiver_id) => {
+    const stmt = db.prepare("SELECT COUNT(*) as count FROM messages WHERE receiver_id = ? AND response_text IS  NULL ");
+    const result = stmt.get(receiver_id);
+    return result.count;
+}
+
 
 
 

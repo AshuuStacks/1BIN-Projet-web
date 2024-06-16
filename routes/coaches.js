@@ -41,7 +41,7 @@ router.get('/details', (req, res) => {
     res.redirect('/coaches');
     return;
   }
-   
+   const nombreMessage = Coach.countMessageUnRead(userId);
   const coach = Coach.findById(userId);
 
   // Check if coach exists
@@ -59,7 +59,7 @@ router.get('/details', (req, res) => {
   }
 
   // Render the coach details page with coach data
-  res.render('coaches/details.hbs', { coach });
+  res.render('coaches/details.hbs', { coach , nombreMessage });
 });
 
 // Route for updating coach biography
