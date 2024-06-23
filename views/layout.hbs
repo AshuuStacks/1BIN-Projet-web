@@ -5,7 +5,7 @@
     <!-- Metadata -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VINCI COURT</title>
+    <title>VINCI COURT {{session.nombreMessage}}</title>
                <link rel="icon" href="Images/logo-vinci.be.png" type="image/icon type">    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -56,7 +56,10 @@
                 <ul class="navbar-nav d-flex flex-row">
                     {{#if (eq session.connected true)}}
                     <li class="nav-item me-3 me-lg-0">
-                        <a class="nav-link" href="/messages">Messages</a>
+                        <a class="nav-link" href="/messages">Messages                    {{#if (eq session.user.status "coach")}}
+ {{#if (eq @root.session.nombreMessage 0)}}
+                        {{else }} {{session.nombreMessage}}
+                        {{/if}}  {{/if}} </a>
                     </li>
                                        <li class="nav-item me-3 me-lg-0">
                         <a class="nav-link" href="/courts/bookings">Réservations</a>

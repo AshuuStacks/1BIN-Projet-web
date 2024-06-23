@@ -3,6 +3,7 @@ const router = express.Router();
 const Coach = require('../models/Coach.js');
 
 const multer = require('multer');
+const session = require('express-session');
 
 // Multer configuration for file upload
 const storage = multer.diskStorage({
@@ -33,7 +34,7 @@ router.get('/', (req, res) => {
 // Route for displaying coach details
 router.get('/details', (req, res) => {
   const userId = req.query.user_id;
-
+   req.session.userIDD  = userId
   // Check if userId is a number
   if (isNaN(userId)) {
     // Redirect with error message if userId is not a number
@@ -41,9 +42,10 @@ router.get('/details', (req, res) => {
     res.redirect('/coaches');
     return;
   }
-   const nombreMessage = Coach.countMessageUnRead(userId);
+  
   const coach = Coach.findById(userId);
 
+  
   // Check if coach exists
   if (!coach) {
     // Redirect with error message if coach doesn't exist
@@ -59,7 +61,7 @@ router.get('/details', (req, res) => {
   }
 
   // Render the coach details page with coach data
-  res.render('coaches/details.hbs', { coach , nombreMessage });
+  res.render('coaches/details.hbs', { coach });
 });
 
 // Route for updating coach biography
@@ -115,6 +117,7 @@ router.get('/updateBio', (req, res) => {
 router.post('/updateBio', upload.single('picture_path'), (req, res, next) => {
   // Retrieve coach ID and other details from the request body
   const coachId = req.body.user_id;
+
   const { biography } = req.body;
 
   const coach = Coach.findById(coachId);
