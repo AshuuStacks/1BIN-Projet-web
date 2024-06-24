@@ -3,8 +3,9 @@
         <div class="center-container">
             <div class="indexPage-title">
                 <p>
-                    Vivez la meilleure expérience du tennis
+                    Vivez la meilleure expérience du tennis 
                 </p>
+
             </div>
         </div>
         <div class="center-container-2">
@@ -24,8 +25,7 @@
             </h4>
             </div>
         </div>
-        
-    </body>
+   </body>
     <br>
     <br>
      <div class="message-count">
@@ -33,4 +33,9 @@
         <h3> {{totalBookings}} réservations dans les prochains jours! </h3>
         <h3>Ainsi que  {{totalTournament}} tournois en préparation!</h3>
         </div>
+
+       <form action="/votre_route" method="POST">
+    <input type="hidden" name="user_id" value="{{session.userIDD}}">
+    <button type="submit"> Clique ici pour afficher t'es notifications</button>
+</form>
 </main>
