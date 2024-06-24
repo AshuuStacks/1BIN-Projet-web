@@ -34,6 +34,12 @@ module.exports.countMessageUnRead = (receiver_id) => {
     const result = stmt.get(receiver_id);
     return result.count;
 }
+module.exports.lastMessage = (receiver_id) => {
+    const stmt = db.prepare('SELECT MAX(date_hour_message) , firstname , surname from messages , users WHERE sender_id = user_id AND receiver_id = ? GROUP BY firstname , surname HAVING MAX(date_hour_message) ');
+    const result = stmt.get(receiver_id); // Passer receiver_id deux fois
+    return result;
+};
+
 
 
 

@@ -57,8 +57,8 @@ module.exports.supprimerMessage = (message_id) => {
     return result.changes; // Renvoie le nombre de lignes modifiées (0 si aucune ligne n'a été supprimée)
 }
 
-module.exports.update = (message_id, message_text) => {
-    const stmt = db.prepare("UPDATE messages SET message_text = ? WHERE message_id = ?");
-    const result = stmt.run(message_text, message_id);
+module.exports.update = (message_text) => {
+    const stmt = db.prepare("UPDATE messages SET message_text = ?");
+    const result = stmt.run(message_text);
     return result;
 };

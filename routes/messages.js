@@ -76,11 +76,10 @@ router.get('/updateMessage', (req, res) => {
 
 
 router.post('/updateMessage', (req, res, next) => {
-  const message_id = req.body.message_id;
   const message_text = req.body.message_text;
 
   // Assurez-vous que l'ordre des paramètres est correct dans la méthode update
-  Message.update(message_id, message_text);
+  Message.update(message_text);
 
   // Redirection vers la page des messages après la mise à jour
   res.redirect('/messages');

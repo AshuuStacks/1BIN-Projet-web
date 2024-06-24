@@ -43,7 +43,7 @@ router.get('/details', (req, res) => {
   }
    const nombreMessage = Coach.countMessageUnRead(userId);
   const coach = Coach.findById(userId);
-
+  const lastMessage = Coach.lastMessage(userId);
   // Check if coach exists
   if (!coach) {
     // Redirect with error message if coach doesn't exist
