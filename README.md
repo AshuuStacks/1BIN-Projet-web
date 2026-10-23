@@ -60,3 +60,4 @@ bash prepare_submission.sh
 ```
 
 Si votre projet est fonctionnel, cette commande crée un fichier `project_group_XX_FRISTNAME_LASTNAME.zip`. Autrement, la commande affiche une erreur dans le terminal.
+# 1BIN-Projet-web
